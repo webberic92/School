@@ -8,7 +8,7 @@ new BufferedReader(new InputStreamReader
 (System.in));
 DatagramSocket clientSocket = new DatagramSocket();
 InetAddress IPAddress =
-InetAddress.getByName("hostname");
+InetAddress.getByName("ee-PC");
 byte[] sendData = new byte[1024];
 
 byte[] receiveData = new byte[1024];

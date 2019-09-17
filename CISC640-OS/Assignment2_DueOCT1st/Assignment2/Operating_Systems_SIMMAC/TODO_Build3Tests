@@ -1,0 +1,38 @@
+
+
+
+SIMMAC Programming Language Description Addition
+
+Usage: ADD <address> Where <address> holds the value to add to the accumulator.
+
+Subtraction
+
+Usage: SUB <address> Where <address> holds the value to subtract from the accumulator.
+
+Load
+
+Usage: LDA <address> Where <address> holds the value to load in to the accumulator.
+
+Load Immediate
+
+Usage: LDI number Where number is the value to load in to the accumulator.
+
+Store
+
+Usage: STR <address> Where <address> is the storage location for the contents of the accumulator.
+
+Branch
+
+Usage: BRH <address> Where <address> is the target of the absolute branch.
+
+6
+
+Conditional Branch
+
+Usage: CBR <address> Where <address> is the target of an absolute branch if the accumulator is zero.
+
+
+
+
+
+ 

@@ -1,31 +1,31 @@
- package simmac;
+package simmac;
 
 // Definition of a process control block
 
 public class Process {
 
-public int procid;
+	public int processID;
 
-public int ACC;
+	public int ACC;
 
-public int PSIAR;
+	public int PSIAR;
 
-public int memoryBase;
+	public int memoryBase;
 
-public int memoryLimit;
+	public int memoryLimit;
 
-public Process(int address,int size,int procid) {
+	public Process(int address, int size, int processID) {
 
-this. procid=procid;
+		this.processID = processID;
 
-ACC = 0;
+		ACC = 0;
 
-PSIAR = 0;
+		PSIAR = 0;
 
-memoryBase = address;
+		memoryBase = address;
 
-memoryLimit=address+size;
+		memoryLimit = address + size;
+
+	}
 
 }
-
-} 

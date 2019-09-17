@@ -1,176 +1,168 @@
- package simmac;
+package simmac;
 
 import java.util.ArrayList;
 
 public class OperatingSystem {
 
-ArrayList<Process  > readyQueue;  // queue of processes ready to run
+	ArrayList<Process> rdyQue; // queue of processes ready to run
 
-Process currentProcess;         // process currently being executed
+	Process current_process; // process currently being executed
 
-SIMMAC cpu;                     // cpu used to execute the processes
+	SIMMAC cpu; // cpu used to execute the processes
 
-int quantum;    // value of the time quantum
+	int quantum; // value of the time quantum
 
-int lastLoadAddress;    // address to load a program
+	int lastLoadAddress; // address to load a program
 
-int clock;
+	int clock;
 
+	public OperatingSystem(SIMMAC cpu, int quantum) {
 
-public OperatingSystem(SIMMAC cpu,int quantum) {
+		this.cpu = cpu;
 
-this.cpu=cpu;
+		this.quantum = quantum;
 
-this.quantum=quantum;
+		lastLoadAddress = 0;
 
-lastLoadAddress=0;
+		rdyQue = new ArrayList();
 
-readyQueue=new ArrayList();
+		current_process = null;
 
-currentProcess=null;
+		clock = 0;
 
-clock=0;
+	}
 
-}
+	
+	/* prints the ready process queue */
 
+	public void printProcesses() {
+		System.out.print("Process Queue: ");
 
+		for (int i = 0; i < rdyQue.size(); i++)
 
-/* prints the ready process queue */
+		{
 
-public void printProcesses() {
-System.out.print("Process Queue: ");
+			if (i > 0)
 
-System.out.print("[ ");
+				System.out.print(", ");
 
-for(int i=0; i<readyQueue.size(); i++)
+			System.out.print(rdyQue.get(i).processID);
 
-{
+		}
 
-if(i>0)
 
-System.out.print(", ");
+	}
 
+	
+	/* Switch the current process for another from the ready queue */
 
-System.out.print(readyQueue.get(i).procid);
+	public void switch_process() {
 
-}
+		if (current_process != null) {
 
-System.out.print(" ]");
+			current_process.ACC = cpu.ACC; // save current register state
 
-}
+			current_process.PSIAR = cpu.PSIAR;
 
+			rdyQue.add(current_process);
 
+		}
 
-/* Switch the current process for another from the ready queue */
+		current_process = rdyQue.remove(0); // get process from queue
 
-public void switchProcess() {
+		cpu.ACC = current_process.ACC; // load register state
 
-if(currentProcess!=null) {
+		cpu.PSIAR = current_process.PSIAR;
 
-currentProcess.ACC = cpu.ACC;   // save current register state
+		cpu.memoryLimit = current_process.memoryLimit; // load memory limits
 
-currentProcess.PSIAR = cpu.PSIAR;
+		cpu.memoryBase = current_process.memoryBase;
 
-readyQueue.add(currentProcess);
+		clock = 0; // restart clock count
 
-}
+		System.out.println("\nSwitching process.");
 
-currentProcess=readyQueue.remove(0);    // get process from queue
+		System.out.println("next process ID: " + current_process.processID);
+		printProcesses();
+		System.out.println();
 
-cpu.ACC=currentProcess.ACC; // load register state
+	}
 
-cpu.PSIAR=currentProcess.PSIAR;
+	
+	/*
+	 * Run the loaded processes in an loop until all are executed or an error
+	 * happens
+	 */
 
-cpu.memoryLimit = currentProcess.memoryLimit;   // load memory limits
+	public void run() {
 
-cpu.memoryBase = currentProcess.memoryBase;
+		boolean term = false;
 
-clock = 0;  // restart clock count
+		current_process = null;
 
-System.out.println("\n Switching process.");
+		switch_process(); // load first process
 
-System.out.println("next process ID: "+currentProcess.procid);
-printProcesses();
+		while (!term)
 
-System.out.println();
+		{
 
-}
+			boolean exit_status = cpu.executeTheInstructions();
 
+			clock++;
 
+			if (exit_status == true) { // it the process was termd
 
-/* Run the loaded processes in an loop until all are executed or an error happens*/
+				if (rdyQue.size() > 0)
 
-public void run() {
+				{
 
-boolean terminate = false;
+					current_process = null; // invalidate current process
 
-currentProcess=null;
+					switch_process(); // forced swap to a different process
 
-switchProcess(); // load first process
+				}
 
-while(!terminate)
+				else
 
-{
+					term = true; // no more processes, exit the program
 
-boolean exitStatus = cpu.executeInstruction();
+			}
 
-clock++;
+			if (clock >= quantum && !term) {
 
-if(exitStatus==true) { // it the process was terminated
+				switch_process();
 
-if(readyQueue.size()>0)
+			}
 
-{
+		}
 
-currentProcess=null; // invalidate current process
+	}
 
-switchProcess();    // forced swap to a different process
+	
+	/* load a SIMMAC program to memory */
 
-}
+	void loadProgram(int[] program) {
 
-else
+		int startAddress = lastLoadAddress;
 
-terminate=true; // no more processes, exit the program
+		if (lastLoadAddress + program.length >= cpu.MEMORY_SIZE) {
 
-}
+			System.out.println("Error: cannot load program, program size exceeds memory size.");
 
-if(clock>=quantum && !terminate) {
+			System.exit(0);
 
-switchProcess();
+		}
 
-}
+		for (int i = 0; i < program.length; i++)
 
-}
+			cpu.Memory[lastLoadAddress + i] = program[i];
 
-}
+		lastLoadAddress += program.length;
 
+		Process process = new Process(startAddress, program.length, rdyQue.size());
 
+		rdyQue.add(process);
 
-/* load a SIMMAC program to memory */
-
-void loadProgram(int [] program) {
-
-int startAddress=lastLoadAddress;
-
-if (lastLoadAddress + program.length >= cpu.MEMORY_SIZE) {
-
-System.out.println("Error: cannot load program, program size exceeds memory size.");
-
-
-System.exit(0);
-
-}
-
-for (int i=0; i<program.length; i++)
-
-cpu.Memory[lastLoadAddress+i] = program[i];
-
-lastLoadAddress+=program.length;
-
-Process process= new Process(startAddress,program.length,readyQueue.size());
-
-readyQueue.add(process);
-
-}
+	}
 
 }

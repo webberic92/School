@@ -20,6 +20,7 @@ public static final int CBR = 0x0007;
 
 public static final int HLT = 0x0008;
 
+
 /* if the given word corresponds to a valid opcode returns the numerical
 
 opcode, if it is not a valid opcode returns -1*/
@@ -73,6 +74,7 @@ return -1;
 }
 
 }
+
 
 /* if the string operand corresponds to a valid operand for the opcode
 
@@ -175,6 +177,7 @@ return null;
 }
 
 }
+
 
 /* parses the given line and determines if it corressponds to a valid
 

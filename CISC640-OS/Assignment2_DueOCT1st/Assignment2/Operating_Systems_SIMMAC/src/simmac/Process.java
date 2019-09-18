@@ -1,6 +1,6 @@
 package simmac;
 
-// Definition of a process control block
+// Process Control Block.
 
 public class Process {
 
@@ -13,6 +13,8 @@ public class Process {
 	public int memoryBase;
 
 	public int memoryLimit;
+	
+
 
 	public Process(int address, int size, int processID) {
 

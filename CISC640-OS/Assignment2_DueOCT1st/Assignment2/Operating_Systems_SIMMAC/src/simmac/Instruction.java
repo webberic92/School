@@ -21,9 +21,8 @@ public static final int CBR = 0x0007;
 public static final int HLT = 0x0008;
 
 
-/* if the given word corresponds to a valid opcode returns the numerical
 
-opcode, if it is not a valid opcode returns -1*/
+//Validates that program input is valid opcode and returns its numerical value if so.
 
 public static int getOpcode(String word){
 
@@ -76,14 +75,11 @@ return -1;
 }
 
 
-/* if the string operand corresponds to a valid operand for the opcode
 
-it returns the numerical value, otherwise it returns null
-
-*/
-
+// If Operand is valid then returens numerical value if not then null
 private static Integer parseOperand(int opcode,String operand,String filename,int nline) {
 
+	
 switch(opcode) {
 
 case ADD:
@@ -98,19 +94,19 @@ case BRH:
 
 case CBR:
 
-	
-if (operand.matches("\\d+")) { // if it’s a valid unsigned number
+// if valid unsigned number
+if (operand.matches("\\d+")) {
 
 	int val=Integer.parseInt(operand);
 
-	
-if(val>=0 && val<32767) // if it’s at most 16 bits
+//If at most 16 bits.
+if(val>=0 && val<32767) 
 
 return val;
 
 else {
 
-System.out.println("Error ["+filename+"("+nline+ ")]: then number: "+operand+" is longer than 16 bits.");
+System.out.println("Error: "+filename+" "+nline+ " then number: "+operand+" is longer than 16 bits.");
 
 return null;
 
@@ -119,7 +115,7 @@ return null;
 }
 
 else {
-System.out.println("Error ["+filename+"("+nline+ ")]: invalid number: "+operand+".");
+System.out.println("Error: "+filename+" "+nline+ " invalid number: "+operand+".");
 
 return null;
 
@@ -136,7 +132,7 @@ return val;
 }
 
 else {
-	System.out.println("ERROR ["+filename+"("+nline+ ")]: invlaid integer number: "+operand+".");
+	System.out.println("Error: "+filename+" "+nline+ " invalid number: "+operand+".");
 
 return null;
 
@@ -165,7 +161,7 @@ return null;
 
 else {
 
-System.out.println("ERROR ["+filename+"("+nline+ ")]: invlaid integer number: "+operand+".");
+	System.out.println("Error: "+filename+" "+nline+ " invalid number: "+operand+".");
 return null;
 
 }
@@ -179,10 +175,8 @@ return null;
 }
 
 
-/* parses the given line and determines if it corressponds to a valid
 
-SIMMAC instruction */
-
+//Validates to see if line give corresponds to a valid instruction.
 public static Integer parseInstruction(String line,String filename,int nline) {
 
 String [] parts= line.split("\\s+");
@@ -217,6 +211,7 @@ return null;
 
 if(opc==HLT) {
 
+//Halt cant have more then one instruction.
 if(parts.length>1)  {
 
 System.out.println("ERROR ["+filename+"("+nline+ ")]: invalid operand for HALT instruction. HALT requires no operands.");

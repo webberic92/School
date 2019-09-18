@@ -2,35 +2,36 @@ package simmac;
 
 public class SIMMAC {
 
-	public final int MEMORY_SIZE = 512;
+	public final int MEM_SIZE = 512;
 
 	public int Memory[];
 
-	public int memoryBase; // starting address for current process
+	public int memBase; // Starting address for current process.
 
-	public int memoryLimit; // maximum address allowed for current process
+	public int memLimit; // Maximum address allowed for current process.
 
-// registers
+// Registers.
 
-	public int ACC; // accumulator
+	public int ACC; // Accumulator.
 
-	public int PSIAR; // Primary Storage Instruction Address Register
+	public int PSIAR; // Primary Storage Instruction Address Register.
 
-	int SAR; // Storage Address Register
+	int SAR; // Storage Address Register.
 
-	int SDR; // Storage Data Register
+	int SDR; // Storage Data Register.
 
-	int TMPR; // Temporary Register
+	int TMPR; // Temporary Register.
 
-	int CSIAR; // Control Storage Instruction Address Register
+	int CSIAR; // Control Storage Instruction Address Register.
 
-	int IR; // Instruction Register
+	int IR; // Instruction Register.
 
-	int MIR; // Micro-instruction Register
+	int MIR; // Micro-instruction Register.
 
 	public SIMMAC() {
 
-		Memory = new int[MEMORY_SIZE];
+		//Creates MEM SIZE of 512.
+		Memory = new int[MEM_SIZE];
 
 		CSIAR = 0;
 
@@ -38,21 +39,19 @@ public class SIMMAC {
 
 		ACC = 0;
 
-		memoryLimit = MEMORY_SIZE;
+		memLimit = MEM_SIZE;
 
-		memoryBase = 0;
+		memBase = 0;
 
 	}
 
-	/*
-	 * read from memory using the SAR register, if an error was found returns true
-	 */
 
+// This method reads memory from the SAR and if error is found then it will return true.
 	boolean read() {
 
-		if (SAR + memoryBase >= 0 && SAR + memoryBase < memoryLimit) {
+		if (SAR + memBase >= 0 && SAR + memBase < memLimit) {
 
-			SDR = Memory[memoryBase + SAR];
+			SDR = Memory[memBase + SAR];
 
 			return false;
 
@@ -64,13 +63,15 @@ public class SIMMAC {
 
 	}
 
-	/* write to memory using the SAR register, if an error was found returns true */
+
+
+	// This method writes memory from the SAR and if error is found then it will return true.
 
 	boolean write() {
 
-		if (SAR + memoryBase >= 0 && SAR + memoryBase < memoryLimit) {
+		if (SAR + memBase >= 0 && SAR + memBase < memLimit) {
 
-			Memory[memoryBase + SAR] = SDR;
+			Memory[memBase + SAR] = SDR;
 
 			return false;
 
@@ -100,6 +101,8 @@ public class SIMMAC {
 
 	}
 
+	
+	//Below are methods given to us in the assignment.
 	boolean add() {
 		//(10) TMPR = ACC (11) ACC = PSIAR + 1 (12) PSIAR = ACC (13)
 		//ACC = TMPR (14) TMPR = SDR (15) SAR = TMPR (16) READ (17) 
@@ -277,17 +280,14 @@ public class SIMMAC {
 	}
 
 	
-	
-//	/* print the contents of all the registers and all memory */
-
+// Dumps all contents of memory and registers.
 	public void dump() {
-		// Add a HALT instruction that dumps the contents of all registers and memory and then prints an “End of Job” message. 
 
 		System.out.printf("Contents of Register:\n");
 		System.out.printf("ACC = %08X\tPSIAR = %04X\tSAR = %04X\tSDR = %08X\n", ACC, PSIAR, SAR, SDR);
 		System.out.printf("TMPR = %08X\tCSIAR = %04X\tIR = %04X\tMIR = %04X\n", TMPR, CSIAR, IR, MIR);
 		System.out.printf("\nMemory contents:\n%03d: ", 0);
-		for (int i = 0; i < MEMORY_SIZE; i++) {
+		for (int i = 0; i < MEM_SIZE; i++) {
 
 			if (i != 0 && i % 8 == 0)
 				System.out.printf("\n%03d: ", i);
@@ -300,6 +300,8 @@ public class SIMMAC {
 
 	}
 
+	
+//Fethch's instructions and executes methods in switch case accordingly.
 	public boolean executeTheInstructions() {
 
 		boolean halt = false;
@@ -356,7 +358,7 @@ public class SIMMAC {
 
 			dump();
 
-			System.out.println("End of Job");
+			System.out.println("Job Ended.");
 
 			halt = true;
 
@@ -365,7 +367,7 @@ public class SIMMAC {
 		default:
 
 			dump();
-			System.out.printf("ERROR : invlaid instructions %04X.\nProgram termd. \n", IR);
+			System.out.printf("ERROR: Invlaid instructions %04X.\nProgram terminated. \n", IR);
 
 			halt = true;
 
@@ -374,11 +376,11 @@ public class SIMMAC {
 		if (error) {
 
 			dump();
-			System.out.printf("ERROR : invlaid memory address %04X.\nProgram termd. \n", SAR);
+			System.out.printf("ERROR: Invlaid memory address %04X.\nProgram terminated. \n", SAR);
 
 		}
 
-		return (halt || error); // return true if there was an error, false otherwise
+		return (halt || error); 
 
 	}
 

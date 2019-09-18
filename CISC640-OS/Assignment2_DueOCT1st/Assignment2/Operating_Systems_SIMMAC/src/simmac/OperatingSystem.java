@@ -4,18 +4,20 @@ import java.util.ArrayList;
 
 public class OperatingSystem {
 
-	ArrayList<Process> rdyQue; // queue of processes ready to run
+	ArrayList<Process> rdyQue; // Queue of processes ready to run.
 
-	Process current_process; // process currently being executed
+	Process current_process; // Process currently being executed.
 
-	SIMMAC cpu; // cpu used to execute the processes
+	SIMMAC cpu; // Cpu used to execute the processes.
 
-	int quantum; // value of the time quantum
+	int quantum; // Value of the time quantum.
 
-	int lastLoadAddress; // address to load a program
+	int lastLoadAddress; // Address to load a program.
 
-	int clock;
-
+	int clock; //clock.
+	
+	
+// Operating System gets passed cpu and quantum time, then creates a ready queue with null processes.
 	public OperatingSystem(SIMMAC cpu, int quantum) {
 
 		this.cpu = cpu;
@@ -33,8 +35,7 @@ public class OperatingSystem {
 	}
 
 	
-	/* prints the ready process queue */
-
+	//Prints processes
 	public void printProcesses() {
 		System.out.print("Process Queue: ");
 
@@ -53,54 +54,54 @@ public class OperatingSystem {
 
 	}
 
-	
-	/* Switch the current process for another from the ready queue */
 
+//Switch processes.
 	public void switch_process() {
 
 		if (current_process != null) {
 
-			current_process.ACC = cpu.ACC; // save current register state
+			//Saves current register state.
+			current_process.ACC = cpu.ACC; 
 
 			current_process.PSIAR = cpu.PSIAR;
 
 			rdyQue.add(current_process);
 
 		}
+		//Gets the process from queue.
+		current_process = rdyQue.remove(0); 
 
-		current_process = rdyQue.remove(0); // get process from queue
-
-		cpu.ACC = current_process.ACC; // load register state
+		//Load the state of the register.
+		cpu.ACC = current_process.ACC;
 
 		cpu.PSIAR = current_process.PSIAR;
 
-		cpu.memoryLimit = current_process.memoryLimit; // load memory limits
+		//Gets limits for the memory.
+		cpu.memLimit = current_process.memoryLimit;
 
-		cpu.memoryBase = current_process.memoryBase;
+		cpu.memBase = current_process.memoryBase;
 
-		clock = 0; // restart clock count
+		//clock restarted.
+		clock = 0; 
 
-		System.out.println("\nSwitching process.");
+		System.out.println("\nSwitching process...");
 
-		System.out.println("next process ID: " + current_process.processID);
+		System.out.println("The Next Process ID is... " + current_process.processID);
 		printProcesses();
 		System.out.println();
 
 	}
 
 	
-	/*
-	 * Run the loaded processes in an loop until all are executed or an error
-	 * happens
-	 */
-
+	
+//Loops through processes and throws error if needed.
 	public void run() {
 
 		boolean term = false;
 
 		current_process = null;
-
-		switch_process(); // load first process
+		//first process is loaded.
+    	switch_process(); 
 
 		while (!term)
 
@@ -109,25 +110,29 @@ public class OperatingSystem {
 			boolean exit_status = cpu.executeTheInstructions();
 
 			clock++;
+			
+			//Error handling of invalid processes,
+			//Sets process to null and forces swap to next process.
 
-			if (exit_status == true) { // it the process was termd
+			if (exit_status == true) {
 
 				if (rdyQue.size() > 0)
 
 				{
 
-					current_process = null; // invalidate current process
+					current_process = null; 
 
-					switch_process(); // forced swap to a different process
+					switch_process(); 
 
 				}
 
 				else
-
-					term = true; // no more processes, exit the program
+					//terminates
+					term = true; 
 
 			}
 
+//If clock is greater than or equal to quantum and not terminated then next process.
 			if (clock >= quantum && !term) {
 
 				switch_process();
@@ -139,19 +144,22 @@ public class OperatingSystem {
 	}
 
 	
-	/* load a SIMMAC program to memory */
 
+//Loads SIMMAC program to the memory.
 	void loadProgram(int[] program) {
 
 		int startAddress = lastLoadAddress;
-
-		if (lastLoadAddress + program.length >= cpu.MEMORY_SIZE) {
+		
+		//Verifies that this program doesnt exceed CPU MEM SIZE (512)
+		if (lastLoadAddress + program.length >= cpu.MEM_SIZE) {
 
 			System.out.println("Error: cannot load program, program size exceeds memory size.");
 
 			System.exit(0);
 
 		}
+		
+		//Loops through and adds process to que.
 
 		for (int i = 0; i < program.length; i++)
 

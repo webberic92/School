@@ -10,74 +10,10 @@ import java.util.Scanner;
 
 public class Main {
 
-	/*
-	 * open a SIMMAC program file and parse its contents, if everything is fine
-	 * 
-	 * returns an array with all the instructions
-	 */
-
-	public static int[] readProgramFile(String filename) {
-
-		try {
-
-			Scanner s = new Scanner(new File(filename));
-
-			ArrayList<Integer> instructions = new ArrayList();
-
-			int nline = 1;
-
-			while (s.hasNext()) {
-
-				String line = s.nextLine().trim();
-
-				if (line.length() > 0)
-
-				{
-
-					Integer inst = Instruction.parseInstruction(line, filename, nline); // parse the instruction
-																						// contained in the current line
-
-					if (inst != null) { // if the instruction was valid
-
-						instructions.add(inst);
-
-					}
-
-					else
-
-						System.exit(0);
-
-				}
-
-				nline++;
-
-			}
-
-			s.close();
-
-			int[] instr = new int[instructions.size()];
-
-			for (int i = 0; i < instructions.size(); i++)
-
-				instr[i] = instructions.get(i);
-
-			return instr; // success, return the instruction list
-
-		} catch (FileNotFoundException e) {
-
-			System.out.println("ERROR: program file " + filename + " could not be opened.");
-
-			System.exit(0); // failure
-
-		}
-
-		return null;
-
-	}
-
+//Main method askes for time quantum value, then creates instances of SIMMAC and OperatingSystem.
 	public static void main(String[] args) {
 
-		System.out.println("Please enter the time quantum value: "); // ask for the filename to use
+		System.out.println("Please enter time quantum value... "); 
 
 		Scanner scanner = new Scanner(System.in);
 
@@ -87,15 +23,17 @@ public class Main {
 
 		OperatingSystem operatingSytem = new OperatingSystem(cpu, quantum);
 
+		
+//Asks for more files to be entered or not.
 		if (args.length == 0) {
 
-			boolean done = false;
+			boolean loadFileDone = false;
 
 			ArrayList<String> filenames = new ArrayList();
 
-			while (!done) {
+			while (!loadFileDone) {			
 
-				System.out.print("Please enter file name to lead."); // ask for the filename to use
+				System.out.print("Please enter file name to lead.");
 
 				filenames.add(scanner.next());
 
@@ -103,24 +41,22 @@ public class Main {
 
 				String choice = scanner.next();
 
-				if (choice.toUpperCase().equals("N") || !choice.toUpperCase().equals("Y"))
-					;
-
-				done = true;
+				if (choice.toUpperCase().equals("N") || !choice.toUpperCase().equals("Y")) {
+				loadFileDone = true;
 
 			}
 
-//			 Add a HALT instruction that dumps the contents of all registers and memory and then 
-//			prints an “End of Job” message. 
+// Loads multiple.
 			for (int i = 0; i < filenames.size(); i++) {
 
-				int[] program = readProgramFile(filenames.get(i));
+				int[] program = getFile(filenames.get(i));
 
 				operatingSytem.loadProgram(program);
 
 			}
-
-		}
+			}}
+		
+// else Loads single.
 
 		else {
 
@@ -128,16 +64,83 @@ public class Main {
 
 			{
 
-				int[] program = readProgramFile(args[i]);
+				int[] program = getFile(args[i]);
 
 				operatingSytem.loadProgram(program);
 
 			}
 
 		}
-
-		operatingSytem.run(); // run the processes
+// Starts operating system.
+		operatingSytem.run(); 
 
 	}
 
+
+
+	
+// This method gets the input files to be loaded.
+public static int[] getFile(String file) {
+
+	try {
+
+		Scanner scanner = new Scanner(new File(file));
+
+		ArrayList<Integer> instructions = new ArrayList();
+
+		int nline = 1;
+
+		while (scanner.hasNext()) {
+
+			String line = scanner.nextLine().trim();
+
+			if (line.length() > 0)
+
+			{
+
+				Integer inst = Instruction.parseInstruction(line, file, nline); 
+																				
+
+				if (inst != null) { 
+
+					instructions.add(inst);
+
+				}
+
+				else
+
+					System.exit(0);
+
+			}
+
+			nline++;
+
+		}
+
+		scanner.close();
+		
+		
+// Loops through and gets instructions.
+
+		int[] instr = new int[instructions.size()];
+
+		for (int i = 0; i < instructions.size(); i++)
+
+			instr[i] = instructions.get(i);
+
+// success, returns the instruction list.
+		return instr; 
+
+	} catch (FileNotFoundException e) {
+
+		System.out.println("ERROR: Could not find or open " + file + ".");
+
+		System.exit(0); 
+
+	}
+
+	return null;
+
 }
+}
+

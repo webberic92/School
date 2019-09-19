@@ -367,7 +367,7 @@ public class SIMMAC {
 		default:
 
 			dump();
-			System.out.printf("ERROR: Invlaid instructions %04X.\nProgram terminated. \n", IR);
+			System.out.printf("Invlaid instructions %04X.\nProgram terminated. \n", IR);
 
 			halt = true;
 
@@ -376,7 +376,7 @@ public class SIMMAC {
 		if (error) {
 
 			dump();
-			System.out.printf("ERROR: Invlaid memory address %04X.\nProgram terminated. \n", SAR);
+			System.out.printf("Invlaid memory address %04X.\nProgram terminated. \n", SAR);
 
 		}
 

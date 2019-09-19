@@ -22,7 +22,7 @@ public static final int HLT = 0x0008;
 
 
 
-//Validates that program input is valid opcode and returns its numerical value if so.
+//Validates that program input is valid opcode and returns its opcode if so.
 
 public static int getOpcode(String word){
 
@@ -76,7 +76,7 @@ return -1;
 
 
 
-// If Operand is valid then returens numerical value if not then null
+// If opCode is valid then returens numerical value if not then null
 private static Integer parseOperand(int opcode,String operand,String filename,int nline) {
 
 	
@@ -145,13 +145,13 @@ case LDI:
 if (operand.matches("[+-]?\\d+")){
 
 int val=Integer.parseInt(operand);
-
+//If at most 16 bits.
 if(val>=-32768 && val<32767)
 
 return val;
 
 else {
-System.out.println("ERROR ["+filename+"("+nline+ ")]: the number: "+operand+" is longer than 16 bits.");
+System.out.println("+filename+" +"+nline+" + " the number: "+operand+" is longer than 16 bits.");
 
 return null;
 
@@ -161,7 +161,7 @@ return null;
 
 else {
 
-	System.out.println("Error: "+filename+" "+nline+ " invalid number: "+operand+".");
+	System.out.println(filename+" "+nline+ " invalid number: "+operand+".");
 return null;
 
 }
@@ -183,7 +183,6 @@ String [] parts= line.split("\\s+");
 if(parts.length>2) {
 
 System.out.println("ERROR ["+filename+"("+nline+ ")]:  A SIMMAC instruction can only contain one opcode and one operand.");
-System.out.println("ERROR ["+filename+"("+nline+ ")]:  A SIMMAC instruction can only contain one opcode and one operand.");
 
 
 return null;
@@ -192,7 +191,6 @@ return null;
 
 if(parts[0].length()==0) {
 
-	System.out.println("ERROR ["+filename+"("+nline+ ")]:  A SIMMAC instruction can only contain one opcode and one operand.");
 	System.out.println("ERROR ["+filename+"("+nline+ ")]:  A SIMMAC instruction can only contain one opcode and one operand.");
 
 return null;
@@ -214,8 +212,7 @@ if(opc==HLT) {
 //Halt cant have more then one instruction.
 if(parts.length>1)  {
 
-System.out.println("ERROR ["+filename+"("+nline+ ")]: invalid operand for HALT instruction. HALT requires no operands.");
-System.out.println("ERROR ["+filename+"("+nline+ ")]: invalid operand for HALT instruction. HALT requires no operands.");
+System.out.println("ERROR! HLT does not need operand.");
 
 return null;
 
@@ -229,7 +226,7 @@ else {
 
 if(parts.length!=2)  {
 
-System.out.println("ERROR ["+filename+"("+nline+ ")]: SIMMAC instructions other than HALT must contain an opcode and an operand.");
+System.out.println("ERROR!"+filename+" "+nline+ " Must containt opcode and operand unless using HLT.");
 
 return null;
 

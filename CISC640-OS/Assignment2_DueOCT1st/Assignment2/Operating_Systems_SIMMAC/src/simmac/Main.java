@@ -13,72 +13,79 @@ public class Main {
 //Main method askes for time quantum value, then creates instances of SIMMAC and OperatingSystem.
 	public static void main(String[] args) {
 
-		System.out.println("Please enter time quantum value... "); 
-
-		Scanner scanner = new Scanner(System.in);
-
-		int quantum = scanner.nextInt();
-
-		SIMMAC cpu = new SIMMAC();
-
-		OperatingSystem operatingSytem = new OperatingSystem(cpu, quantum);
-
-		
-//Asks for more files to be entered or not.
-		if (args.length == 0) {
-
-			boolean loadFileDone = false;
-
-			ArrayList<String> filenames = new ArrayList();
-
-			while (!loadFileDone) {			
-
-				System.out.print("Please enter file name to lead.");
-
-				filenames.add(scanner.next());
-
-				System.out.println("Do you want to load another file? (Y/N): ");
-
-				String choice = scanner.next();
-
-				if (choice.toUpperCase().equals("N") || !choice.toUpperCase().equals("Y")) {
-				loadFileDone = true;
-
-			}
-
-// Loads multiple.
-			for (int i = 0; i < filenames.size(); i++) {
-
-				int[] program = getFile(filenames.get(i));
-
-				operatingSytem.loadProgram(program);
-
-			}
-			}}
-		
-// else Loads single.
-
-		else {
-
-			for (int i = 0; i < args.length; i++)
-
-			{
-
-				int[] program = getFile(args[i]);
-
-				operatingSytem.loadProgram(program);
-
-			}
-
-		}
-// Starts operating system.
-		operatingSytem.run(); 
+			run(args);
 
 	}
 
 
+//Main method askes for time quantum value, then creates instances of SIMMAC and OperatingSystem.
+private static void run(String[] args) {
+	System.out.println("Weclome to the SIMMAC program! "); 
+	System.out.println("To get started, "); 
+	System.out.println("Please enter time quantum value... "); 
+
+	Scanner scanner = new Scanner(System.in);
+
+	int quantum = scanner.nextInt();
+
+	SIMMAC cpu = new SIMMAC();
+
+	OperatingSystem operatingSytem = new OperatingSystem(cpu, quantum);
 
 	
+//Asks for more files to be entered or not.
+	if (args.length == 0) {
+
+		boolean loadFileDone = false;
+
+		ArrayList<String> filenames = new ArrayList();
+
+		while (!loadFileDone) {			
+
+			System.out.print("Please enter file name to load...");
+
+			filenames.add(scanner.next());
+
+			System.out.println("Do you want to load another file? (Y/N)...");
+
+			String choice = scanner.next();
+
+			if (choice.toUpperCase().equals("N") || !choice.toUpperCase().equals("Y")) {
+			loadFileDone = true;
+
+		}
+
+//Loads multiple.
+		for (int i = 0; i < filenames.size(); i++) {
+
+			int[] program = getFile(filenames.get(i));
+
+			operatingSytem.loadProgram(program);
+
+		}
+		}}
+	
+//else Loads single.
+
+	else {
+
+		for (int i = 0; i < args.length; i++)
+
+		{
+
+			int[] program = getFile(args[i]);
+
+			operatingSytem.loadProgram(program);
+
+		}
+
+	}
+//Starts operating system.
+	operatingSytem.run(); 
+
+}
+
+
 // This method gets the input files to be loaded.
 public static int[] getFile(String file) {
 

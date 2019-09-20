@@ -86,7 +86,7 @@ private static void run(String[] args) {
 }
 
 
-// This method gets the input files to be loaded.
+// This method gets the input files to be loaded then returns instructions and validates via abstraction from Instruction.java.
 public static int[] getFile(String file) {
 
 	try {

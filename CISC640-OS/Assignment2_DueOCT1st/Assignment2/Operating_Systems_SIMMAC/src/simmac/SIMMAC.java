@@ -10,8 +10,6 @@ public class SIMMAC {
 
 	public int memLimit; // Maximum address allowed for current process.
 
-// Registers.
-
 	public int ACC; // Accumulator.
 
 	public int PSIAR; // Primary Storage Instruction Address Register.

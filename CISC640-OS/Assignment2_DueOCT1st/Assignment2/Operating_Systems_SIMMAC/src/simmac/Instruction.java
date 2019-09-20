@@ -76,7 +76,7 @@ return -1;
 
 
 
-// If opCode is valid then returens numerical value if not then null
+// If operand is valid then returens numerical value if not then null
 private static Integer parseOperand(int opcode,String operand,String filename,int nline) {
 
 	

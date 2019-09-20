@@ -1,0 +1,6 @@
+LDI 0
+ADD 1
+STR 4
+CBR 4
+STR 4
+HLT

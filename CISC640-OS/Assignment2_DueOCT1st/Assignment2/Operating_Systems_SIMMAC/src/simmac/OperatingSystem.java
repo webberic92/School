@@ -68,7 +68,8 @@ public class OperatingSystem {
 			rdyQue.add(current_process);
 
 		}
-		//Gets the process from queue.
+		//Gets the next process from queue by removing index of 0 and everything in array gets shifted downwards
+		//Aka the next process is now at index 0 and set to our current process.
 		current_process = rdyQue.remove(0); 
 
 		//Load the state of the register.

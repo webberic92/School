@@ -92,6 +92,10 @@ public class SIMMAC {
 		IR = SDR;
 
 		SDR = IR & 0xFFFF;
+		
+		
+// >> is signed right shift operator. It shifts a bit pattern to the right. 
+//The bit pattern is given by the left-hand operand, and the number of positions to shift by the right-hand operand.
 
 		CSIAR = IR >> 16;
 

@@ -14,9 +14,8 @@ public class OperatingSystem {
 
 	int lastLoadAddress; // Address to load a program.
 
-	int clock; //clock.
-	
-	
+	int clock; // Clock to compare against time quantum value.
+
 // Operating System gets passed cpu and quantum time, then creates a ready queue with null processes.
 	public OperatingSystem(SIMMAC cpu, int quantum) {
 
@@ -34,8 +33,7 @@ public class OperatingSystem {
 
 	}
 
-	
-	//Prints processes
+	// Prints processes by looping through queue.
 	public void printProcesses() {
 		System.out.print("Process Queue: ");
 
@@ -51,39 +49,36 @@ public class OperatingSystem {
 
 		}
 
-
 	}
 
-
-//Switch processes.
+//Switch processes. This is part of round robin.
 	public void switch_process() {
 
 		if (current_process != null) {
 
-			//Saves current register state.
-			current_process.ACC = cpu.ACC; 
+			// Saves current register state.
+			current_process.ACC = cpu.ACC;
 
 			current_process.PSIAR = cpu.PSIAR;
 
 			rdyQue.add(current_process);
 
 		}
-		//Gets the next process from queue by removing index of 0 and everything in array gets shifted downwards
-		//Aka the next process is now at index 0 and set to our current process.
-		current_process = rdyQue.remove(0); 
+		// Gets the next process from queue by removing index of 0 and everything in
+		// array gets shifted downwards
+		// Aka the next process is now at index 0 (Instead of index 1.) and set to our current process.
+		current_process = rdyQue.remove(0);
 
-		//Load the state of the register.
+		// Load the state of the register.
 		cpu.ACC = current_process.ACC;
-
 		cpu.PSIAR = current_process.PSIAR;
 
-		//Gets limits for the memory.
+		// Gets limits for the memory.
 		cpu.memLimit = current_process.memoryLimit;
-
 		cpu.memBase = current_process.memoryBase;
 
-		//clock restarted.
-		clock = 0; 
+		// clock restarted. So next process can compete against time quantum value.
+		clock = 0;
 
 		System.out.println("\nSwitching process...");
 
@@ -93,16 +88,14 @@ public class OperatingSystem {
 
 	}
 
-	
-	
 //Loops through processes and throws error if needed.
 	public void run() {
 
 		boolean term = false;
 
 		current_process = null;
-		//first process is loaded.
-    	switch_process(); 
+		// first process is loaded.
+		switch_process();
 
 		while (!term)
 
@@ -111,9 +104,10 @@ public class OperatingSystem {
 			boolean exit_status = cpu.executeTheInstructions();
 
 			clock++;
-			
-			//Error handling of invalid processes,
-			//Sets process to null and forces swap to next process.
+
+			// Error handling of invalid processes,
+			// Sets process to null and forces swap to next process.
+			// IF the HLT instruction it will return true for exit_status
 
 			if (exit_status == true) {
 
@@ -121,15 +115,15 @@ public class OperatingSystem {
 
 				{
 
-					current_process = null; 
+					current_process = null;
 
-					switch_process(); 
+					switch_process();
 
 				}
 
 				else
-					//terminates
-					term = true; 
+					// terminates
+					term = true;
 
 			}
 
@@ -144,23 +138,21 @@ public class OperatingSystem {
 
 	}
 
-	
-
 //Loads SIMMAC program to the memory.
 	void loadProgram(int[] program) {
 
 		int startAddress = lastLoadAddress;
-		
-		//Verifies that this program doesnt exceed CPU MEM SIZE (512)
+
+		// Verifies that this program doesnt exceed CPU MEM SIZE (512)
 		if (lastLoadAddress + program.length >= cpu.MEM_SIZE) {
 
-			System.out.println("Error: cannot load program, program size exceeds memory size.");
+			System.out.println("Something went wrong cannot load program, program size exceeds memory size.");
 
 			System.exit(0);
 
 		}
-		
-		//Loops through and adds process to que.
+
+		// Loops through and adds process to que.
 
 		for (int i = 0; i < program.length; i++)
 
@@ -170,6 +162,7 @@ public class OperatingSystem {
 
 		Process process = new Process(startAddress, program.length, rdyQue.size());
 
+		//This is where processes get added to end of the queue in the round robin architecture if still needs to be completed.
 		rdyQue.add(process);
 
 	}

@@ -1,17 +1,9 @@
 package simmac;
 
 public class SIMMAC {
-
-	public final int MEM_SIZE = 512;
-
-	public int Memory[];
-
-	public int memBase; // Starting address for current process.
-
-	public int memLimit; // Maximum address allowed for current process.
-
-	public int ACC; // Accumulator.
-
+	
+	
+	
 	public int PSIAR; // Primary Storage Instruction Address Register.
 
 	int SAR; // Storage Address Register.
@@ -26,6 +18,19 @@ public class SIMMAC {
 
 	int MIR; // Micro-instruction Register.
 
+	
+
+	public final int MEM_SIZE = 512; //Memory of 512 required in assignment.
+
+	public int Memory[]; // Integer array of memory.
+
+	public int memBase; // Starting address for current process.
+
+	public int memLimit; // Maximum address allowed for current process. (memBase + size.)
+
+	public int ACC; // Accumulator.
+
+	
 	public SIMMAC() {
 
 		//Creates MEM SIZE of 512.
@@ -47,6 +52,7 @@ public class SIMMAC {
 // This method reads memory from the SAR and if error is found then it will return true.
 	boolean read() {
 
+		//Is not empty and less than memory limit.
 		if (SAR + memBase >= 0 && SAR + memBase < memLimit) {
 
 			SDR = Memory[memBase + SAR];
@@ -68,7 +74,8 @@ public class SIMMAC {
 	boolean write() {
 
 		if (SAR + memBase >= 0 && SAR + memBase < memLimit) {
-
+			
+			//Same as read but wrties to SDR.
 			Memory[memBase + SAR] = SDR;
 
 			return false;
@@ -369,7 +376,7 @@ public class SIMMAC {
 		default:
 
 			dump();
-			System.out.printf("Invlaid instructions %04X.\nProgram terminated. \n", IR);
+			System.out.printf("Something went wrong.Invlaid instructions %04X.\nProgram terminated. \n", IR);
 
 			halt = true;
 
@@ -378,7 +385,7 @@ public class SIMMAC {
 		if (error) {
 
 			dump();
-			System.out.printf("Invlaid memory address %04X.\nProgram terminated. \n", SAR);
+			System.out.printf("Something went wrong.Invlaid memory address %04X.\nProgram terminated. \n", SAR);
 
 		}
 

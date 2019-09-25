@@ -1,18 +1,21 @@
 package simmac;
 
 // Process Control Block.
+//This class creates a basic Process template to be later be initialized in multiple new instances stored in the queue.
 
 public class Process {
 
+	public int memoryBase;
+
+	public int memoryLimit;
+	
 	public int processID;
 
 	public int ACC;
 
 	public int PSIAR;
 
-	public int memoryBase;
-
-	public int memoryLimit;
+	
 	
 
 
@@ -25,7 +28,7 @@ public class Process {
 		PSIAR = 0;
 
 		memoryBase = address;
-
+		
 		memoryLimit = address + size;
 
 	}

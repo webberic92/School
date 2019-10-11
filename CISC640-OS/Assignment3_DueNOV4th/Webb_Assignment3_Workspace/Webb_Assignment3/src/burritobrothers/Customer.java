@@ -8,8 +8,9 @@ public class Customer {
 	Customer() {
 
 		// You want to use int cast because double would show a decimal which does not
-		// make sense.
-		this.custOrderSize = (int) (1 + 25 * Math.random());
+		// make sense. 
+		//Suppose to be 25 make 25 before turning in.
+		this.custOrderSize = (int) (1 + 10 * Math.random());
 
 	}
 	
@@ -28,9 +29,4 @@ public class Customer {
 		return custOrderSize;
 	}
 	
-	public void Speak(){
-		System.out.println("I am a customer.");
-		
-	}
-
 }

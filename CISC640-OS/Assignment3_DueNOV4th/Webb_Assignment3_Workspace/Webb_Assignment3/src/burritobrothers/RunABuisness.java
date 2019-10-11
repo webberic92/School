@@ -1,14 +1,34 @@
 package burritobrothers;
 
 public class RunABuisness {
-	
-	public static void main(String[] args) {
 
-		
-		Restraunt restraunt = new Restraunt();
-		restraunt.start();
-		
-		
+	public static void main(String[] args) throws Exception {
+
+		System.out.println("Store is now open!");
+		System.out.println("Creating 3 Server Threads.");
+
+		// Creates 3 servers.
+		for (int i = 0; i < 3; ++i) {
+			Thread Server = new Thread(new Server(i));
+			Server.start();
+
+		}
+
+		// creates 15 customers
+		// Suppose to be 15 customers.change before turning in.
+		for (int i = 0; i < 7; ++i) {
+			new Restraunt();
+			Thread Customer = new Thread(Restraunt.getRestraunt());
+			Customer.start();
+
+			// This controls how fast customers are coming in.
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException ie) {
+				ie.printStackTrace();
+			}
+
+		}
+
 	}
-
 }

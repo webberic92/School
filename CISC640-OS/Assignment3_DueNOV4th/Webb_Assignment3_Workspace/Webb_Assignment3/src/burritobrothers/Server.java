@@ -12,17 +12,48 @@ public class Server implements Runnable {
 
 	
 	
-	void startServing() {
-		
-        System.out.println(serverNumber + " Came into work today.");
-        	
+	public void startServing() {
+
         try {
         	
 			Restraunt.getRestraunt().counterAreaSemaphore.acquire();
-		
+			System.out.println("Alpha1 this is where error starts");
+			
+			System.out.println(serverNumber);
+
 			customerAtCounter = Restraunt.getRestraunt().FromLineToCounter(serverNumber);
 			
+			
+			System.out.println("Alpha2");
+
 			Restraunt.getRestraunt().counterAreaSemaphore.release();
+			System.out.println("Alpha3");
+
+			if(customerAtCounter.getCustOrderSize() > 3) {
+				System.out.println("Gamma");
+
+				//Make 3 burritos
+				customerAtCounter.makeThreeBurritos();
+				Restraunt.getRestraunt().Cooking(3,serverNumber);
+	            System.out.println("Customer "+customerAtCounter.getCustId()+ " Still needs " +customerAtCounter.getCustOrderSize()+ " Burritos.");
+	               Restraunt.getRestraunt().LookAtlineArray(customerAtCounter,false);  
+	               Restraunt.getRestraunt().servingCustomerSemaphore.release();
+				
+			}
+			else
+			{
+				System.out.println("beta");
+
+				Restraunt.getRestraunt().Cooking(customerAtCounter.getCustOrderSize(), serverNumber);
+				Restraunt.getRestraunt().payAtRegister(customerAtCounter);
+				if(!Restraunt.getRestraunt().registerLineLL.isEmpty()&&Restraunt.getRestraunt().registerSemaphore.tryAcquire()) {
+					
+	               System.out.println("Server "+serverNumber+" is at register");
+	               Restraunt.getRestraunt().payAtRegister(customerAtCounter);
+
+				}
+		
+			}
 
         } catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -36,23 +67,32 @@ public class Server implements Runnable {
 		
 	boolean clockedIn=true;
 		System.out.println("Server " + (serverNumber + 1) + " Came into work and is clocked in.");
-	 while(clockedIn==true) {
-		 
+	 while(clockedIn) {
+
 
 		try {
-			
+
 			//serves a customer and waits if none are in line.
 			// tryacquire is aquire but with time contstaint.
-			if(Restraunt.getRestraunt().servingCustomerSemaphore.tryAcquire(5*3+1000, TimeUnit.MILLISECONDS))
+			if(Restraunt.getRestraunt().servingCustomerSemaphore.tryAcquire(5*3+100, TimeUnit.MILLISECONDS))
 			{
-				CheckRegister();
-			}
-			else {
 				
+				//reaching here but not returning
+				System.out.println("TEST4 hits startServing method but breaks");
+				startServing();
+				
+				System.out.println("TEST5");
+
+			}
+			
+
+			else {
+				System.out.println("TEST6");
+
 				clockedIn=false;
 				System.out.println("Server " + (serverNumber + 1) + " left work and is clocked out.");
 				--restrauntEmployees;
-				if(serverNumber==0) {
+				if(restrauntEmployees==0) {
 					System.out.println("Store is closed" );
 					System.exit(0);
 					
@@ -67,12 +107,9 @@ public class Server implements Runnable {
 		}}
 	 }
 
-	private void CheckRegister() {
-		// TODO Auto-generated method stub
+
 		
-	}
-		
-	Server(int serverNumber){
+	public Server(int serverNumber){
 		this.serverNumber = serverNumber;
 		
 	}
@@ -82,19 +119,5 @@ public class Server implements Runnable {
 
 }
 		
-//		boolean ServerWorkingTheirShift = true;
-//		
-//		while(ServerWorkingTheirShift){
-//			//store getshop semaphorestartserving tryaquire 
-//			//freeServer
-//			System.out.println("Server " + serverNumber+1) + " Came into work.");
-//
-//			if(serverNumber==3) {
-//				ServerWorkingTheirShift=false;
-//			}
-//		}
-//		// TODO Auto-generated method stub
-//
-//	}
 
 

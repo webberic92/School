@@ -8,20 +8,28 @@ public class Restraunt implements Runnable {
 
 	
 	private static Restraunt restraunt = new Restraunt();
+	private int customerInRestraunt=0;
+
 	protected int customerNum=0;
-	protected int customerInRestraunt=0;
 	protected int customerInline=0;
 	
 	//needs to be correct store capacity before turning in.
-	protected Customer lineArray[] = new Customer[5];
+	protected Customer lineArray[]=new Customer[5];
+    protected LinkedList<Customer> registerLineLL = new LinkedList<Customer>();  
+
 
 	
 	protected Semaphore customerInRrestrauntSemaphore = new Semaphore(1);
 	protected Semaphore customerInlineSemaphore = new Semaphore(1);
-	protected Semaphore servingCustomerSemaphore = new Semaphore(0);
+	protected Semaphore servingCustomerSemaphore = new Semaphore(1);
 	protected Semaphore counterAreaSemaphore = new Semaphore(1);
+	protected Semaphore registerSemaphore = new Semaphore(1);
+	protected Semaphore ingredientSemaphore = new Semaphore(1);
+	protected Semaphore registerLineSemaphore = new Semaphore(1);
 
-	private Customer Cust;
+
+
+
 
 	
 	
@@ -32,7 +40,7 @@ public class Restraunt implements Runnable {
 		CustomerWalksInRestraunt();
 	}
 	
-	private void CustomerWalksInRestraunt() {
+	public void CustomerWalksInRestraunt() {
 		try {
 			//Only one customer can come in until RELEASE is called.
 			customerInRrestrauntSemaphore.acquire();
@@ -50,15 +58,15 @@ public class Restraunt implements Runnable {
 		
           LookAtlineArray(customer,true);
           
-          
+          servingCustomerSemaphore.release();
           customerInRrestrauntSemaphore.release();
 
 
 		}
 		else {
-			Customer customer = new Customer();
-	        customer.setCustId(customerNum);
-            System.out.println("Restraunt is at MAX Capacity Customer number " + customer.getCustId() + " you can not come in. Get your " + customer.getCustOrderSize() + " Burritos some where else. Taco bell?");
+//			Customer customer = new Customer();
+//	        customer.setCustId(customerNum);
+            System.out.println("Restraunt is at MAX Capacity Customer number " + customerNum + " you can not come in.");
 			customerInRrestrauntSemaphore.release();
 
 		}
@@ -70,7 +78,7 @@ public class Restraunt implements Runnable {
 
 
 	
-	private void LookAtlineArray(Customer customer, boolean newCustomer) {
+	public void LookAtlineArray(Customer customer, boolean newCustomer) {
 		
 		
 
@@ -78,7 +86,6 @@ public class Restraunt implements Runnable {
 			customerInlineSemaphore.acquire();
 			
 			if(customerInline==0) {
-				
 				customerEnterslineArray(1,0,customer);
 			}
 			
@@ -129,20 +136,21 @@ public class Restraunt implements Runnable {
 		}	
 	}
 
-	private void customerEnterslineArray(int customerInline, int sortTo, Customer customer) {
+	public void customerEnterslineArray(int customerInline, int sortTo, Customer customer) {
 		//customer in line ==1
 		//System.out.println(customerInline + "Equals 1???");
 
 		if (customerInline==1) {
 			 lineArray[0]=customer;
-			//TEST
-//			System.out.println("Customer in lineArray0== " + lineArray[0].toString());
+			
+			System.out.println(customer.getCustId() + "  " + customer.getCustOrderSize() );
+
 		 }
 	       else
 	       {
 	           for (int i=customerInline-1; i>sortTo; --i)
 	           {
-	               if(Cust.getCustOrderSize()<lineArray[i-1].getCustOrderSize())
+	               if(customer.getCustOrderSize()<lineArray[i-1].getCustOrderSize())
 	               {
 	                   lineArray[i]=lineArray[i-1]; //moving elements
 	                   if (i==sortTo+1)
@@ -178,23 +186,87 @@ public class Restraunt implements Runnable {
 	
 	
 	public Customer FromLineToCounter(int serverNumber) {
+
+		   System.out.println("lineArray test in fromlinetocountermethod " + lineArray[0]);  
+
+		
 		
 		Customer customeraAtCounter;
 		
 		customeraAtCounter=lineArray[0];
 		
+		
+		   System.out.println(" above error Server "+serverNumber); 
+		   System.out.println(lineArray[0]);  
+
+		   System.out.println(customeraAtCounter.getCustId());  
+		   
+		   
 	   System.out.println("Server "+serverNumber+" serving Customer "+customeraAtCounter.getCustId());                                      
-	   /*test*///Prnt.getPrnt().ServerIsFree(serverID,atCounter);
+	   
        for (int i=0; i<customerInline; ++i)        //moving the line
     	   lineArray[i]=lineArray[i+1];
-       --customerInline;                           //customer is on counter, not in line anymore       
-      
-       lineArray[customerInline]=null;
+       --customerInline;  
+       //customer is on counter, not in line anymore       
+       System.out.println("DELTA TEST"); 
+       lineArray[customerInline+1]=null;
 		
 		return customeraAtCounter;
 	}
 
+	public void Cooking(int numofBurritos, int serverNumber) {
+        System.out.println("Cooking food");
+        {
+            
+            try
+            {
+                ingredientSemaphore.acquire();
+                System.out.println("Server "+serverNumber+" has obtained all ingredients");    
+                ingredientSemaphore.release();
+                System.out.println("Cooking...");
+                try {Thread.sleep(numofBurritos*1000);} //simulating servers work
+                catch (InterruptedException e) {e.printStackTrace();}
+                   
+            }
+            catch (InterruptedException e1) {e1.printStackTrace();}
+        }
+	}
+
+	public void payAtRegister(Customer customerAtCounter) {
+
+	  
+	       try
+	       {
+	    	   registerLineSemaphore.acquire();
+	    	   registerLineLL.addLast(customerAtCounter); //adding customer into register queue
+	                      
+	         
+	          
+	          
+	    	   registerLineSemaphore.release();
+	      
+	       }
+	       catch (InterruptedException e1) {e1.printStackTrace();}
+	   }
 	
+	
+	 public void Register()	 {
+	       Customer cust;
+	       
+	       while (!registerLineLL.isEmpty())
+	       {              
+	           cust=registerLineLL.pollFirst();
+	           System.out.println("Customer #"+cust.getCustId()+" is paying...");
+	           try {Thread.sleep((int)(1000));
+	           } //simulating paying
+	           catch (InterruptedException e) {e.printStackTrace();}
+	                          
+	          
+	           System.out.println("Good bye! Customer #"+cust.getCustId() +" is leaving the store");
+	           --customerInRestraunt;   //customer exits the shop
+	       }  
+	       registerSemaphore.release();
+	   }  
 }
 
 
@@ -223,123 +295,3 @@ public class Restraunt implements Runnable {
 
 
 
-
-//	int numCustomersInStore = 0;
-//	int numCustomersInlineArray = 0;
-//	int customerIDNum = 0;
-//	Customer customerInQue[] = new Customer[15];
-//	LinkedList<Customer> RegisterlineArray = new LinkedList<Customer>();  
-//
-//	Boolean storeFullNoMoreCustomers = false;
-//	
-//	protected Semaphore CustomerInStoreSemaphore = new Semaphore(1);
-//	   protected Semaphore semStartServing = new Semaphore(0);
-//	   protected Semaphore semRegister = new Semaphore(1);
-//	   protected Semaphore semRegisterlineArray = new Semaphore(1);
-//	   protected Semaphore semCounter = new Semaphore(1);
-//	   protected Semaphore semlineArray = new Semaphore(1);
-//	   protected Semaphore semIngredients = new Semaphore(1);
-//
-//
-//	public void start() {
-//		  {      
-//		       try
-//		       {
-//		    	   CustomerInStoreSemaphore.acquire(); 
-//		           ++customerIDNum;
-//		          
-//		           if(numCustomersInStore<15)
-//		           {                  
-//		               ++numCustomersInStore;              
-//		               Customer customer = new Customer();
-//		               customer.setCustId(customerIDNum);
-//		               System.out.println("Customer #"+customer.getCustId()+" wants "+customer.getCustOrderSize()+" Burritos.");
-//		               CheckLengthlineArray(customer,true);                  
-//		                                      
-//		             //  semStartServing.release(); // letting server now that there is customer in the store. to do:
-////		               CustomerInStoreSemaphore.release(); // now other customer can enter the store
-//		           }
-//		           else
-//		           {
-//		               System.out.println("Store is full " + customerIDNum + "had to leave.");
-//		               CustomerInStoreSemaphore.release(); // now other customer can enter the store
-//		           }
-//		       }
-//		       catch (InterruptedException e1) {
-//		    	   e1.printStackTrace();
-//		    	   }
-//		   }		
-//	}
-//
-//private void CheckLengthlineArray(Customer customer, boolean isNewCustomer) {
-//	 {
-//	       try               
-//	       {
-//	           semlineArray.acquire();       
-//	              
-//	               if (numCustomersInlineArray==0) AddTolineArray(1,0,customer);  
-//	               else
-//	               {
-//	                   if (numCustomersInlineArray==1&&!isNewCustomer) customerInQue[1]=customer;
-//	                   else                              
-//	                   {
-//	                       if (numCustomersInlineArray==1&&isNewCustomer)
-//	                       {
-//	                           if (customer.getCustOrderSize()>customerInQue[0].getCustOrderSize()) customerInQue[1]=customer;
-//	                           else
-//	                           {
-//	                               customerInQue[1]=customerInQue[0];
-//	                               customerInQue[0]=customer;
-//	                           }
-//	                       }
-//	                       else
-//	                       {  
-//	                           for (int i=0; i<numCustomersInlineArray-1; ++i)
-//	                           {
-//	                               if (customerInQue[i].getCustOrderSize()>customerInQue[i+1].getCustOrderSize())
-//	                               {                                  
-//	                            	   AddTolineArray(numCustomersInlineArray+1,i+1,customer);
-//	                                   break;
-//	                               }
-//	                               if (i==numCustomersInlineArray-2) customerInQue[i+2]=customer;
-//	                           }
-//	                       }
-//	                   }
-//	                  
-//	               }              
-//	               ++numCustomersInlineArray;              
-//	           semlineArray.release();
-//	       }      
-//	       catch (InterruptedException IE) {IE.printStackTrace();}      
-//	   }	
-//}
-//
-//private void AddTolineArray(int lineArrayPositionStart, int lineArrayPositionEnd, Customer customer) {
-//
-//	   
-//	       if (lineArrayPositionStart==1) customerInQue[0]=customer;
-//	       else
-//	       {
-//	           for (int i=lineArrayPositionStart-1; i>lineArrayPositionEnd; --i)
-//	           {
-//	               if(customer.getCustOrderSize()<customerInQue[i-1].getCustOrderSize())
-//	               {
-//	                   customerInQue[i]=customerInQue[i-1]; //moving elements
-//	                   if (i==lineArrayPositionEnd+1)
-//	                   {
-//	                       customerInQue[i-1]=customer;
-//	                       break;
-//	                   }
-//	                      
-//	               }
-//	               else
-//	               {
-//	                   customerInQue[i]=customer;
-//	                   break;
-//	               }
-//	           }
-//	       }
-//	   System.out.println("Customer #"+customer.getCustId()+" is waiting in lineArray and wants "+customer.getCustOrderSize()+" burritos.");  
-//	   }
-//
-//

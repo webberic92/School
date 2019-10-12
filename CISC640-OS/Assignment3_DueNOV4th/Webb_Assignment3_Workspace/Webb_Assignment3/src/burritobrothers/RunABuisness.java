@@ -26,7 +26,7 @@ public class RunABuisness {
 
 			// This controls how fast customers are coming in.
 			try {
-				Thread.sleep(500);
+				Thread.sleep(900);
 			} catch (InterruptedException ie) {
 				ie.printStackTrace();
 			}

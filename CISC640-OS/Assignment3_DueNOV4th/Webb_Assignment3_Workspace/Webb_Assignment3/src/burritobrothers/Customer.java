@@ -25,8 +25,11 @@ public class Customer {
 		this.custId = custId;
 	}
 
-	public int getCustOrderSize() {
+	protected int getCustOrderSize() {
 		return custOrderSize;
 	}
+	 public void makeThreeBurritos() {
+		 this.custOrderSize = this.custOrderSize -3;
+	 }
 	
 }

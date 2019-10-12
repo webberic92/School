@@ -124,20 +124,13 @@ public class Store implements Runnable
    System.out.println("Customer #"+Cust.getCustID()+" with order of "+Cust.getOrderSize()+" burritos waiting in line");  
    }
   
+   
+   
    public Customer Counter(int serverID)
    {
   
        Customer atCounter;
-       String Line="";
-      
-//       if (Burrito.advmode)
-//       {
-//           for (int i=0; i<Store.getShop().CustInLine; ++i)
-//               Line=Line+"C"+Store.getShop().line[i].getCustID()+"("+Store.getShop().line[i].getOrderSize()+")-";              
-//           System.out.println(space+space+"Customers in line:");
-//           System.out.println(space+space+Line);
-//       }
-//      
+    
        atCounter=line[0];                       //serving first customer in the line
               
        System.out.println(space+"Server #"+serverID+" serving Customer #"+atCounter.getCustID());                                      
@@ -152,6 +145,10 @@ public class Store implements Runnable
        return atCounter;
    }
   
+   
+   
+   
+   
    public void Cooking(int burritos, int ServerID)
    {
       

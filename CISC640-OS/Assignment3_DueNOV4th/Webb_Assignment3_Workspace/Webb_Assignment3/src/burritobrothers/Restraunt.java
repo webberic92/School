@@ -21,7 +21,7 @@ public class Restraunt implements Runnable {
 	
 	protected Semaphore customerInRrestrauntSemaphore = new Semaphore(1);
 	protected Semaphore customerInlineSemaphore = new Semaphore(1);
-	protected Semaphore servingCustomerSemaphore = new Semaphore(1);
+	protected Semaphore servingCustomerSemaphore = new Semaphore(0);
 	protected Semaphore counterAreaSemaphore = new Semaphore(1);
 	protected Semaphore registerSemaphore = new Semaphore(1);
 	protected Semaphore ingredientSemaphore = new Semaphore(1);
@@ -98,9 +98,6 @@ public class Restraunt implements Runnable {
 				if(customerInline==1&&newCustomer) {
 					
 					if (customer.getCustOrderSize()>lineArray[0].getCustOrderSize()) {
-			         
-						//TEST
-//						System.out.println(lineArray);
 
 						lineArray[1]=customer;
 					}
@@ -143,7 +140,6 @@ public class Restraunt implements Runnable {
 		if (customerInline==1) {
 			 lineArray[0]=customer;
 			
-			System.out.println(customer.getCustId() + "  " + customer.getCustOrderSize() );
 
 		 }
 	       else
@@ -168,9 +164,7 @@ public class Restraunt implements Runnable {
 	               }
 	           }
 	       }
-//		//TEST
-//			System.out.println(lineArray[0].toString());
-//			System.out.println(lineArray[1].toString());
+
 	   System.out.println("Customer " +customer.getCustId()+" Wants "+customer.getCustOrderSize()+" burritos and is waiting in line for service.");  
 	   }		
 	
@@ -186,21 +180,10 @@ public class Restraunt implements Runnable {
 	
 	
 	public Customer FromLineToCounter(int serverNumber) {
-
-		   System.out.println("lineArray test in fromlinetocountermethod " + lineArray[0]);  
-
-		
-		
+				
 		Customer customeraAtCounter;
 		
-		customeraAtCounter=lineArray[0];
-		
-		
-		   System.out.println(" above error Server "+serverNumber); 
-		   System.out.println(lineArray[0]);  
-
-		   System.out.println(customeraAtCounter.getCustId());  
-		   
+		customeraAtCounter=lineArray[0];  
 		   
 	   System.out.println("Server "+serverNumber+" serving Customer "+customeraAtCounter.getCustId());                                      
 	   
@@ -208,7 +191,6 @@ public class Restraunt implements Runnable {
     	   lineArray[i]=lineArray[i+1];
        --customerInline;  
        //customer is on counter, not in line anymore       
-       System.out.println("DELTA TEST"); 
        lineArray[customerInline+1]=null;
 		
 		return customeraAtCounter;

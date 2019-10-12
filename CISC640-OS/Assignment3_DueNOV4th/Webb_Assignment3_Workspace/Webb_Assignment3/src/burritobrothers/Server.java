@@ -6,7 +6,7 @@ public class Server implements Runnable {
 
 	private Customer customerAtCounter;
 	private int serverNumber;
-	static private int restrauntEmployees = RunABuisness.Employees;
+	static private int restrauntEmployees = 0;
 
 
 
@@ -17,20 +17,10 @@ public class Server implements Runnable {
         try {
         	
 			Restraunt.getRestraunt().counterAreaSemaphore.acquire();
-			System.out.println("Alpha1 this is where error starts");
-			
-			System.out.println(serverNumber);
-
 			customerAtCounter = Restraunt.getRestraunt().FromLineToCounter(serverNumber);
-			
-			
-			System.out.println("Alpha2");
-
 			Restraunt.getRestraunt().counterAreaSemaphore.release();
-			System.out.println("Alpha3");
 
 			if(customerAtCounter.getCustOrderSize() > 3) {
-				System.out.println("Gamma");
 
 				//Make 3 burritos
 				customerAtCounter.makeThreeBurritos();
@@ -42,7 +32,6 @@ public class Server implements Runnable {
 			}
 			else
 			{
-				System.out.println("beta");
 
 				Restraunt.getRestraunt().Cooking(customerAtCounter.getCustOrderSize(), serverNumber);
 				Restraunt.getRestraunt().payAtRegister(customerAtCounter);
@@ -66,6 +55,8 @@ public class Server implements Runnable {
 	public void run() {
 		
 	boolean clockedIn=true;
+	++restrauntEmployees;
+
 		System.out.println("Server " + (serverNumber + 1) + " Came into work and is clocked in.");
 	 while(clockedIn) {
 
@@ -77,28 +68,29 @@ public class Server implements Runnable {
 			if(Restraunt.getRestraunt().servingCustomerSemaphore.tryAcquire(5*3+100, TimeUnit.MILLISECONDS))
 			{
 				
-				//reaching here but not returning
-				System.out.println("TEST4 hits startServing method but breaks");
 				startServing();
 				
-				System.out.println("TEST5");
 
 			}
 			
 
 			else {
-				System.out.println("TEST6");
 
 				clockedIn=false;
 				System.out.println("Server " + (serverNumber + 1) + " left work and is clocked out.");
+			
+				
+				
+				System.out.println(restrauntEmployees + " NUM of Emp Before --restrauntEmployees");
 				--restrauntEmployees;
-				if(restrauntEmployees==0) {
-					System.out.println("Store is closed" );
-					System.exit(0);
+				System.out.println(restrauntEmployees + " NUM of Emp AFTER --restrauntEmployees");
 					
 				}
+			if(restrauntEmployees==0) {
+				System.out.println("Store is closed" );
+				System.exit(0);
 
-						}
+		}
 			
 			
 		} catch (InterruptedException e) {

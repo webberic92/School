@@ -1,6 +1,9 @@
 package burritobrothers;
 
 public class RunABuisness {
+	
+    protected static int Employees = 0;
+
 
 	public static void main(String[] args) throws Exception {
 

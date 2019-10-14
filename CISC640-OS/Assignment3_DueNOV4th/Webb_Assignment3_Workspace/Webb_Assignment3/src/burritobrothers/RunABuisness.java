@@ -9,7 +9,7 @@ public class RunABuisness {
 		System.out.println("Store is now open!");
 		System.out.println("Creating 3 Server Threads.");
 
-		// Creates 3 servers.
+//		// Creates 3 servers.
 		for (int i = 0; i < 3; ++i) {
 			Thread Server = new Thread(new Server(i));
 			Server.start();

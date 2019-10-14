@@ -24,21 +24,23 @@ public class Server implements Runnable {
 
 				//Make 3 burritos
 				customerAtCounter.makeThreeBurritos();
-				Restraunt.getRestraunt().Cooking(3,serverNumber);
+				Restraunt.getRestraunt().Cooking(3,serverNumber,customerAtCounter.getCustId());
 	            System.out.println("Customer "+customerAtCounter.getCustId()+ " Still needs " +customerAtCounter.getCustOrderSize()+ " Burritos.");
-	               Restraunt.getRestraunt().LookAtlineArray(customerAtCounter,false);  
+	               Restraunt.getRestraunt().orderCounterLine(customerAtCounter);  
 	               Restraunt.getRestraunt().servingCustomerSemaphore.release();
 				
 			}
 			else
 			{
 
-				Restraunt.getRestraunt().Cooking(customerAtCounter.getCustOrderSize(), serverNumber);
+				Restraunt.getRestraunt().Cooking(customerAtCounter.getCustOrderSize(), serverNumber,customerAtCounter.getCustId());
+				System.out.println("Customer " +customerAtCounter.getCustId() + " Order is completed they are being sent to register line to pay.");
 				Restraunt.getRestraunt().payAtRegister(customerAtCounter);
 				if(!Restraunt.getRestraunt().registerLineLL.isEmpty()&&Restraunt.getRestraunt().registerSemaphore.tryAcquire()) {
 					
-	               System.out.println("Server "+serverNumber+" is at register");
+	               System.out.println("Server "+serverNumber+" is at register with customer " +customerAtCounter.getCustId());
 	               Restraunt.getRestraunt().payAtRegister(customerAtCounter);
+	               System.out.println("Customer " +customerAtCounter.getCustId() + " has paid their food and is leaving the restraunt.");
 
 				}
 		
@@ -65,7 +67,7 @@ public class Server implements Runnable {
 
 			//serves a customer and waits if none are in line.
 			// tryacquire is aquire but with time contstaint.
-			if(Restraunt.getRestraunt().servingCustomerSemaphore.tryAcquire(5*3+100, TimeUnit.MILLISECONDS))
+			if(Restraunt.getRestraunt().servingCustomerSemaphore.tryAcquire(5*3+1000, TimeUnit.MILLISECONDS))
 			{
 				
 				startServing();
@@ -77,17 +79,16 @@ public class Server implements Runnable {
 			else {
 
 				clockedIn=false;
-				System.out.println("Server " + (serverNumber + 1) + " left work and is clocked out.");
+				System.out.println("No more work for Server " + (serverNumber + 1) + " to be done, they left work and are clocked out.");
 			
 				
 				
-				System.out.println(restrauntEmployees + " NUM of Emp Before --restrauntEmployees");
 				--restrauntEmployees;
-				System.out.println(restrauntEmployees + " NUM of Emp AFTER --restrauntEmployees");
+				System.out.println(restrauntEmployees + " Employees left in the restraunt.");
 					
 				}
 			if(restrauntEmployees==0) {
-				System.out.println("Store is closed" );
+				System.out.println("No more employees left in the restraunt the Store is closed" );
 				System.exit(0);
 
 		}

@@ -17,7 +17,7 @@ public class Server implements Runnable {
         try {
         	
 			Restraunt.getRestraunt().counterAreaSemaphore.acquire();
-			customerAtCounter = Restraunt.getRestraunt().FromLineToCounter(serverNumber);
+			customerAtCounter = Restraunt.getRestraunt().serveFirstCustomerInline(serverNumber);
 			Restraunt.getRestraunt().counterAreaSemaphore.release();
 
 			if(customerAtCounter.getCustOrderSize() > 3) {
@@ -26,7 +26,7 @@ public class Server implements Runnable {
 				customerAtCounter.makeThreeBurritos();
 				Restraunt.getRestraunt().Cooking(3,serverNumber,customerAtCounter.getCustId());
 	            System.out.println("Customer "+customerAtCounter.getCustId()+ " Still needs " +customerAtCounter.getCustOrderSize()+ " Burritos.");
-	               Restraunt.getRestraunt().orderCounterLine(customerAtCounter);  
+	               //Restraunt.getRestraunt().orderCounterLine(customerAtCounter);  
 	               Restraunt.getRestraunt().servingCustomerSemaphore.release();
 				
 			}

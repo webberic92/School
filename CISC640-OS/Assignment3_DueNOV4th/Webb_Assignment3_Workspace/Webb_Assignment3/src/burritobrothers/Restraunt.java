@@ -1,3 +1,4 @@
+
 package burritobrothers;
 
 import java.util.ArrayList;
@@ -132,58 +133,37 @@ public class Restraunt implements Runnable {
 	}
 
 
-
-
-	public static Restraunt getRestraunt() {
-		return restraunt;
-	}
-
-	public static void setRestraunt(Restraunt restraunt) {
-		Restraunt.restraunt = restraunt;
-	}
-
 	
-	public Customer FromLineToCounter(int serverNumber) {
+	public Customer serveFirstCustomerInline(int serverNumber) {
 		
 		Customer customeraAtCounter;
 		
 		customeraAtCounter=sortByOrderSizefinal.get(0); 
-		   System.out.println("Testtttttttttttttttttttttttttttt");
-
-		   System.out.println(customeraAtCounter);
-//	   System.out.println("Server "+serverNumber+" serving Customer "+sortByOrderSizefinal.iterator().toString().indexOf(0));                                      
-//	   
-//       for (int i=0; i<customerInline; ++i)        //moving the line
-//    	   customeraAtCounter=sortByOrderSizefinal.get(i +1);
-//       --customerInline;  
-//       //customer is on counter, not in line anymore 
-//       Customer customeraAtCountertest =  sortByOrderSizefinal.get(customeraAtCounter.getCustId() +1);
-//       customeraAtCountertest=null;
-		
-		return customeraAtCounter;
+		   System.out.println("Server "+ serverNumber+ " is about to serve the next person in line with the smallest order, this is customer " + customeraAtCounter.getCustId() + " With order size of " +customeraAtCounter.getCustOrderSize() + " and has walked up to the counter area ");
+	   
+		   if(customerInline==1) {
+			   --customerInline;
+			   customeraAtCounter=sortByOrderSizefinal.get(0);
+			   sortByOrderSizefinal.remove(0);
+		   }
+		   else {
+			   for (int i=0; i<customerInline; ++i)        //moving the line
+		    	   customeraAtCounter=sortByOrderSizefinal.get(i +1);
+		       --customerInline;  
+//		       //customer is on counter, not in line anymore 
+		  //     Customer customeraAtCountertest =  sortByOrderSizefinal.get(customeraAtCounter.getCustId() +1);
+//		       customeraAtCountertest=null;
+		       sortByOrderSizefinal.remove(customerInline + 1);
+//		       Customer RemoveEndofLineCustomer =sortByOrderSizefinal.get(customerInline+ 1);
+//		       RemoveEndofLineCustomer=null;
+			   
+			   
+		   }
+		   
+			return customeraAtCounter;    
 	}
-
 	
 	
-	
-	
-	
-//	public Customer FromLineToCounter(int serverNumber) {
-//				
-//		Customer customeraAtCounter;
-//		
-//		customeraAtCounter=lineArray[0];  
-//		   
-//	   System.out.println("Server "+serverNumber+" serving Customer "+customeraAtCounter.getCustId());                                      
-//	   
-//       for (int i=0; i<customerInline; ++i)        //moving the line
-//    	   lineArray[i]=lineArray[i+1];
-//       --customerInline;  
-//       //customer is on counter, not in line anymore       
-//       lineArray[customerInline+1]=null;
-//		
-//		return customeraAtCounter;
-//	}
 
 	public void Cooking(int numofBurritos, int serverNumber, int customerNumb) {
         {
@@ -242,32 +222,16 @@ public class Restraunt implements Runnable {
 	           --customerInRestraunt;   //customer exits the shop
 	       }  
 	       registerSemaphore.release();
-	   }  
+	   } 
+	 
+
+
+		public static Restraunt getRestraunt() {
+			return restraunt;
+		}
+
+		public static void setRestraunt(Restraunt restraunt) {
+			Restraunt.restraunt = restraunt;
+		}
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

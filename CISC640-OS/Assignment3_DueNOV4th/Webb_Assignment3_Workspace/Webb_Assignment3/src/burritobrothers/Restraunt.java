@@ -164,7 +164,6 @@ public class Restraunt implements Runnable {
 				System.out.println("Server " + serverNumber + " Cooking 3 Burritos for customer "
 						+ customerAtCounter.getCustId() + " Order size " + customerAtCounter.getCustOrderSize());
 
-				customerAtCounter.makeThreeBurritos();
 //                  System.out.println("After making three burritos " + customerAtCounter.getCustOrderSize());
 
 				if (customerAtCounter.getCustOrderSize() <= 0) {

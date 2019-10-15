@@ -32,8 +32,7 @@ public class Server implements Runnable {
 	            System.out.println("Customer "+customerAtCounter.getCustId()+ " Still needs " +customerAtCounter.getCustOrderSize()+ " Burritos.");
 	               Restraunt.getRestraunt().orderCounterLine(customerAtCounter);  
 	               Restraunt.getRestraunt().servingCustomerSemaphore.release();
-				System.out.println("Test9");
-	               System.exit(0);
+				
 			}
 			else
 			{

@@ -30,7 +30,7 @@ public class Restraunt implements Runnable {
 
 
 	
-	protected Semaphore customerInRrestrauntSemaphore = new Semaphore(1);
+	protected Semaphore isRestrauntFullSemaphore = new Semaphore(1);
 	protected Semaphore customerInlineSemaphore = new Semaphore(1);
 	protected Semaphore servingCustomerSemaphore = new Semaphore(0);
 	protected Semaphore counterAreaSemaphore = new Semaphore(1);
@@ -48,13 +48,14 @@ public class Restraunt implements Runnable {
 	
 	@Override
 	public void run() {
+		
 		CustomerWalksInRestraunt();
 	}
 	
 	public void CustomerWalksInRestraunt() {
 		try {
 			//Only one customer can come in until RELEASE is called.
-			customerInRrestrauntSemaphore.acquire();
+			isRestrauntFullSemaphore.acquire();
 		++customerNum;
 		
 		//Sets limit of how many people can come in restraunt.
@@ -71,7 +72,7 @@ public class Restraunt implements Runnable {
           orderCounterLine(customer); 
           
          // servingCustomerSemaphore.release();
-          customerInRrestrauntSemaphore.release();
+          isRestrauntFullSemaphore.release();
 
 
 		}
@@ -79,7 +80,7 @@ public class Restraunt implements Runnable {
 //			Customer customer = new Customer();
 //	        customer.setCustId(customerNum);
             System.out.println("Restraunt is at MAX Capacity Customer number " + customerNum + " you can not come in.");
-			customerInRrestrauntSemaphore.release();
+            isRestrauntFullSemaphore.release();
 
 		}
 		} catch (InterruptedException e) {

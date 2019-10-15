@@ -109,7 +109,7 @@ public class Restraunt implements Runnable {
 				 Collections.sort(sortByOrderSize, Comparator.comparing(Customer:: getCustOrderSize));
 
 				 for(Customer customers : sortByOrderSize) {
-//					 System.out.println("Updated Line...");
+					 System.out.println("****NEW LINE IS***");
 					 System.out.println("Customer " + customers.getCustId() + "\t" + "Order size= " + customers.getCustOrderSize());
 					 //System.out.println(sortByOrderSize); 
 					 sortByOrderSizefinal = sortByOrderSize;
@@ -140,8 +140,13 @@ public class Restraunt implements Runnable {
 		
 		customeraAtCounter=sortByOrderSizefinal.get(0); 
 		   System.out.println("Server "+ serverNumber+ " is about to serve the next person in line with the smallest order, this is customer " + customeraAtCounter.getCustId() + " With order size of " +customeraAtCounter.getCustOrderSize() + " and has walked up to the counter area ");
-	   
+		   System.out.println("customerInline ==  " + customerInline);
 		   if(customerInline==1) {
+			   --customerInline;
+			   customeraAtCounter=sortByOrderSizefinal.get(0);
+			   sortByOrderSizefinal.remove(0);
+		   }
+		   if(customerInline==2) {
 			   --customerInline;
 			   customeraAtCounter=sortByOrderSizefinal.get(0);
 			   sortByOrderSizefinal.remove(0);
@@ -150,13 +155,8 @@ public class Restraunt implements Runnable {
 			   for (int i=0; i<customerInline; ++i)        //moving the line
 		    	   customeraAtCounter=sortByOrderSizefinal.get(i +1);
 		       --customerInline;  
-//		       //customer is on counter, not in line anymore 
-		  //     Customer customeraAtCountertest =  sortByOrderSizefinal.get(customeraAtCounter.getCustId() +1);
-//		       customeraAtCountertest=null;
 		       sortByOrderSizefinal.remove(customerInline + 1);
-//		       Customer RemoveEndofLineCustomer =sortByOrderSizefinal.get(customerInline+ 1);
-//		       RemoveEndofLineCustomer=null;
-			   
+  
 			   
 		   }
 		   

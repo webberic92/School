@@ -181,10 +181,10 @@ public class Restraunt implements Runnable {
                   System.out.println("Server "+ serverNumber + " Cooking 3 Burritos for customer " + customerAtCounter.getCustId() + " Order size " +customerAtCounter.getCustOrderSize());
                   
                   customerAtCounter.makeThreeBurritos();
-                  System.out.println("After making three burritos " + customerAtCounter.getCustOrderSize());
+//                  System.out.println("After making three burritos " + customerAtCounter.getCustOrderSize());
 
                   if (customerAtCounter.getCustOrderSize() <= 0) {
-                      System.out.println("Customer " + customerAtCounter.getCustId() + " Being sent to register to pay..");
+                      //System.out.println("Customer " + customerAtCounter.getCustId() + " Being sent to register to pay..");
 
                 	  //System.exit(0);
 
@@ -218,20 +218,71 @@ public class Restraunt implements Runnable {
 	
 	public void payAtRegister(Customer customerAtCounter) {
 
-	  
-	       try
-	       {
-	    	   registerLineSemaphore.acquire();
-	    	   registerLineLL.addLast(customerAtCounter); //adding customer into register queue
-	                      
-	         
-	          
-	          
-	    	   registerLineSemaphore.release();
-	      
-	       }
-	       catch (InterruptedException e1) {e1.printStackTrace();}
-	   }
+		 
+		       LinkedList<Customer> RegisterPrnt = new LinkedList<Customer>();
+		       String AtRegister="";
+		       try
+		       {
+		    	   registerLineSemaphore.acquire();
+		       registerLineLL.addLast(customerAtCounter); //adding customer into register queue
+		                      
+		              
+		       registerLineSemaphore.release();
+		      
+		       }
+		       catch (InterruptedException e1) 
+		       {e1.printStackTrace();
+		       }
+		   }
+	
+	
+	
+	
+//	
+//	  public void GoToPay(Customer atCounter)
+//	   {
+//	       LinkedList<Customer> RegisterPrnt = new LinkedList<Customer>();
+//	       String AtRegister="";
+//	       try
+//	       {
+//	       semRegisterLine.acquire();
+//	           RegisterLine.addLast(atCounter); //adding customer into register queue
+//	                      
+//	           if (Burrito.advmode)
+//	           {
+//	               RegisterPrnt=RegisterLine;
+//	               for (int i=0; i<RegisterPrnt.size(); ++i)
+//	                   AtRegister=AtRegister+"C"+RegisterPrnt.get(i).getCustID()+"<=";
+//	               System.out.println(space+space+"Customers on register:");
+//	               System.out.println(space+space+AtRegister);
+//	           }
+//	          
+//	          
+//	       semRegisterLine.release();
+//	      
+//	       }
+//	       catch (InterruptedException e1) {e1.printStackTrace();}
+//	   }
+		
+		
+		
+		
+		
+		
+		
+//	       try
+//	       {
+//	    	   registerLineSemaphore.acquire();
+//	    	   registerLineLL.addLast(customerAtCounter); //adding customer into register queue
+//	                      
+//	         
+//	          
+//	          
+//	    	   registerLineSemaphore.release();
+//	      
+//	       }
+//	       catch (InterruptedException e1) {e1.printStackTrace();}
+//	   }
 	
 	
 	 public void Register()	 {

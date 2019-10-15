@@ -10,7 +10,7 @@ public class RunABuisness {
 		System.out.println("Creating 3 Server Threads.");
 
 //		// Creates 3 servers.
-		for (int i = 1; i < 3; ++i) {
+		for (int i = 1; i < 4; ++i) {
 			Thread Server = new Thread(new Server(i));
 			
 			Thread.sleep(450);

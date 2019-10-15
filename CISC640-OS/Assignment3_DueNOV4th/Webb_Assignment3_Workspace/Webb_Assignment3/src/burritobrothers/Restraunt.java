@@ -105,7 +105,7 @@ public class Restraunt implements Runnable {
 				}
 				List<Customer> sortByOrderSize = new ArrayList<>(OrderLineMapUnsorted.values());
 
-				 System.out.println("New Customer added to line time to SORT! ");
+				 System.out.println("New Customer "+customer.getCustId() + " added to line time to SORT! ");
 				 Collections.sort(sortByOrderSize, Comparator.comparing(Customer:: getCustOrderSize));
 
 				 for(Customer customers : sortByOrderSize) {
@@ -139,33 +139,34 @@ public class Restraunt implements Runnable {
 		Customer customeraAtCounter;
 		
 		customeraAtCounter=sortByOrderSizefinal.get(0); 
-		   System.out.println("Server "+ serverNumber+ " is about to serve the next person in line with the smallest order, this is customer " + customeraAtCounter.getCustId() + " With order size of " +customeraAtCounter.getCustOrderSize() + " and has walked up to the counter area ");
-		   System.out.println("customerInline ==  " + customerInline);
+		   System.out.println("Server "+ serverNumber+ " serving smallest order, removing customer " + customeraAtCounter.getCustId() + " from line moving to counter. With order size of " +customeraAtCounter.getCustOrderSize() + " and has walked up to the counter area ");
 		   if(customerInline==1) {
 			   --customerInline;
 			   customeraAtCounter=sortByOrderSizefinal.get(0);
 			   sortByOrderSizefinal.remove(0);
+			   System.out.println("customerInline ==  " + customerInline);
+			  
+
 		   }
-		   if(customerInline==2) {
-			   --customerInline;
-			   customeraAtCounter=sortByOrderSizefinal.get(0);
-			   sortByOrderSizefinal.remove(0);
-		   }
-		   else {
+		   if(customerInline > 1) {
+		   
 			   for (int i=0; i<customerInline; ++i)        //moving the line
 		    	   customeraAtCounter=sortByOrderSizefinal.get(i +1);
 		       --customerInline;  
 		       sortByOrderSizefinal.remove(customerInline + 1);
+			   System.out.println("customerInline ==  " + customerInline);
+
   
-			   
-		   }
+		    }
+		    
+		   			return customeraAtCounter;    
+
 		   
-			return customeraAtCounter;    
 	}
 	
 	
 
-	public void Cooking(int numofBurritos, int serverNumber, int customerNumb) {
+	public void Cooking(int numofBurritos, int serverNumber, Customer customerAtCounter) {
         {
         	
             
@@ -173,21 +174,48 @@ public class Restraunt implements Runnable {
             try
             {
                 ingredientSemaphore.acquire();
-                System.out.println("Server "+serverNumber+" has obtained all ingredients");    
+                System.out.println("Server "+serverNumber+" has obtained all ingredients for customer " +customerAtCounter.getCustId());    
 
              //   System.out.println("Server "+serverNumber+" has obtained all ingredients for customer " + customeraAtCounter.getCustId() +"s " + customeraAtCounter.getCustOrderSize() +  "burritos ");    
                 ingredientSemaphore.release();
-                  System.out.println("Server "+ serverNumber + " Cooking 3 Burritos for customer " + customerNumb);
+                  System.out.println("Server "+ serverNumber + " Cooking 3 Burritos for customer " + customerAtCounter.getCustId() + " Order size " +customerAtCounter.getCustOrderSize());
+                  
+                  customerAtCounter.makeThreeBurritos();
+                  System.out.println("After making three burritos " + customerAtCounter.getCustOrderSize());
 
-              //  System.out.println("Server "+ serverNumber + " Cooking foor for " + customeraAtCounter.getCustId() +  " and their " +  customeraAtCounter.getCustOrderSize() + " burritos");
-                try {Thread.sleep(numofBurritos*1000);} //simulating servers work
-                catch (InterruptedException e) {e.printStackTrace();}
-                   
+                  if (customerAtCounter.getCustOrderSize() <= 0) {
+                      System.out.println("Customer " + customerAtCounter.getCustId() + " Being sent to register to pay..");
+
+                	  //System.exit(0);
+
+                	  //Send to pay at register
+                	  payAtRegister(customerAtCounter);
+                  }
+                  else {
+                	  
+                	  System.out.println("did not complete Customer " + customerAtCounter.getCustId() + " Still wants " +customerAtCounter.getCustOrderSize() + "Burritos");
+                	  System.out.println("Sending back to line depending on lowest order size..");
+
+                	  
+                	  //Customer Re enters line to be sorted.
+                	  orderCounterLine(customerAtCounter);
+                	  //Server servers next person inline.
+                	  serveFirstCustomerInline(serverNumber);
+                	  
+                  }
             }
+
+//              //  System.out.println("Server "+ serverNumber + " Cooking foor for " + customeraAtCounter.getCustId() +  " and their " +  customeraAtCounter.getCustOrderSize() + " burritos");
+//                try {Thread.sleep(numofBurritos*1000);} //simulating servers work
+//                catch (InterruptedException e) {e.printStackTrace();}
+//                   
+//            }
             catch (InterruptedException e1) {e1.printStackTrace();}
         }
 	}
 
+	
+	
 	public void payAtRegister(Customer customerAtCounter) {
 
 	  

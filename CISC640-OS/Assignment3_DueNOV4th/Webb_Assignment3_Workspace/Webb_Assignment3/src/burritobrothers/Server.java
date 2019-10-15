@@ -17,6 +17,8 @@ public class Server implements Runnable {
         try {
         	
 			Restraunt.getRestraunt().counterAreaSemaphore.acquire();
+			
+			//returns customer at counter customeraAtCounter
 			customerAtCounter = Restraunt.getRestraunt().serveFirstCustomerInline(serverNumber);
 			Restraunt.getRestraunt().counterAreaSemaphore.release();
 
@@ -24,16 +26,19 @@ public class Server implements Runnable {
 
 				//Make 3 burritos
 				customerAtCounter.makeThreeBurritos();
-				Restraunt.getRestraunt().Cooking(3,serverNumber,customerAtCounter.getCustId());
+				System.out.println("*************Before cooking*******");
+				Restraunt.getRestraunt().Cooking(3,serverNumber,customerAtCounter);
+				System.out.println("***After cooking ***********");
 	            System.out.println("Customer "+customerAtCounter.getCustId()+ " Still needs " +customerAtCounter.getCustOrderSize()+ " Burritos.");
-	               //Restraunt.getRestraunt().orderCounterLine(customerAtCounter);  
+	               Restraunt.getRestraunt().orderCounterLine(customerAtCounter);  
 	               Restraunt.getRestraunt().servingCustomerSemaphore.release();
-				
+				System.out.println("Test9");
+	               System.exit(0);
 			}
 			else
 			{
 
-				Restraunt.getRestraunt().Cooking(customerAtCounter.getCustOrderSize(), serverNumber,customerAtCounter.getCustId());
+				Restraunt.getRestraunt().Cooking(customerAtCounter.getCustOrderSize(), serverNumber,customerAtCounter);
 				System.out.println("Customer " +customerAtCounter.getCustId() + " Order is completed they are being sent to register line to pay.");
 				Restraunt.getRestraunt().payAtRegister(customerAtCounter);
 				if(!Restraunt.getRestraunt().registerLineLL.isEmpty()&&Restraunt.getRestraunt().registerSemaphore.tryAcquire()) {

@@ -26,10 +26,10 @@ public class Server implements Runnable {
 
 				//Make 3 burritos
 				customerAtCounter.makeThreeBurritos();
-				System.out.println("*************Before cooking*******");
+				System.out.println(Thread.currentThread() + "*************Before cooking*******");
 				Restraunt.getRestraunt().Cooking(3,serverNumber,customerAtCounter);
-				System.out.println("***After cooking ***********");
-	            System.out.println("Customer "+customerAtCounter.getCustId()+ " Still needs " +customerAtCounter.getCustOrderSize()+ " Burritos.");
+				System.out.println(Thread.currentThread() + "***After cooking ***********");
+	            System.out.println(Thread.currentThread() + "Customer "+customerAtCounter.getCustId()+ " Still needs " +customerAtCounter.getCustOrderSize()+ " Burritos.");
 	               Restraunt.getRestraunt().orderCounterLine(customerAtCounter);  
 	               Restraunt.getRestraunt().servingCustomerSemaphore.release();
 				
@@ -38,14 +38,14 @@ public class Server implements Runnable {
 			{
 
 				Restraunt.getRestraunt().Cooking(customerAtCounter.getCustOrderSize(), serverNumber,customerAtCounter);
-				System.out.println("Customer " +customerAtCounter.getCustId() + " Order is completed they are being sent to register line to pay.");
+				System.out.println(Thread.currentThread() + "Customer " +customerAtCounter.getCustId() + " Order is completed they are being sent to register line to pay.");
 				Restraunt.getRestraunt().payAtRegister(customerAtCounter);
 				if(!Restraunt.getRestraunt().registerLineLL.isEmpty()&&Restraunt.getRestraunt().registerSemaphore.tryAcquire()) {
 					
-	               System.out.println("Server "+serverNumber+" is at register with customer " +customerAtCounter.getCustId());
+	               System.out.println(Thread.currentThread() + "Server "+serverNumber+" is at register with customer " +customerAtCounter.getCustId());
 	               Restraunt.getRestraunt().payAtRegister(customerAtCounter);
 	               System.out.println("Customer " +customerAtCounter.getCustId() + " has paid their food and is leaving the restraunt.");
-
+	               Restraunt.getRestraunt().servingCustomerSemaphore.acquire();
 				}
 		
 			}
@@ -63,7 +63,7 @@ public class Server implements Runnable {
 	boolean clockedIn=true;
 	++restrauntEmployees;
 
-		System.out.println("Server " + (serverNumber + 1) + " Came into work and is clocked in.");
+		System.out.println(Thread.currentThread() + "Server " + (serverNumber) + " Came into work and is clocked in.");
 	 while(clockedIn) {
 
 
@@ -83,7 +83,7 @@ public class Server implements Runnable {
 			else {
 
 				clockedIn=false;
-				System.out.println("No more work for Server " + (serverNumber + 1) + " to be done, they left work and are clocked out.");
+				System.out.println("No more work for Server " + (serverNumber) + " to be done, they left work and are clocked out.");
 			
 				
 				
@@ -91,6 +91,9 @@ public class Server implements Runnable {
 				System.out.println(restrauntEmployees + " Employees left in the restraunt.");
 					
 				}
+			
+			
+			
 			if(restrauntEmployees==0) {
 				System.out.println("No more employees left in the restraunt the Store is closed" );
 				System.exit(0);

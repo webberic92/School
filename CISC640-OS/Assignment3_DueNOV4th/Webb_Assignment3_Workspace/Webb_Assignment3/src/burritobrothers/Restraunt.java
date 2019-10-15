@@ -53,7 +53,7 @@ public class Restraunt implements Runnable {
 				++customerInRestraunt;
 				Customer customer = new Customer();
 				customer.setCustId(customerNum);
-				System.out.println(
+				System.out.println(Thread.currentThread() +
 						"Customer " + customer.getCustId() + " walked in wanting " + customer.getCustOrderSize()
 								+ " Burritos." + " There are " + customerInRestraunt + " customers in the restraunt");
 
@@ -91,11 +91,11 @@ public class Restraunt implements Runnable {
 			
 			List<Customer> sortByOrderSize = new ArrayList<>(OrderLineMapUnsorted.values());
 
-			System.out.println("New Customer " + customer.getCustId() + " added to line time to SORT! ");
+			System.out.println(Thread.currentThread() + "New Customer " + customer.getCustId() + " added to line time to SORT! ");
 			Collections.sort(sortByOrderSize, Comparator.comparing(Customer::getCustOrderSize));
 
 			for (Customer customers : sortByOrderSize) {
-				System.out.println("****NEW LINE IS***");
+				System.out.println(Thread.currentThread() + "****NEW LINE IS***");
 				System.out.println(
 						"Customer " + customers.getCustId() + "\t" + "Order size= " + customers.getCustOrderSize());
 				// System.out.println(sortByOrderSize);
@@ -124,14 +124,14 @@ public class Restraunt implements Runnable {
 		Customer customeraAtCounter;
 
 		customeraAtCounter = sortByOrderSizefinal.get(0);
-		System.out.println("Server " + serverNumber + " serving smallest order, removing customer "
+		System.out.println(Thread.currentThread() + "Server " + serverNumber + " serving smallest order, removing customer "
 				+ customeraAtCounter.getCustId() + " from line moving to counter. With order size of "
 				+ customeraAtCounter.getCustOrderSize() + " and has walked up to the counter area ");
 		if (customerInline == 1) {
 			--customerInline;
 			customeraAtCounter = sortByOrderSizefinal.get(0);
 			sortByOrderSizefinal.remove(0);
-			System.out.println("customerInline ==  " + customerInline);
+			System.out.println(Thread.currentThread() + "customerInline ==  " + customerInline);
 
 		}
 		if (customerInline > 1) {
@@ -140,7 +140,7 @@ public class Restraunt implements Runnable {
 				customeraAtCounter = sortByOrderSizefinal.get(i + 1);
 			--customerInline;
 			sortByOrderSizefinal.remove(customerInline + 1);
-			System.out.println("customerInline ==  " + customerInline);
+			System.out.println(Thread.currentThread() + " customers In line ==  " + customerInline);
 
 		}
 
@@ -154,15 +154,15 @@ public class Restraunt implements Runnable {
 			// TODO
 			try {
 				ingredientSemaphore.acquire();
-				System.out.println("Server " + serverNumber + " has obtained all ingredients for customer "
+				System.out.println(Thread.currentThread() + "Server " + serverNumber + " has obtained all ingredients for customer "
 						+ customerAtCounter.getCustId());
 
 				// System.out.println("Server "+serverNumber+" has obtained all ingredients for
 				// customer " + customeraAtCounter.getCustId() +"s " +
 				// customeraAtCounter.getCustOrderSize() + "burritos ");
 				ingredientSemaphore.release();
-				System.out.println("Server " + serverNumber + " Cooking 3 Burritos for customer "
-						+ customerAtCounter.getCustId() + " Order size " + customerAtCounter.getCustOrderSize());
+				System.out.println(Thread.currentThread() + "Server " + serverNumber + " Cooking 3 Burritos for customer "
+						+ customerAtCounter.getCustId() + " Order size left is " + customerAtCounter.getCustOrderSize());
 
 //                  System.out.println("After making three burritos " + customerAtCounter.getCustOrderSize());
 
@@ -176,14 +176,15 @@ public class Restraunt implements Runnable {
 					payAtRegister(customerAtCounter);
 				} else {
 
-					System.out.println("did not complete Customer " + customerAtCounter.getCustId() + " Still wants "
-							+ customerAtCounter.getCustOrderSize() + "Burritos");
-					System.out.println("Sending back to line depending on lowest order size..");
+					System.out.println(Thread.currentThread() + "did not complete Customer " + customerAtCounter.getCustId() + " Still wants "
+							+ customerAtCounter.getCustOrderSize() + " Burritos");
+//					System.out.println("Sending back to line depending on lowest order size is NOW "
+//							+ "..");
 
 					// Customer Re enters line to be sorted.
 					orderCounterLine(customerAtCounter);
 					// Server servers next person inline.
-					serveFirstCustomerInline(serverNumber);
+					//serveFirstCustomerInline(serverNumber);
 
 				}
 			}
@@ -259,7 +260,7 @@ public class Restraunt implements Runnable {
 
 		while (!registerLineLL.isEmpty()) {
 			cust = registerLineLL.pollFirst();
-			System.out.println("Customer #" + cust.getCustId() + " is paying...");
+			System.out.println(Thread.currentThread() + "Customer #" + cust.getCustId() + " is paying...");
 			try {
 				Thread.sleep((int) (1000));
 			} // simulating paying

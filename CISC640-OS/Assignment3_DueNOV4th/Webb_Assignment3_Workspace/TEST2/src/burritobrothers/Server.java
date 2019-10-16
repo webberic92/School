@@ -94,7 +94,8 @@ public class Server implements Runnable {
 //			if(Restraunt.getRestraunt().servingCustomerSemaphore.tryAcquire(5*3+1000, TimeUnit.MILLISECONDS))
 //			{
 //				
-//			//	startServing();
+//			//	startServing();Removing
+			
 //				
 //
 //			}

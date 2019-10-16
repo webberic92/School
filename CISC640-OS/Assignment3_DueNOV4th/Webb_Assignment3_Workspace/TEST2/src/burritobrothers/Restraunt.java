@@ -146,6 +146,10 @@ public class Restraunt implements Runnable {
 		
 		if(!sortByOrderSizefinal.isEmpty()) {
 			System.out.println("Removing customer.." + sortByOrderSizefinal.get(0).toString());
+			//these are empty
+			sortByOrderSizefinal.toArray().toString().length();
+			sortByOrderSizefinal.remove(0).toString();
+
 			sortByOrderSizefinal.remove(0);
 			System.out.println("New First customer is" + sortByOrderSizefinal.get(0).toString());
 

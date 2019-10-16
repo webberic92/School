@@ -84,7 +84,7 @@ public class Restraunt implements Runnable {
 
 			// puts customer into end of map.
 			// round robin
-			for (int i = 1; i <= customerInline + 1; i++) {
+			for (int i = 1; i <= sortByOrderSizefinal.size() + 1; i++) {
 				OrderLineMapUnsorted.putIfAbsent(i, customer);
 
 			}
@@ -96,8 +96,8 @@ public class Restraunt implements Runnable {
 			System.out.println(Thread.currentThread() + "****NEW LINE IS***");
 
 			for (Customer customers : sortByOrderSize) {
-				System.out.println(
-						"Customer " + customers.getCustId() + "\t" + "Order size= " + customers.getCustOrderSize());
+				System.out.println(Thread.currentThread()+
+						" Customer " + customers.getCustId() + "\t" + "Order size= " + customers.getCustOrderSize());
 				// System.out.println(sortByOrderSize);
 				sortByOrderSizefinal = sortByOrderSize;
 
@@ -114,7 +114,7 @@ public class Restraunt implements Runnable {
 			putCustomersInOrderSemaphore.release();
 			
 			//Starts serving now that customers are in order.
-			//servingCustomerSemaphore.release();
+			servingCustomerSemaphore.release();
 
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -143,61 +143,56 @@ public class Restraunt implements Runnable {
 				+ customeraAtCounter.getCustId() + " from line moving to counter. With order size of "
 				+ customeraAtCounter.getCustOrderSize() + " and has walked up to the counter area ");
 		
-		
+		System.out.println(" sortByOrderSizefinalget0.." + sortByOrderSizefinal.get(0).toString());
+
 		if(!sortByOrderSizefinal.isEmpty()) {
 			System.out.println("Removing customer.." + sortByOrderSizefinal.get(0).toString());
-			//these are empty
-			sortByOrderSizefinal.toArray().toString().length();
-			sortByOrderSizefinal.remove(0).toString();
+			
 
 			sortByOrderSizefinal.remove(0);
-			System.out.println("New First customer is" + sortByOrderSizefinal.get(0).toString());
+			customerInline--;
+			System.out.println("New First customer is empty " + sortByOrderSizefinal.isEmpty());
+			System.out.println("cooking method...");
 
 			Cooking(server, customeraAtCounter);
+			System.out.println("Exit");
 
-			
+			System.exit(0);
 		}
 		
 		
 		
 		System.out.println("sortByOrderSizefinal.get " + sortByOrderSizefinal.get(0).toString());
 
-		sortByOrderSizefinal.remove(0);
+	sortByOrderSizefinal.remove(0);
 		System.out.println("sortByOrderSizefinal.get " + sortByOrderSizefinal.get(0).toString());
-		//orderCounterLine(sortByOrderSizefinal.get(index));
-		
-		// remove customer from first position in map then use cooking(sever,customer method. Return customer at counter.)
-		
-//		if (customerInline == 1) {
-//			--customerInline;
-//			customeraAtCounter = sortByOrderSizefinal.get(0);
-//			sortByOrderSizefinal.remove(0);
-//			System.out.println(Thread.currentThread() + "customerInline ==  " + customerInline);
-//			System.out.println("Cook this customers food subtract 3 burritos method.");
-//			Cooking(server, customeraAtCounter);
-//
-//			
-//
-//		}
-//		if (sortByOrderSizefinal.toArray().length > 1) {
-//			System.out.println(Thread.currentThread() + " customers In line 1 ==  " + customerInline);
-//			System.out.println(Thread.currentThread() + " customers sortByOrderSizefinal.toArray().length In line 1 ==  " + sortByOrderSizefinal.toArray().length);
-//
-//			
-//
-//			for (int i = 0; i < customerInline; ++i) { // moving the line
-//				customeraAtCounter = sortByOrderSizefinal.get(i + 1);}
-//			--customerInline;
-//			sortByOrderSizefinal.remove(customerInline + 1);
-//			System.out.println(Thread.currentThread() + " sortByOrderSizefinal.size " +sortByOrderSizefinal.size());
-//			//System.out.println(Thread.currentThread() + " " +sortByOrderSizefinal.indexOf(0));
-//			System.out.println(Thread.currentThread() + " customers In line == 3  " + customerInline);
-
-		
-
 		return customeraAtCounter;
 		
 	}
+	
+	
+	
+//	
+//	if (customerInline == 1) {
+//		--customerInline;
+//		customeraAtCounter = sortByOrderSizefinal.get(0);
+//		sortByOrderSizefinal.remove(0);
+//		System.out.println(Thread.currentThread() + "customerInline ==  " + customerInline);
+//
+//	}
+//	if (customerInline > 1) {
+//
+//		for (int i = 0; i < customerInline; ++i) // moving the line
+//			customeraAtCounter = sortByOrderSizefinal.get(i + 1);
+//		--customerInline;
+//		sortByOrderSizefinal.remove(customerInline + 1);
+//		System.out.println(Thread.currentThread() + " customers In line ==  " + customerInline);
+//
+//	}
+//
+//	return customeraAtCounter;
+
+
 
 	
 	
@@ -236,8 +231,8 @@ public class Restraunt implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+//		}
 		}
-		
 
 		
 

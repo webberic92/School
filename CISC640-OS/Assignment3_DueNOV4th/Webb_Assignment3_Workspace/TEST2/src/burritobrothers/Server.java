@@ -77,7 +77,7 @@ public class Server implements Runnable {
 			Restraunt.getRestraunt().serveFirstCustomerInline(Server.this);
 			
 			
-			System.out.println("After serveFirstCustomerInline()");
+			System.out.println(" Never reaches this After serveFirstCustomerInline()");
 			
 			
 			

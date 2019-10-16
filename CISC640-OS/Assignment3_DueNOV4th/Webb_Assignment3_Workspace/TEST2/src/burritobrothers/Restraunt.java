@@ -122,18 +122,20 @@ public class Restraunt implements Runnable {
 		}
 	}
 
+	
+	
 	public Customer serveFirstCustomerInline(Server server) {
 
 		Customer customeraAtCounter;
 //		System.out.println(Thread.currentThread() + " sortByOrderSizefinal.get(0)==" + sortByOrderSizefinal.get(0));
-		if(customerInline == 0) {
+		
+		
+		if(sortByOrderSizefinal.isEmpty()) {
 			System.out.println("No more Customers clock out.");
 			clockOut(server);
 
 			
 		}
-		
-		
 		customeraAtCounter = sortByOrderSizefinal.get(0);
 		
 		
@@ -142,32 +144,63 @@ public class Restraunt implements Runnable {
 				+ customeraAtCounter.getCustOrderSize() + " and has walked up to the counter area ");
 		
 		
-		
-		
-		
-		if (customerInline == 1) {
-			--customerInline;
-			customeraAtCounter = sortByOrderSizefinal.get(0);
+		if(!sortByOrderSizefinal.isEmpty()) {
+			System.out.println("Removing customer.." + sortByOrderSizefinal.get(0).toString());
 			sortByOrderSizefinal.remove(0);
-			System.out.println(Thread.currentThread() + "customerInline ==  " + customerInline);
-			System.out.println("Cook this customers food subtract 3 burritos method.");
+			System.out.println("New First customer is" + sortByOrderSizefinal.get(0).toString());
+
 			Cooking(server, customeraAtCounter);
 
 			
-
 		}
-		if (customerInline > 1) {
+		
+		
+		
+		System.out.println("sortByOrderSizefinal.get " + sortByOrderSizefinal.get(0).toString());
 
-			for (int i = 0; i < customerInline; ++i) // moving the line
-				customeraAtCounter = sortByOrderSizefinal.get(i + 1);
-			--customerInline;
-			sortByOrderSizefinal.remove(customerInline + 1);
-			System.out.println(Thread.currentThread() + " customers In line ==  " + customerInline);
+		sortByOrderSizefinal.remove(0);
+		System.out.println("sortByOrderSizefinal.get " + sortByOrderSizefinal.get(0).toString());
+		//orderCounterLine(sortByOrderSizefinal.get(index));
+		
+		// remove customer from first position in map then use cooking(sever,customer method. Return customer at counter.)
+		
+//		if (customerInline == 1) {
+//			--customerInline;
+//			customeraAtCounter = sortByOrderSizefinal.get(0);
+//			sortByOrderSizefinal.remove(0);
+//			System.out.println(Thread.currentThread() + "customerInline ==  " + customerInline);
+//			System.out.println("Cook this customers food subtract 3 burritos method.");
+//			Cooking(server, customeraAtCounter);
+//
+//			
+//
+//		}
+//		if (sortByOrderSizefinal.toArray().length > 1) {
+//			System.out.println(Thread.currentThread() + " customers In line 1 ==  " + customerInline);
+//			System.out.println(Thread.currentThread() + " customers sortByOrderSizefinal.toArray().length In line 1 ==  " + sortByOrderSizefinal.toArray().length);
+//
+//			
+//
+//			for (int i = 0; i < customerInline; ++i) { // moving the line
+//				customeraAtCounter = sortByOrderSizefinal.get(i + 1);}
+//			--customerInline;
+//			sortByOrderSizefinal.remove(customerInline + 1);
+//			System.out.println(Thread.currentThread() + " sortByOrderSizefinal.size " +sortByOrderSizefinal.size());
+//			//System.out.println(Thread.currentThread() + " " +sortByOrderSizefinal.indexOf(0));
+//			System.out.println(Thread.currentThread() + " customers In line == 3  " + customerInline);
 
-		}
+		
 
 		return customeraAtCounter;
+		
+	}
 
+	
+	
+	
+	private void orderCounterline() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	private void clockOut(Server server) {

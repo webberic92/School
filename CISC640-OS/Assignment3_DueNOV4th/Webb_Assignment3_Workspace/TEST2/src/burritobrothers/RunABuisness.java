@@ -18,7 +18,7 @@ public class RunABuisness {
 
 		// creates 15 customers
 		// Suppose to be 15 customers.change before turning in.
-		for (int i = 1; i < 2; ++i) {
+		for (int i = 1; i < 3; ++i) {
 			new Restraunt();
 			Thread Customer = new Thread(Restraunt.getRestraunt());
 			Customer.start();

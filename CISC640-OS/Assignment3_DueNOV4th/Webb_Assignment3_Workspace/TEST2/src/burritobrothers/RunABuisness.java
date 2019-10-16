@@ -10,7 +10,7 @@ public class RunABuisness {
 		System.out.println("Creating 3 Server Threads.");
 
 //		// Creates 3 servers.
-		for (int i = 0; i < 3; ++i) {
+		for (int i = 1; i < 2; ++i) {
 			Thread Server = new Thread(new Server(i));
 			Server.start();
 
@@ -18,7 +18,7 @@ public class RunABuisness {
 
 		// creates 15 customers
 		// Suppose to be 15 customers.change before turning in.
-		for (int i = 0; i < 1; ++i) {
+		for (int i = 1; i < 2; ++i) {
 			new Restraunt();
 			Thread Customer = new Thread(Restraunt.getRestraunt());
 			Customer.start();

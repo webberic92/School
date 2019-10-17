@@ -13,6 +13,13 @@ public class Server implements Runnable {
 
 
 	
+	public Server(Customer customerAtCounter, int serverNumber, boolean clockedIn) {
+	super();
+	this.customerAtCounter = customerAtCounter;
+	this.serverNumber = serverNumber;
+	this.clockedIn = clockedIn;
+}
+
 	
 //	public void startServing() {
 //
@@ -76,18 +83,7 @@ public class Server implements Runnable {
 			Thread.sleep(5000);
 			Restraunt.getRestraunt().serveFirstCustomerInline(Server.this);
 			
-			
-			System.out.println(" Never reaches this After serveFirstCustomerInline()");
-			
-			
-			
-			
-			System.exit(0);
-
-			
 		
-			
-			
 			
 //			//serves a customer and waits if none are in line.
 //			// tryacquire is aquire but with time contstaint.
@@ -129,13 +125,6 @@ public class Server implements Runnable {
 		
 	
 	
-	
-	public Server(Customer customerAtCounter, int serverNumber, boolean clockedIn) {
-	super();
-	this.customerAtCounter = customerAtCounter;
-	this.serverNumber = serverNumber;
-	this.clockedIn = clockedIn;
-}
 
 
 

@@ -22,9 +22,9 @@ public class Restraunt implements Runnable {
 	// needs to be correct store capacity before turning in.
 	// protected Customer lineArray[]=new Customer[5];
 	protected LinkedList<Customer> registerLineLL = new LinkedList<Customer>();
-	protected Map<Integer, Customer> OrderLineMapUnsorted = new HashMap<>();
+	protected static Map<Integer, Customer> OrderLineMapUnsorted = new HashMap<>();
 //   protected List<Customer> sortByOrderSize = new ArrayList<>(OrderLineMapUnsorted.values());
-	List<Customer> sortByOrderSizefinal = new ArrayList<>(OrderLineMapUnsorted.values());
+	protected static List<Customer> sortByOrderSizefinal = new ArrayList<>(OrderLineMapUnsorted.values());
 
 	protected Semaphore isRestrauntFullSemaphore = new Semaphore(1);
 	protected Semaphore putCustomersInOrderSemaphore = new Semaphore(1);
@@ -58,7 +58,7 @@ public class Restraunt implements Runnable {
 								+ " Burritos." + " There are " + customerInRestraunt + " customers in the restraunt");
 
 				// passes customer to be ordered in line.
-				orderCounterLine(customer);
+				AddCustomerToLine(customer, true);
 
 			    servingCustomerSemaphore.release();
 				isRestrauntFullSemaphore.release();
@@ -77,8 +77,10 @@ public class Restraunt implements Runnable {
 		}
 	}
 
-	public void orderCounterLine(Customer customer) {
+	public void AddCustomerToLine(Customer customer , Boolean newCustomer) {
 
+		
+		if(newCustomer=true) {
 		try {
 			putCustomersInOrderSemaphore.acquire();
 
@@ -94,16 +96,56 @@ public class Restraunt implements Runnable {
 			System.out.println(Thread.currentThread() + "New Customer " + customer.getCustId() + " added to line time to SORT! ");
 			Collections.sort(sortByOrderSize, Comparator.comparing(Customer::getCustOrderSize));
 			System.out.println(Thread.currentThread() + "****NEW LINE IS***");
+			
+			for (Customer customers : sortByOrderSize) {
+				System.out.println(Thread.currentThread()+
+						" Customer " + customers.getCustId() + "\t" + "Order size= " + customers.getCustOrderSize());
+				// System.out.println(sortByOrderSize);
+				sortByOrderSizefinal = sortByOrderSize;
+				putCustomersInOrderSemaphore.release();
+
+
+			}} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}}
+			
+		
+		
+		if(newCustomer=false) {
+			
+			try {
+				putCustomersInOrderSemaphore.acquire();
+
+				// puts customer into end of map.
+				// round robin
+				for (int i = 1; i <= sortByOrderSizefinal.size() + 1; i++) {
+					OrderLineMapUnsorted.putIfAbsent(i, customer);
+
+				}
+				
+			
+			List<Customer> sortByOrderSize = sortByOrderSizefinal;
+
+
+			Collections.sort(sortByOrderSize, Comparator.comparing(Customer::getCustOrderSize));
+			System.out.println(Thread.currentThread() + "****UPDATED LINE IS***");
 
 			for (Customer customers : sortByOrderSize) {
 				System.out.println(Thread.currentThread()+
 						" Customer " + customers.getCustId() + "\t" + "Order size= " + customers.getCustOrderSize());
 				// System.out.println(sortByOrderSize);
 				sortByOrderSizefinal = sortByOrderSize;
+				putCustomersInOrderSemaphore.release();
 
-			}
-
-			// System.out.println(sortByOrderSizefinal);
+			
+		}} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			finally {
+	
+		// System.out.println(sortByOrderSizefinal);
 			// System.out.println(sortByOrderSizefinal.toString());
 			System.out.println("sortByOrderSizefinal ==  " + sortByOrderSizefinal.toString());
 			System.out.println(" Next server available needs to serve Customer  " + sortByOrderSizefinal.get(0));
@@ -111,24 +153,20 @@ public class Restraunt implements Runnable {
 			System.out.println(" ");
 
 			++customerInline;
-			putCustomersInOrderSemaphore.release();
+//			putCustomersInOrderSemaphore.release();
 			
 			//Starts serving now that customers are in order.
 			servingCustomerSemaphore.release();
 
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+		}	
+		}	}	
+	
 
 	
 	
-	public Customer serveFirstCustomerInline(Server server) {
+	public void serveFirstCustomerInline(Server server) {
 
 		Customer customeraAtCounter;
-//		System.out.println(Thread.currentThread() + " sortByOrderSizefinal.get(0)==" + sortByOrderSizefinal.get(0));
-		
 		
 		if(sortByOrderSizefinal.isEmpty()) {
 			System.out.println("No more Customers clock out.");
@@ -143,30 +181,26 @@ public class Restraunt implements Runnable {
 				+ customeraAtCounter.getCustId() + " from line moving to counter. With order size of "
 				+ customeraAtCounter.getCustOrderSize() + " and has walked up to the counter area ");
 		
-		System.out.println(" sortByOrderSizefinalget0.." + sortByOrderSizefinal.get(0).toString());
+		System.out.println(" sortByOrderSizefinal to string.." + sortByOrderSizefinal.toString());
 
 		if(!sortByOrderSizefinal.isEmpty()) {
-			System.out.println("Removing customer.." + sortByOrderSizefinal.get(0).toString());
 			
+			System.out.println("sortByOrderSizefinal to string.. " + sortByOrderSizefinal.toString());
+			System.out.println("Removing customer.." + sortByOrderSizefinal.get(0).toString());
 
 			sortByOrderSizefinal.remove(0);
 			customerInline--;
-			System.out.println("New First customer is empty " + sortByOrderSizefinal.isEmpty());
-			System.out.println("cooking method...");
-
-			Cooking(server, customeraAtCounter);
-			System.out.println("Exit");
-
-			System.exit(0);
+			//does not remove customer from 
+			
+					
+			System.out.println("sortByOrderSizefinal to string NOW IS " + sortByOrderSizefinal.toString());
+//			System.out.println("NEw first customer.." + sortByOrderSizefinal.get(0));
+//			System.out.println("New First customer is empty " + sortByOrderSizefinal.isEmpty());
+			
+			showCurrentLine();
+			Cooking(server,customeraAtCounter);
+						
 		}
-		
-		
-		
-		System.out.println("sortByOrderSizefinal.get " + sortByOrderSizefinal.get(0).toString());
-
-	sortByOrderSizefinal.remove(0);
-		System.out.println("sortByOrderSizefinal.get " + sortByOrderSizefinal.get(0).toString());
-		return customeraAtCounter;
 		
 	}
 	
@@ -197,9 +231,23 @@ public class Restraunt implements Runnable {
 	
 	
 	
-	private void orderCounterline() {
-		// TODO Auto-generated method stub
+	private void showCurrentLine() {
+		List<Customer> sortByOrderSize = sortByOrderSizefinal;
+
+
+		Collections.sort(sortByOrderSize, Comparator.comparing(Customer::getCustOrderSize));
+		System.out.println(Thread.currentThread() + "****NEW LINE IS***");
+
+		for (Customer customers : sortByOrderSize) {
+			System.out.println(Thread.currentThread()+
+					" Customer " + customers.getCustId() + "\t" + "Order size= " + customers.getCustOrderSize());
+			// System.out.println(sortByOrderSize);
+			sortByOrderSizefinal = sortByOrderSize;
 		
+	}
+//		System.out.println("Exit");
+//
+//		System.exit(0);
 	}
 
 	private void clockOut(Server server) {
@@ -212,7 +260,6 @@ public class Restraunt implements Runnable {
 
 	public void Cooking(Server server, Customer customerAtCounter) {
 		System.out.println(Thread.currentThread() + " Cooking method.");
-		
 		System.out.println(Thread.currentThread() + " Server = " +  server.getServerNumber() + " Customer ID = "+ customerAtCounter.getCustId()+" subtract 3 from " + customerAtCounter.getCustOrderSize());
 		customerAtCounter.makeThreeBurritos();
 		System.out.println(Thread.currentThread() + " New order size = " + customerAtCounter.getCustOrderSize());
@@ -223,10 +270,15 @@ public class Restraunt implements Runnable {
 		}
 		else {
 			System.out.println(Thread.currentThread() + " Send back to line. Server helps next guest");
-			orderCounterLine(customerAtCounter);
+			AddCustomerToLine(customerAtCounter, false);
 			try {
 				Thread.sleep(500);
+				
 				serveFirstCustomerInline(server);
+				System.out.println("TEST999");
+
+
+				
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

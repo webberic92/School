@@ -181,12 +181,12 @@ public class Restraunt implements Runnable {
 				+ customeraAtCounter.getCustId() + " from line moving to counter. With order size of "
 				+ customeraAtCounter.getCustOrderSize() + " and has walked up to the counter area ");
 		
-		System.out.println(" sortByOrderSizefinal to string.." + sortByOrderSizefinal.toString());
+		//System.out.println(" sortByOrderSizefinal to string.." + sortByOrderSizefinal.toString());
 
 		if(!sortByOrderSizefinal.isEmpty()) {
 			
 			System.out.println("sortByOrderSizefinal to string.. " + sortByOrderSizefinal.toString());
-			System.out.println("Removing customer.." + sortByOrderSizefinal.get(0).toString());
+			//System.out.println("Removing customer.." + sortByOrderSizefinal.get(0).toString());
 
 			sortByOrderSizefinal.remove(0);
 			customerInline--;
@@ -259,8 +259,7 @@ public class Restraunt implements Runnable {
 	}
 
 	public void Cooking(Server server, Customer customerAtCounter) {
-		System.out.println(Thread.currentThread() + " Cooking method.");
-		System.out.println(Thread.currentThread() + " Server = " +  server.getServerNumber() + " Customer ID = "+ customerAtCounter.getCustId()+" subtract 3 from " + customerAtCounter.getCustOrderSize());
+		System.out.println(Thread.currentThread() + "Cooking method : Server = " +  server.getServerNumber() + " Customer ID = "+ customerAtCounter.getCustId()+" subtract 3 from " + customerAtCounter.getCustOrderSize());
 		customerAtCounter.makeThreeBurritos();
 		System.out.println(Thread.currentThread() + " New order size = " + customerAtCounter.getCustOrderSize());
 	
@@ -346,16 +345,23 @@ public class Restraunt implements Runnable {
 		//hold 3 customers in line
 		//
 		//
-		
+		try {
+			registerLineSemaphore.acquire();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		
 		System.out.println("Server "+ server.getServerNumber() + " Cashing out " + customerAtRegister.getCustId() +  ", There can be 3 peoples in this line. ");
 		customerLeavingStore(customerAtRegister);
+		registerLineSemaphore.release();
+
 		
 		System.out.println("server " + server.getServerNumber() +  " going back to get next order.");
 		serveFirstCustomerInline(server);
 
 		
-//			registerLineSemaphore.acquire();
 			//registerLineLL.addLast(customerAtCounter); // adding customer into register queue
 
 		//	registerLineSemaphore.release();

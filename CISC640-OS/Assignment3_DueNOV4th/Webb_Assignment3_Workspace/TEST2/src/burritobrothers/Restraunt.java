@@ -20,6 +20,7 @@ public class Restraunt implements Runnable {
 	protected int customerInline = 0;
 
 	static ArrayList<Customer> cstmrsOutsideList = new ArrayList();
+	static ArrayList<Customer> registerLineList = new ArrayList();
 
 	protected LinkedList<Customer> registerLineLL = new LinkedList<Customer>();
 	protected static Map<Integer, Customer> OrderLineMapUnsorted = new HashMap<>();
@@ -241,10 +242,20 @@ public class Restraunt implements Runnable {
 		customerAtCounter.makeThreeBurritos();
 		System.out.println(Thread.currentThread() + "Csutomer " + customerAtCounter.getCustId() + " New order size = " + customerAtCounter.getCustOrderSize());
 
-		if (customerAtCounter.getCustOrderSize() <= 0) {
-			System.out.println(Thread.currentThread() + "ORDER COMPLETED! Time to go pay at register. ");
+		if ((customerAtCounter.getCustOrderSize() <= 0) && (registerLineList.size() == 3)) {
+			System.out.println(Thread.currentThread() + "ORDER COMPLETED! but need to wait for register line to be less than 3.");
+// wait for release of semaphore to send to registerline.
+		}
+		if ((customerAtCounter.getCustOrderSize() <= 0) && (registerLineList.size() == 2 ) || (registerLineList.size() == 1 ) || (registerLineList.size() == 0 ) ) {
+			System.out.println(Thread.currentThread() + "ORDER COMPLETED! Sending to register line...");
 			payAtRegister(customerAtCounter, server);
-		} else {
+
+		}
+		
+		
+			
+			
+		else {
 			System.out.println(Thread.currentThread() + " Sending customer " +customerAtCounter.getCustId() +" back to line. Server helps next guest");
 			AddCustomerToLine(customerAtCounter, false);
 			try {
@@ -275,22 +286,55 @@ public class Restraunt implements Runnable {
 
 		System.out.println("Server " + server.getServerNumber() + " Cashing out " + customerAtRegister.getCustId()
 				+ ", There can be 3 peoples in this line. ");
-		customerLeavingStore(customerAtRegister);
-		registerLineSemaphore.release();
+		
+		if(registerLineList.size() == 0 || registerLineList.size() == 1 ) {
+			System.out.println(" Creating Register line to 3 ...");
+			System.out.println("  Register line before === " +registerLineList.size());
 
+			ArrayList<Customer> registerLineArrayTemp = registerLineList;
+			registerLineArrayTemp.add(customerAtRegister);
+			registerLineList = registerLineArrayTemp;
+			System.out.println("Register Line  after == " + registerLineList.size());
+			registerLineSemaphore.release();
+			
+		}
+		
+		if(registerLineList.size() == 2) {
+			ArrayList<Customer> registerLineArrayTemp = registerLineList;
+			registerLineArrayTemp.add(customerAtRegister);
+			registerLineList = registerLineArrayTemp;
+			customerLeavingStore(registerLineArrayTemp.get(0));
+			registerLineSemaphore.release();
+		}
+		
+		
 		System.out.println("server " + server.getServerNumber() + " going back to get next order.");
 		serveFirstCustomerInline(server);
 
 	}
 
 	private void customerLeavingStore(Customer customerAtRegister) {
-		System.out.println("Customer " + customerAtRegister.getCustId() + " left");
-		customerAtRegister = null;
-		System.out.println("Customer in RESTraunt before customer left " + customerInRestraunt);
+		
+		
+			System.out.println("Customer " + customerAtRegister.getCustId() + " left");
+			customerAtRegister = null;
+			System.out.println("Resgister list before removing 0 " + registerLineList.toString());
 
-		--customerInRestraunt;
+			registerLineList.remove(0);
+			
+			System.out.println("Resgister list After removing 0 " + registerLineList.toString());
 
-		System.out.println("Customer in restraunt after customer left " + customerInRestraunt);
+			
+			System.out.println("Customer in RESTraunt before customer left " + customerInRestraunt);
+
+			--customerInRestraunt;
+
+			System.out.println("Customer in restraunt after customer left " + customerInRestraunt);
+			
+			
+		
+		
+		
 
 		if(!cstmrsOutsideList.isEmpty()) {
 			++customerInRestraunt;

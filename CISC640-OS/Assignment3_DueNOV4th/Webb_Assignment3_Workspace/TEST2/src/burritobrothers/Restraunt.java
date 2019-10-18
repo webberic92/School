@@ -99,7 +99,11 @@ public class Restraunt implements Runnable {
 		ArrayList<Customer> cstmrsOutsideListTemp = cstmrsOutsideList;
 		cstmrsOutsideListTemp.add(customer);
 		cstmrsOutsideList = cstmrsOutsideListTemp;
-		System.out.println("Waiting line now is === " + cstmrsOutsideList.toString());
+		System.out.println("Waiting line now is");
+		
+		for(int i = 0;i < cstmrsOutsideListTemp.size(); i++) {
+		System.out.println("CSTMR outside = " +cstmrsOutsideListTemp.get(i).getCustId());
+		}
 		makeCstmWaitSemaphore.release();
 
 	}
@@ -291,15 +295,17 @@ public class Restraunt implements Runnable {
 		if(!cstmrsOutsideList.isEmpty()) {
 			++customerInRestraunt;
 
-			System.out.println("Time for a waiting customer #" +cstmrsOutsideList.get(0).getCustId() + " To come in the line." );
+			System.out.println("Time for a waiting customer #" +cstmrsOutsideList.get(0).getCustId() + " To come in the line. There is now " +customerInRestraunt + " Customers in the restraunt again." );
 
 			Customer CstmrToAdd = cstmrsOutsideList.get(0);
-			AddCustomerToLine(CstmrToAdd, true);
+			OrderLineMapUnsorted.put(0, CstmrToAdd);
+			AddCustomerToLine(CstmrToAdd, false);
 			cstmrsOutsideList.remove(0);
 
 		}
+		else {
 		System.out.println("NO MORE OUTSIDE CUSTOMERS");		
-		
+		}
 	}
 
 	public static Restraunt getRestraunt() {

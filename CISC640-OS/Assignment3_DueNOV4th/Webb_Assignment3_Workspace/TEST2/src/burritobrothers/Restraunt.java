@@ -187,11 +187,18 @@ public class Restraunt implements Runnable {
 
 		Customer customeraAtCounter;
 
-		if (sortByOrderSizefinal.isEmpty()) {
-			System.out.println("No more Customers clock out.");
+		if (sortByOrderSizefinal.isEmpty() && registerLineList.isEmpty()) {
+			System.out.println("No more Customers in register or order line time for server " +server.getServerNumber() + " to clock out.");
 			clockOut(server);
 
 		}
+		
+		if (sortByOrderSizefinal.isEmpty() && !registerLineList.isEmpty()) {
+			System.out.println("No more Customers in order line, STILL customers in register line time for server " +server.getServerNumber() + " to handle the cash register.");
+			handleRemainingCashRegisterline(server);
+
+		}
+		
 		customeraAtCounter = sortByOrderSizefinal.get(0);
 
 		System.out.println(Thread.currentThread() + "Server " + server.getServerNumber()
@@ -210,6 +217,21 @@ public class Restraunt implements Runnable {
 			Cooking(server, customeraAtCounter);
 
 		}
+
+	}
+
+	private void handleRemainingCashRegisterline(Server server) {
+		System.out.println("Server " + server.getServerNumber() + " Cashing out first customer at register, customer " + registerLineList
+		+ ", There can be 3 peoples in this line. ");
+
+		
+		ArrayList<Customer> registerLineArrayTemp = registerLineList;
+		customerLeavingStore(registerLineArrayTemp.get(0),server);
+//		registerLineList = registerLineArrayTemp;
+//		registerLineSemaphore.release();
+//		
+//		
+//		System.exit(0);
 
 	}
 
@@ -303,7 +325,7 @@ public class Restraunt implements Runnable {
 			ArrayList<Customer> registerLineArrayTemp = registerLineList;
 			registerLineArrayTemp.add(customerAtRegister);
 			registerLineList = registerLineArrayTemp;
-			customerLeavingStore(registerLineArrayTemp.get(0));
+			customerLeavingStore(registerLineArrayTemp.get(0),server);
 			registerLineSemaphore.release();
 		}
 		
@@ -313,7 +335,7 @@ public class Restraunt implements Runnable {
 
 	}
 
-	private void customerLeavingStore(Customer customerAtRegister) {
+	private void customerLeavingStore(Customer customerAtRegister, Server server) {
 		
 		
 			System.out.println("Customer " + customerAtRegister.getCustId() + " left");
@@ -347,8 +369,12 @@ public class Restraunt implements Runnable {
 			cstmrsOutsideList.remove(0);
 
 		}
+		if(cstmrsOutsideList.isEmpty() && registerLineList.size() >=1) {
+			System.out.println("More Customers in register line to cash out.." );
+handleRemainingCashRegisterline(server);		}
+		
 		else {
-		System.out.println("NO MORE OUTSIDE CUSTOMERS");		
+		System.out.println("NO MORE OUTSIDE CUSTOMERS or Register ine customers...");		
 		}
 	}
 

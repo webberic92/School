@@ -19,7 +19,8 @@ public class Restraunt implements Runnable {
 	protected int customerNum = 0;
 	protected int customerInline = 0;
 
-	
+	static ArrayList<Customer> cstmrsOutsideList = new ArrayList();
+
 	protected LinkedList<Customer> registerLineLL = new LinkedList<Customer>();
 	protected static Map<Integer, Customer> OrderLineMapUnsorted = new HashMap<>();
 	protected static List<Customer> sortByOrderSizefinal = new ArrayList<>(OrderLineMapUnsorted.values());
@@ -94,16 +95,11 @@ public class Restraunt implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Map<Integer, Customer> AddToWaitingList = WaitingMap;
 
-		
-		System.out.println(Thread.currentThread() + "Restraunt is at MAX Capacity Customer number " + customerNum + " you can not come in.");
-		for (int i = AddToWaitingList.size(); i <= AddToWaitingList.size(); i++) {
-		AddToWaitingList.put((Integer) i, customer);
-		WaitingMap = AddToWaitingList;
-		i++;
-		}
-		System.out.println("Waiting line now is === " + WaitingMap);
+		ArrayList<Customer> cstmrsOutsideListTemp = cstmrsOutsideList;
+		cstmrsOutsideListTemp.add(customer);
+		cstmrsOutsideList = cstmrsOutsideListTemp;
+		System.out.println("Waiting line now is === " + cstmrsOutsideList.toString());
 		makeCstmWaitSemaphore.release();
 
 	}
@@ -291,8 +287,19 @@ public class Restraunt implements Runnable {
 		--customerInRestraunt;
 
 		System.out.println("Customer in restraunt after customer left " + customerInRestraunt);
-		//WaitingMap.toString();
-		//AddCustomerToLine(, true);
+
+		if(!cstmrsOutsideList.isEmpty()) {
+			++customerInRestraunt;
+
+			System.out.println("Time for a waiting customer #" +cstmrsOutsideList.get(0).getCustId() + " To come in the line." );
+
+			Customer CstmrToAdd = cstmrsOutsideList.get(0);
+			AddCustomerToLine(CstmrToAdd, true);
+			cstmrsOutsideList.remove(0);
+
+		}
+		System.out.println("NO MORE OUTSIDE CUSTOMERS");		
+		
 	}
 
 	public static Restraunt getRestraunt() {

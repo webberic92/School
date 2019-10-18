@@ -23,7 +23,12 @@ public class Restraunt implements Runnable {
 	protected LinkedList<Customer> registerLineLL = new LinkedList<Customer>();
 	protected static Map<Integer, Customer> OrderLineMapUnsorted = new HashMap<>();
 	protected static List<Customer> sortByOrderSizefinal = new ArrayList<>(OrderLineMapUnsorted.values());
+	protected static Map<Integer, Customer> WaitingMap = new HashMap<>();
 
+	
+	protected Semaphore makeCstmWaitSemaphore = new Semaphore(1);
+
+	
 	protected Semaphore isRestrauntFullSemaphore = new Semaphore(1);
 	protected Semaphore putCustomersInOrderSemaphore = new Semaphore(1);
 	protected Semaphore servingCustomerSemaphore = new Semaphore(0);
@@ -44,13 +49,17 @@ public class Restraunt implements Runnable {
 			isRestrauntFullSemaphore.acquire();
 			++customerNum;
 
+			
+			Customer customer = new Customer();
+			customer.setCustId(customerNum);
+			
+			
 			// Sets limit of how many people can come in restraunt.
 			// change back to 15 when turning in.
 			if (customerInRestraunt < 5) {
 
 				++customerInRestraunt;
-				Customer customer = new Customer();
-				customer.setCustId(customerNum);
+				
 				System.out.println(Thread.currentThread() + "Customer " + customer.getCustId() + " walked in wanting "
 						+ customer.getCustOrderSize() + " Burritos." + " There are " + customerInRestraunt
 						+ " customers in the restraunt");
@@ -64,8 +73,11 @@ public class Restraunt implements Runnable {
 			} else {
 //			Customer customer = new Customer();
 //	        customer.setCustId(customerNum);
-				System.out.println(
-						"Restraunt is at MAX Capacity Customer number " + customerNum + " you can not come in.");
+				
+				makeCustomerWaitOutside(customer);
+				
+//				System.out.println(Thread.currentThread() + "Waiting list to get in now... " + AddToWaitingList.toString());
+
 				isRestrauntFullSemaphore.release();
 
 			}
@@ -73,6 +85,27 @@ public class Restraunt implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public void makeCustomerWaitOutside(Customer customer) {
+		try {
+			makeCstmWaitSemaphore.acquire();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Map<Integer, Customer> AddToWaitingList = WaitingMap;
+
+		
+		System.out.println(Thread.currentThread() + "Restraunt is at MAX Capacity Customer number " + customerNum + " you can not come in.");
+		for (int i = AddToWaitingList.size(); i <= AddToWaitingList.size(); i++) {
+		AddToWaitingList.put((Integer) i, customer);
+		WaitingMap = AddToWaitingList;
+		i++;
+		}
+		System.out.println("Waiting line now is === " + WaitingMap);
+		makeCstmWaitSemaphore.release();
+
 	}
 
 	public void AddCustomerToLine(Customer customer, Boolean newCustomer) {

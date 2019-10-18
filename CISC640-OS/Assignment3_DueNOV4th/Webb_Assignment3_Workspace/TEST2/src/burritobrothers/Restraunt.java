@@ -199,14 +199,17 @@ public class Restraunt implements Runnable {
 
 		}
 		
-		customeraAtCounter = sortByOrderSizefinal.get(0);
-
-		System.out.println(Thread.currentThread() + "Server " + server.getServerNumber()
-				+ " serving smallest order, removing customer " + customeraAtCounter.getCustId()
-				+ " from line moving to counter. With order size of " + customeraAtCounter.getCustOrderSize()
-				+ " and has walked up to the counter area ");
-
+		
 		if (!sortByOrderSizefinal.isEmpty()) {
+			
+			//so you dont get an index out of bound exception.
+			customeraAtCounter = sortByOrderSizefinal.get(0);
+			
+			System.out.println(Thread.currentThread() + "Server " + server.getServerNumber()
+					+ " serving smallest order, removing customer " + customeraAtCounter.getCustId()
+					+ " from line moving to counter. With order size of " + customeraAtCounter.getCustOrderSize()
+					+ " and has walked up to the counter area ");
+
 
 			//System.out.println("sortByOrderSizefinal WAS .. " + sortByOrderSizefinal.toString());
 			sortByOrderSizefinal.remove(0);
@@ -268,9 +271,9 @@ public class Restraunt implements Runnable {
 			System.out.println(Thread.currentThread() + "ORDER COMPLETED! but need to wait for register line to be less than 3.");
 // wait for release of semaphore to send to registerline.
 		}
-		if ((customerAtCounter.getCustOrderSize() <= 0) && (registerLineList.size() == 2 ) || (registerLineList.size() == 1 ) || (registerLineList.size() == 0 ) ) {
-			System.out.println(Thread.currentThread() + "ORDER COMPLETED! Sending to register line...");
-			payAtRegister(customerAtCounter, server);
+		if ((customerAtCounter.getCustOrderSize() <= 0) && ((registerLineList.size() == 2 ) || (registerLineList.size() == 1) ) || (registerLineList.size() == 0 ) ) {
+			System.out.println(Thread.currentThread() + "ORDER COMPLETED! Sending to register line..");
+			registerLine(customerAtCounter, server);
 
 		}
 		
@@ -294,7 +297,7 @@ public class Restraunt implements Runnable {
 
 	}
 
-	public void payAtRegister(Customer customerAtRegister, Server server) {
+	public void registerLine(Customer customerAtRegister, Server server) {
 
 		// hold 3 customers in line
 		//
@@ -306,20 +309,8 @@ public class Restraunt implements Runnable {
 			e.printStackTrace();
 		}
 
-		System.out.println("Server " + server.getServerNumber() + " Cashing out " + customerAtRegister.getCustId()
-				+ ", There can be 3 peoples in this line. ");
-		
-		if(registerLineList.size() == 0 || registerLineList.size() == 1 ) {
-			System.out.println(" Creating Register line to 3 ...");
-			System.out.println("  Register line before === " +registerLineList.size());
-
-			ArrayList<Customer> registerLineArrayTemp = registerLineList;
-			registerLineArrayTemp.add(customerAtRegister);
-			registerLineList = registerLineArrayTemp;
-			System.out.println("Register Line  after == " + registerLineList.size());
-			registerLineSemaphore.release();
-			
-		}
+		System.out.println(Thread.currentThread() + " Server " + server.getServerNumber() + " sending cusomter " + customerAtRegister.getCustId()
+				+ " to the register. 3 person max.. ");
 		
 		if(registerLineList.size() == 2) {
 			ArrayList<Customer> registerLineArrayTemp = registerLineList;
@@ -330,7 +321,23 @@ public class Restraunt implements Runnable {
 		}
 		
 		
-		System.out.println("server " + server.getServerNumber() + " going back to get next order.");
+		
+		
+		if(registerLineList.size() == 0 || registerLineList.size() == 1 ) {
+			System.out.println(Thread.currentThread() + " Creating Register line to 3 ...");
+			System.out.println(Thread.currentThread() + "  Register line before === " +registerLineList.size());
+
+			ArrayList<Customer> registerLineArrayTemp = registerLineList;
+			registerLineArrayTemp.add(customerAtRegister);
+			registerLineList = registerLineArrayTemp;
+			System.out.println(Thread.currentThread() + "Register Line  after == " + registerLineList.size());
+			registerLineSemaphore.release();
+			
+		}
+		
+		
+		
+		System.out.println(Thread.currentThread() + " server " + server.getServerNumber() + " going back to get next order.");
 		serveFirstCustomerInline(server);
 
 	}
@@ -338,20 +345,20 @@ public class Restraunt implements Runnable {
 	private void customerLeavingStore(Customer customerAtRegister, Server server) {
 		
 		
-			System.out.println("Customer " + customerAtRegister.getCustId() + " left");
+			System.out.println(Thread.currentThread() + "Customer " + customerAtRegister.getCustId() + " left");
 			customerAtRegister = null;
-			System.out.println("Resgister list before removing 0 " + registerLineList.toString());
+			System.out.println(Thread.currentThread() + "Resgister list before removing 0 " + registerLineList.toString());
 
 			registerLineList.remove(0);
 			
-			System.out.println("Resgister list After removing 0 " + registerLineList.toString());
+			System.out.println(Thread.currentThread() + "Resgister list After removing 0 " + registerLineList.toString());
 
 			
-			System.out.println("Customer in RESTraunt before customer left " + customerInRestraunt);
+			System.out.println(Thread.currentThread() + "Customer in RESTraunt before customer left " + customerInRestraunt);
 
 			--customerInRestraunt;
 
-			System.out.println("Customer in restraunt after customer left " + customerInRestraunt);
+			System.out.println(Thread.currentThread() + "Customer in restraunt after customer left " + customerInRestraunt);
 			
 			
 		

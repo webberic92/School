@@ -26,6 +26,9 @@ public class Customer {
 	}
 
 	protected int getCustOrderSize() {
+		if(custOrderSize<=0) {
+			custOrderSize=0;
+		}
 		return custOrderSize;
 	}
 	 public void makeThreeBurritos() {

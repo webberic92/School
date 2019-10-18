@@ -18,17 +18,13 @@ public class RunABuisness {
 
 		// creates 15 customers
 		// Suppose to be 15 customers.change before turning in.
-		for (int i = 1; i <3; ++i) {
+		for (int i = 1; i <6; ++i) {
 			new Restraunt();
 			Thread Customer = new Thread(Restraunt.getRestraunt());
 			Customer.start();
 
 			// This controls how fast customers are coming in.
-			try {
-				Thread.sleep(900);
-			} catch (InterruptedException ie) {
-				ie.printStackTrace();
-			}
+			
 
 		}
 

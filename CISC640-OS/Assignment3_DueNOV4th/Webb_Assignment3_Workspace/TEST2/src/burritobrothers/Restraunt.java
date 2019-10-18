@@ -53,14 +53,14 @@ public class Restraunt implements Runnable {
 				++customerInRestraunt;
 				Customer customer = new Customer();
 				customer.setCustId(customerNum);
-				System.out.println(Thread.currentThread() +
-						"Customer " + customer.getCustId() + " walked in wanting " + customer.getCustOrderSize()
-								+ " Burritos." + " There are " + customerInRestraunt + " customers in the restraunt");
+				System.out.println(Thread.currentThread() + "Customer " + customer.getCustId() + " walked in wanting "
+						+ customer.getCustOrderSize() + " Burritos." + " There are " + customerInRestraunt
+						+ " customers in the restraunt");
 
 				// passes customer to be ordered in line.
 				AddCustomerToLine(customer, true);
 
-			    servingCustomerSemaphore.release();
+				servingCustomerSemaphore.release();
 				isRestrauntFullSemaphore.release();
 
 			} else {
@@ -77,43 +77,9 @@ public class Restraunt implements Runnable {
 		}
 	}
 
-	public void AddCustomerToLine(Customer customer , Boolean newCustomer) {
+	public void AddCustomerToLine(Customer customer, Boolean newCustomer) {
 
-		
-		if(newCustomer=true) {
-		try {
-			putCustomersInOrderSemaphore.acquire();
-
-			// puts customer into end of map.
-			// round robin
-			for (int i = 1; i <= sortByOrderSizefinal.size() + 1; i++) {
-				OrderLineMapUnsorted.putIfAbsent(i, customer);
-
-			}
-			
-			List<Customer> sortByOrderSize = new ArrayList<>(OrderLineMapUnsorted.values());
-
-			System.out.println(Thread.currentThread() + "New Customer " + customer.getCustId() + " added to line time to SORT! ");
-			Collections.sort(sortByOrderSize, Comparator.comparing(Customer::getCustOrderSize));
-			System.out.println(Thread.currentThread() + "****NEW LINE IS***");
-			
-			for (Customer customers : sortByOrderSize) {
-				System.out.println(Thread.currentThread()+
-						" Customer " + customers.getCustId() + "\t" + "Order size= " + customers.getCustOrderSize());
-				// System.out.println(sortByOrderSize);
-				sortByOrderSizefinal = sortByOrderSize;
-				putCustomersInOrderSemaphore.release();
-
-
-			}} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}}
-			
-		
-		
-		if(newCustomer=false) {
-			
+		if (newCustomer == true) {
 			try {
 				putCustomersInOrderSemaphore.acquire();
 
@@ -123,89 +89,127 @@ public class Restraunt implements Runnable {
 					OrderLineMapUnsorted.putIfAbsent(i, customer);
 
 				}
-				
-			
-			List<Customer> sortByOrderSize = sortByOrderSizefinal;
 
+				List<Customer> sortByOrderSize = new ArrayList<>(OrderLineMapUnsorted.values());
 
-			Collections.sort(sortByOrderSize, Comparator.comparing(Customer::getCustOrderSize));
-			System.out.println(Thread.currentThread() + "****UPDATED LINE IS***");
+				System.out.println(Thread.currentThread() + "New Customer " + customer.getCustId()
+						+ " added to line time to SORT! ");
+				Collections.sort(sortByOrderSize, Comparator.comparing(Customer::getCustOrderSize));
+				System.out.println(Thread.currentThread() + "****NEW LINE IS***");
 
-			for (Customer customers : sortByOrderSize) {
-				System.out.println(Thread.currentThread()+
-						" Customer " + customers.getCustId() + "\t" + "Order size= " + customers.getCustOrderSize());
-				// System.out.println(sortByOrderSize);
-				sortByOrderSizefinal = sortByOrderSize;
-				putCustomersInOrderSemaphore.release();
+				for (Customer customers : sortByOrderSize) {
+					System.out.println(Thread.currentThread() + " Customer " + customers.getCustId() + "\t"
+							+ "Order size= " + customers.getCustOrderSize());
+					sortByOrderSizefinal = sortByOrderSize;
+					putCustomersInOrderSemaphore.release();
 
-			
-		}} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+				}
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-			finally {
-	
-		// System.out.println(sortByOrderSizefinal);
-			// System.out.println(sortByOrderSizefinal.toString());
-			System.out.println("sortByOrderSizefinal ==  " + sortByOrderSizefinal.toString());
-			System.out.println(" Next server available needs to serve Customer  " + sortByOrderSizefinal.get(0));
 
-			System.out.println(" ");
-
-			++customerInline;
-//			putCustomersInOrderSemaphore.release();
+		if (newCustomer == false) {
+			try {
+				putCustomersInOrderSemaphore.acquire();
 			
-			//Starts serving now that customers are in order.
-			servingCustomerSemaphore.release();
 
-		}	
-		}	}	
-	
+			System.out.println("sortByOrderSizefinal.size ====  " + sortByOrderSizefinal.size());
+			for (int i = 0; i <= sortByOrderSizefinal.size(); i++) {
+				sortByOrderSizefinal.add(i, customer);
+				i++;
+				
+				
+					System.out.println(sortByOrderSizefinal.toString());
+			}
+			}
+			 catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+//			}}
+//			
+			// These need to be equal.
+			System.out.println("sortByOrderSizefinal====  " + sortByOrderSizefinal);
+			System.out.println("OrderLineMapUnsorted====  " + OrderLineMapUnsorted);
+			System.out.println("Above needs to be 1 not 2.");
+//			
 
-	
-	
+			try {
+				putCustomersInOrderSemaphore.acquire();
+				// List<Customer> sortByOrderSize = sortByOrderSizefinal;
+
+				Collections.sort(sortByOrderSizefinal, Comparator.comparing(Customer::getCustOrderSize));
+				System.out.println(Thread.currentThread() + "****UPDATED LINE IS***");
+
+				for (Customer customers : sortByOrderSizefinal) {
+					System.out.println(Thread.currentThread() + " Customer " + customers.getCustId() + "\t"
+							+ "Order size= " + customers.getCustOrderSize());
+					// System.out.println(sortByOrderSize);
+					// sortByOrderSizefinal = sortByOrderSize;
+					putCustomersInOrderSemaphore.release();
+
+				}
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+
+				System.out.println("sortByOrderSizefinal ==  " + sortByOrderSizefinal.toString());
+				System.out.println(" Next server available needs to serve Customer  " + sortByOrderSizefinal.get(0));
+				System.out.println(" ");
+
+				++customerInline;
+			putCustomersInOrderSemaphore.release();
+				System.out.println("TEst 0000 ===sortByOrderSizefinal === " + sortByOrderSizefinal);
+				//System.exit(0);
+				servingCustomerSemaphore.release();
+
+			}
+		}
+	}
+
 	public void serveFirstCustomerInline(Server server) {
 
 		Customer customeraAtCounter;
-		
-		if(sortByOrderSizefinal.isEmpty()) {
+
+		if (sortByOrderSizefinal.isEmpty()) {
 			System.out.println("No more Customers clock out.");
 			clockOut(server);
 
-			
 		}
 		customeraAtCounter = sortByOrderSizefinal.get(0);
-		
-		
-		System.out.println(Thread.currentThread() + "Server " + server.getServerNumber() + " serving smallest order, removing customer "
-				+ customeraAtCounter.getCustId() + " from line moving to counter. With order size of "
-				+ customeraAtCounter.getCustOrderSize() + " and has walked up to the counter area ");
-		
-		//System.out.println(" sortByOrderSizefinal to string.." + sortByOrderSizefinal.toString());
 
-		if(!sortByOrderSizefinal.isEmpty()) {
-			
-			System.out.println("sortByOrderSizefinal to string.. " + sortByOrderSizefinal.toString());
-			//System.out.println("Removing customer.." + sortByOrderSizefinal.get(0).toString());
+		System.out.println(Thread.currentThread() + "Server " + server.getServerNumber()
+				+ " serving smallest order, removing customer " + customeraAtCounter.getCustId()
+				+ " from line moving to counter. With order size of " + customeraAtCounter.getCustOrderSize()
+				+ " and has walked up to the counter area ");
+
+		// System.out.println(" sortByOrderSizefinal to string.." +
+		// sortByOrderSizefinal.toString());
+
+		if (!sortByOrderSizefinal.isEmpty()) {
+
+			System.out.println("sortByOrderSizefinal to string WAS .. " + sortByOrderSizefinal.toString());
+			// System.out.println("Removing customer.." +
+			// sortByOrderSizefinal.get(0).toString());
 
 			sortByOrderSizefinal.remove(0);
 			customerInline--;
-			//does not remove customer from 
-			
-					
+			// does not remove customer from
+
 			System.out.println("sortByOrderSizefinal to string NOW IS " + sortByOrderSizefinal.toString());
 //			System.out.println("NEw first customer.." + sortByOrderSizefinal.get(0));
 //			System.out.println("New First customer is empty " + sortByOrderSizefinal.isEmpty());
-			
+
 			showCurrentLine();
-			Cooking(server,customeraAtCounter);
-						
+			Cooking(server, customeraAtCounter);
+
 		}
-		
+
 	}
-	
-	
-	
+
 //	
 //	if (customerInline == 1) {
 //		--customerInline;
@@ -226,25 +230,19 @@ public class Restraunt implements Runnable {
 //
 //	return customeraAtCounter;
 
-
-
-	
-	
-	
 	private void showCurrentLine() {
 		List<Customer> sortByOrderSize = sortByOrderSizefinal;
-
 
 		Collections.sort(sortByOrderSize, Comparator.comparing(Customer::getCustOrderSize));
 		System.out.println(Thread.currentThread() + "****NEW LINE IS***");
 
 		for (Customer customers : sortByOrderSize) {
-			System.out.println(Thread.currentThread()+
-					" Customer " + customers.getCustId() + "\t" + "Order size= " + customers.getCustOrderSize());
+			System.out.println(Thread.currentThread() + " Customer " + customers.getCustId() + "\t" + "Order size= "
+					+ customers.getCustOrderSize());
 			// System.out.println(sortByOrderSize);
 			sortByOrderSizefinal = sortByOrderSize;
-		
-	}
+
+		}
 //		System.out.println("Exit");
 //
 //		System.exit(0);
@@ -255,29 +253,27 @@ public class Restraunt implements Runnable {
 		System.out.println(Thread.currentThread() + "Restraunt is closed.");
 		System.exit(0);
 
-		
 	}
 
 	public void Cooking(Server server, Customer customerAtCounter) {
-		System.out.println(Thread.currentThread() + "Cooking method : Server = " +  server.getServerNumber() + " Customer ID = "+ customerAtCounter.getCustId()+" subtract 3 from " + customerAtCounter.getCustOrderSize());
+		System.out.println(
+				Thread.currentThread() + "Cooking method : Server = " + server.getServerNumber() + " Customer ID = "
+						+ customerAtCounter.getCustId() + " subtract 3 from " + customerAtCounter.getCustOrderSize());
 		customerAtCounter.makeThreeBurritos();
 		System.out.println(Thread.currentThread() + " New order size = " + customerAtCounter.getCustOrderSize());
-	
-		if(customerAtCounter.getCustOrderSize() <= 0) {
+
+		if (customerAtCounter.getCustOrderSize() <= 0) {
 			System.out.println(Thread.currentThread() + " Time to go pay at register. ");
-			payAtRegister(customerAtCounter,server);
-		}
-		else {
+			payAtRegister(customerAtCounter, server);
+		} else {
 			System.out.println(Thread.currentThread() + " Send back to line. Server helps next guest");
 			AddCustomerToLine(customerAtCounter, false);
 			try {
 				Thread.sleep(500);
-				
+
 				serveFirstCustomerInline(server);
 				System.out.println("TEST999");
 
-
-				
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -285,10 +281,8 @@ public class Restraunt implements Runnable {
 //		}
 		}
 
-		
-
 	}
-	
+
 //		{
 //
 //			// TODO
@@ -341,8 +335,8 @@ public class Restraunt implements Runnable {
 //	}
 
 	public void payAtRegister(Customer customerAtRegister, Server server) {
-		
-		//hold 3 customers in line
+
+		// hold 3 customers in line
 		//
 		//
 		try {
@@ -352,33 +346,31 @@ public class Restraunt implements Runnable {
 			e.printStackTrace();
 		}
 
-		
-		System.out.println("Server "+ server.getServerNumber() + " Cashing out " + customerAtRegister.getCustId() +  ", There can be 3 peoples in this line. ");
+		System.out.println("Server " + server.getServerNumber() + " Cashing out " + customerAtRegister.getCustId()
+				+ ", There can be 3 peoples in this line. ");
 		customerLeavingStore(customerAtRegister);
 		registerLineSemaphore.release();
 
-		
-		System.out.println("server " + server.getServerNumber() +  " going back to get next order.");
+		System.out.println("server " + server.getServerNumber() + " going back to get next order.");
 		serveFirstCustomerInline(server);
 
-		
-			//registerLineLL.addLast(customerAtCounter); // adding customer into register queue
+		// registerLineLL.addLast(customerAtCounter); // adding customer into register
+		// queue
 
-		//	registerLineSemaphore.release();
+		// registerLineSemaphore.release();
 
-		
 	}
 
-private void customerLeavingStore(Customer customerAtRegister) {
-	System.out.println("Customer " + customerAtRegister.getCustId() +  " left");
-	System.out.println("Customer in RESTraunt before customer left " + customerInRestraunt);
+	private void customerLeavingStore(Customer customerAtRegister) {
+		System.out.println("Customer " + customerAtRegister.getCustId() + " left");
+		customerAtRegister = null;
+		System.out.println("Customer in RESTraunt before customer left " + customerInRestraunt);
 
-	--customerInRestraunt;
-	
-	System.out.println("Customer in restraunt after customer left " + customerInRestraunt);
+		--customerInRestraunt;
 
-	
-}
+		System.out.println("Customer in restraunt after customer left " + customerInRestraunt);
+
+	}
 
 //	
 //	  public void GoToPay(Customer atCounter)

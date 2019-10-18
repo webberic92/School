@@ -195,6 +195,8 @@ public class Restraunt implements Runnable {
 		
 		if (sortByOrderSizefinal.isEmpty() && !registerLineList.isEmpty()) {
 			System.out.println("No more Customers in order line, STILL customers in register line time for server " +server.getServerNumber() + " to handle the cash register.");
+			customerInRestraunt=registerLineList.size();
+
 			handleRemainingCashRegisterline(server);
 
 		}
@@ -227,14 +229,8 @@ public class Restraunt implements Runnable {
 		System.out.println("Server " + server.getServerNumber() + " Cashing out first customer at register, customer " + registerLineList
 		+ ", There can be 3 peoples in this line. ");
 
-		
 		ArrayList<Customer> registerLineArrayTemp = registerLineList;
 		customerLeavingStore(registerLineArrayTemp.get(0),server);
-//		registerLineList = registerLineArrayTemp;
-//		registerLineSemaphore.release();
-//		
-//		
-//		System.exit(0);
 
 	}
 
@@ -287,7 +283,6 @@ public class Restraunt implements Runnable {
 				Thread.sleep(500);
 
 				serveFirstCustomerInline(server);
-				System.out.println("TEST999");
 
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
@@ -326,7 +321,6 @@ public class Restraunt implements Runnable {
 		if(registerLineList.size() == 0 || registerLineList.size() == 1 ) {
 			System.out.println(Thread.currentThread() + " Creating Register line to 3 ...");
 			System.out.println(Thread.currentThread() + "  Register line before === " +registerLineList.size());
-
 			ArrayList<Customer> registerLineArrayTemp = registerLineList;
 			registerLineArrayTemp.add(customerAtRegister);
 			registerLineList = registerLineArrayTemp;
@@ -345,7 +339,7 @@ public class Restraunt implements Runnable {
 	private void customerLeavingStore(Customer customerAtRegister, Server server) {
 		
 		
-			System.out.println(Thread.currentThread() + "Customer " + customerAtRegister.getCustId() + " left");
+			System.out.println(Thread.currentThread() + "Register line has 3 person max.Customer " + customerAtRegister.getCustId() + " left");
 			customerAtRegister = null;
 			System.out.println(Thread.currentThread() + "Resgister list before removing 0 " + registerLineList.toString());
 
@@ -377,11 +371,11 @@ public class Restraunt implements Runnable {
 
 		}
 		if(cstmrsOutsideList.isEmpty() && registerLineList.size() >=1) {
-			System.out.println("More Customers in register line to cash out.." );
+			System.out.println(Thread.currentThread() +" More Customers in register line to cash out.." );
 handleRemainingCashRegisterline(server);		}
 		
 		else {
-		System.out.println("NO MORE OUTSIDE CUSTOMERS or Register ine customers...");		
+		System.out.println(Thread.currentThread() +"NO MORE OUTSIDE CUSTOMERS or Register ine customers...");		
 		}
 	}
 

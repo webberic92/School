@@ -291,7 +291,8 @@ public class Restraunt implements Runnable {
 		--customerInRestraunt;
 
 		System.out.println("Customer in restraunt after customer left " + customerInRestraunt);
-
+		//WaitingMap.toString();
+		//AddCustomerToLine(, true);
 	}
 
 	public static Restraunt getRestraunt() {

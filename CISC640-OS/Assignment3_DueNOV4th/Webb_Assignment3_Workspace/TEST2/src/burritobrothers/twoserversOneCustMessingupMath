@@ -1,43 +1,63 @@
-Store is now open!
-Creating 3 Server Threads.
-Server 1 Came into work and is clocked in.
-Server 2 Came into work and is clocked in.
-Server 3 Came into work and is clocked in.
-Customer 1 walked in wanting 9 Burritos. There are 1 customers in the restraunt
-New Customer 1 added to line time to SORT! 
-****NEW LINE IS***
-Customer 1	Order size= 9
- 
-Server 2 serving smallest order, removing customer 1 from line moving to counter. With order size of 9 and has walked up to the counter area 
-customerInline ==  0
-*************Before cooking*******
-Server 2 has obtained all ingredients for customer 1
-Server 2 Cooking 3 Burritos for customer 1 Order size 6
-did not complete Customer 1 Still wants 3Burritos
-Sending back to line depending on lowest order size..
-New Customer 1 added to line time to SORT! 
-****NEW LINE IS***
-Customer 1	Order size= 3
- 
-Server 2 serving smallest order, removing customer 1 from line moving to counter. With order size of 3 and has walked up to the counter area 
-customerInline ==  0
-***After cooking ***********
-Customer 1 Still needs 3 Burritos.
-New Customer 1 added to line time to SORT! 
-****NEW LINE IS***
-Customer 1	Order size= 3
- 
-Server 2 serving smallest order, removing customer 1 from line moving to counter. With order size of 3 and has walked up to the counter area 
-customerInline ==  0
-Server 2 has obtained all ingredients for customer 1
-Server 2 Cooking 3 Burritos for customer 1 Order size 3
-Customer 1 Order is completed they are being sent to register line to pay.
-Server 2 is at register with customer 1
-Customer 1 has paid their food and is leaving the restraunt.
-No more work for Server 2 to be done, they left work and are clocked out.
-No more work for Server 1 to be done, they left work and are clocked out.
-2 Employees left in the restraunt.
-1 Employees left in the restraunt.
-No more work for Server 3 to be done, they left work and are clocked out.
-0 Employees left in the restraunt.
-No more employees left in the restraunt the Store is closed
+current issue
+
+
+Thread[Thread-0,5,main] Server 1 serving smallest order, removing customer 7 from line moving to counter. With order size of 1 and has walked up to the counter area 
+Thread[Thread-0,5,main] ****NEW LINE IS***
+Thread[Thread-0,5,main] Customer 2	Order size= 8
+Thread[Thread-0,5,main] Cooking method : Server = 1 Customer ID = 7 subtract 3 from 1
+Thread[Thread-0,5,main] Csutomer 7 New order size = 0
+Thread[Thread-0,5,main] ORDER COMPLETED! Sending 7 to register line..
+Thread[Thread-0,5,main] Register line has a 3 person max, we must cash out first person in line. (Cant have 4th person in line next turn.) 
+Thread[Thread-0,5,main] Customer 6 Has cashed out and left.
+Thread[Thread-0,5,main] Resgister line now has 2 Customers.
+Thread[Thread-0,5,main] Customer in restraunt now has 3 customers in it.
+Thread[Thread-0,5,main] More Customers in register line to cash out..
+Thread[Thread-0,5,main] Server 1 Cashing out first customer at register.
+Thread[Thread-0,5,main] Customer 8 Has cashed out and left.
+Thread[Thread-0,5,main] Resgister line now has 1 Customers.
+Thread[Thread-0,5,main] Customer in restraunt now has 2 customers in it.
+Thread[Thread-0,5,main] More Customers in register line to cash out..
+Thread[Thread-0,5,main] Server 1 Cashing out first customer at register.
+Thread[Thread-0,5,main] Customer 7 Has cashed out and left.
+Thread[Thread-0,5,main] Resgister line now has 0 Customers.
+Thread[Thread-0,5,main] Customer in restraunt now has 1 customers in it.
+Thread[Thread-0,5,main] NO MORE OUTSIDE CUSTOMERS or Registerline customers...
+Thread[Thread-0,5,main] Register Line  now has this many peope waiting : 1
+Thread[Thread-0,5,main] server 1 going back to get next order.
+Thread[Thread-0,5,main] Server 1 serving smallest order, removing customer 2 from line moving to counter. With order size of 8 and has walked up to the counter area 
+Thread[Thread-0,5,main] ****NEW LINE IS***
+Thread[Thread-0,5,main] Cooking method : Server = 1 Customer ID = 2 subtract 3 from 8
+Thread[Thread-0,5,main] Csutomer 2 New order size = 5
+Thread[Thread-0,5,main] Sending customer 2 back to line. Server helps next guest
+Thread[Thread-0,5,main] ****UPDATED LINE IS***
+Thread[Thread-0,5,main] Customer 2	Order size= 5
+Thread[Thread-0,5,main] Next server available needs to serve Customer  2
+Thread[Thread-0,5,main] Server 1 serving smallest order, removing customer 2 from line moving to counter. With order size of 5 and has walked up to the counter area 
+Thread[Thread-0,5,main] ****NEW LINE IS***
+Thread[Thread-0,5,main] Cooking method : Server = 1 Customer ID = 2 subtract 3 from 5
+Thread[Thread-0,5,main] Csutomer 2 New order size = 2
+Thread[Thread-0,5,main] Sending customer 2 back to line. Server helps next guest
+Thread[Thread-0,5,main] ****UPDATED LINE IS***
+Thread[Thread-0,5,main] Customer 2	Order size= 2
+Thread[Thread-0,5,main] Next server available needs to serve Customer  2
+Thread[Thread-0,5,main] Server 1 serving smallest order, removing customer 2 from line moving to counter. With order size of 2 and has walked up to the counter area 
+Thread[Thread-0,5,main] ****NEW LINE IS***
+Thread[Thread-0,5,main] Cooking method : Server = 1 Customer ID = 2 subtract 3 from 2
+Thread[Thread-0,5,main] Csutomer 2 New order size = 0
+Thread[Thread-0,5,main] ORDER COMPLETED! Sending 2 to register line..
+Thread[Thread-0,5,main] Register Line  now has this many peope waiting : 2
+Thread[Thread-0,5,main] server 1 going back to get next order.
+Thread[Thread-0,5,main] No more Customers in order line, STILL customers in register line time for server 1 to handle the cash register.
+Thread[Thread-0,5,main] Server 1 Cashing out first customer at register.
+Thread[Thread-0,5,main] Customer 7 Has cashed out and left.
+Thread[Thread-0,5,main] Resgister line now has 1 Customers.
+Thread[Thread-0,5,main] Customer in restraunt now has 1 customers in it.
+Thread[Thread-0,5,main] More Customers in register line to cash out..
+Thread[Thread-0,5,main] Server 1 Cashing out first customer at register.
+Thread[Thread-0,5,main] Customer 2 Has cashed out and left.
+Thread[Thread-0,5,main] Resgister line now has 0 Customers.
+Thread[Thread-0,5,main] Customer in restraunt now has 0 customers in it.
+Thread[Thread-0,5,main] NO MORE OUTSIDE CUSTOMERS or Registerline customers...
+Thread[Thread-0,5,main] No more Customers in register or order line time for server 1 to clock out.
+Thread[Thread-0,5,main] Sever 1 clocked out
+Thread[Thread-0,5,main] Restraunt is closed.

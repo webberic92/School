@@ -22,7 +22,7 @@ public class Server implements Runnable {
 	public void run() {
 		++restrauntEmployees;
 
-		System.out.println("Server " + (serverNumber) + " Came into work and is clocked in.");
+		System.out.println(Thread.currentThread() + "Server " + (serverNumber) + " Came into work and is clocked in.");
 
 		while (clockedIn) {
 

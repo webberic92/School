@@ -24,6 +24,9 @@ public class Restraunt implements Runnable {
 	static ArrayList<Customer> registerLineList = new ArrayList();
 	static ArrayList<Customer> totalCustomers = new ArrayList();
 
+	public static boolean firstServe = true;
+
+	
 	protected static Map<Integer, Customer> OrderLineMapUnsorted = new HashMap<>();
 	protected static List<Customer> sortByOrderSizefinal = new ArrayList<>(OrderLineMapUnsorted.values());
 	protected static Map<Integer, Customer> WaitingMap = new HashMap<>();
@@ -230,10 +233,27 @@ public class Restraunt implements Runnable {
 
 		}
 		if (totalCustomers.size() ==5) {
-			System.out.println(Thread.currentThread() + "** Restraunt at max capacity **  size = " + totalCustomers.size() + " Lets start serving our customers!");
-			System.out.println("  ");
-			serveFirstCustomerInline(ServersList.get(0));
+			if(firstServe == true) {
+				System.out.println(Thread.currentThread() + "** Restraunt at max capacity **  size = " + totalCustomers.size() + " Lets start serving our customers!");
+				System.out.println(" TRUE make sure is server number one ");
+				firstServe=false;
+				serveFirstCustomerInline(ServersList.get(0));
+				}
+			if(firstServe == false) {
+				System.out.println(Thread.currentThread() + "** Restraunt at max capacity **  size = " + totalCustomers.size() + " Lets start serving our customers!");
+				System.out.println(" FALSE make sure is server number not 1 on first server ");
+				
+				Server moveServertoEndofLine = ServersList.get(0);
+				ServersList.remove(0);
+				ServersList.add(moveServertoEndofLine);
+				
+				serveFirstCustomerInline(ServersList.get(0));
+				}
 			
+			
+			
+
+//			
 		}
 	}
 
@@ -332,15 +352,16 @@ public class Restraunt implements Runnable {
 			
 			
 		else {
-			System.out.println(Thread.currentThread() + " Sending customer " +customerAtCounter.getCustId() +" back to line. Server goes back to server que.");
+			System.out.println(Thread.currentThread() + " Sending customer " +customerAtCounter.getCustId() +" back to line. Server " + server.getServerNumber()+ " goes back to server que.");
 			AddCustomerToLine(customerAtCounter, false);
 			try {
 				Thread.sleep(500);
 				
-				Server moveServertoEndofLine = server;
-				ServersList.remove(server);
+				Server moveServertoEndofLine = ServersList.get(0);
+				ServersList.remove(0);
 				ServersList.add(moveServertoEndofLine);
-				
+System.out.println(Thread.currentThread() + "Does Server to end of line "+moveServertoEndofLine.getServerNumber() + " Equal ? " + ServersList.get(0).getServerNumber()+ " ?");
+
 				
 				serveFirstCustomerInline(ServersList.get(0));
 

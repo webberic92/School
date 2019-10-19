@@ -1,5 +1,7 @@
 package burritobrothers;
 
+import java.util.ArrayList;
+import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
 public class Server implements Runnable {
@@ -11,6 +13,10 @@ public class Server implements Runnable {
 
 	boolean clockedIn = true;
 
+	protected Semaphore serverClocksInSemaphore = new Semaphore(1);
+
+	
+	
 	public Server(Customer customerAtCounter, int serverNumber, boolean clockedIn) {
 		super();
 		this.customerAtCounter = customerAtCounter;
@@ -20,23 +26,13 @@ public class Server implements Runnable {
 
 	@Override
 	public void run() {
-		++restrauntEmployees;
-
-		System.out.println(Thread.currentThread() + "Server " + (serverNumber) + " Came into work and is clocked in.");
-
-		while (clockedIn) {
-
-			try {
-
-				// Probably need a semaphore here to release when **NEW LINE IS MADE**
-				Thread.sleep(5000);
-				Restraunt.getRestraunt().serveFirstCustomerInline(Server.this);
-
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+		
+		
+			System.out.println(Thread.currentThread() + "Server " + (serverNumber) + " Came into work and is clocked in.");
+			Restraunt.getRestraunt().serverClockedin(Server.this);
+		
 		}
-	}
+	
 
 	public Server(int serverNumber) {
 		this.serverNumber = serverNumber;

@@ -1,7 +1,12 @@
 package burritobrothers;
 
+import java.util.concurrent.Semaphore;
+
 public class RunABuisness {
 	
+	
+	protected static Semaphore serverClocksInSemaphore = new Semaphore(1);
+
 
 
 	public static void main(String[] args) throws Exception {
@@ -10,11 +15,16 @@ public class RunABuisness {
 		System.out.println(Thread.currentThread() + " Creating 3 Server Threads.");
 
 //		 Creates 3 servers.
-		for (int i = 1; i < 2; ++i) {
+		for (int i = 1; i < 4 ; ++i) {
+			
+
 			Thread Server = new Thread(new Server(i));
+			serverClocksInSemaphore.acquire();;
 			Server.start();
+			
 
 		}
+	
 
 		
 		// creates 15 customers
@@ -28,6 +38,6 @@ public class RunABuisness {
 			
 
 		}
-
 	}
-}
+	}
+

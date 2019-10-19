@@ -18,6 +18,7 @@ public class Restraunt implements Runnable {
 
 	protected int customerNum = 0;
 	protected int customerInline = 0;
+	public static ArrayList<Server> ServersList = new ArrayList();
 
 	static ArrayList<Customer> cstmrsOutsideList = new ArrayList();
 	static ArrayList<Customer> registerLineList = new ArrayList();
@@ -27,9 +28,13 @@ public class Restraunt implements Runnable {
 	protected static List<Customer> sortByOrderSizefinal = new ArrayList<>(OrderLineMapUnsorted.values());
 	protected static Map<Integer, Customer> WaitingMap = new HashMap<>();
 
-	
+//	protected Semaphore serverClocksInSemaphore = new Semaphore(1);
+
 	protected Semaphore makeCstmWaitSemaphore = new Semaphore(1);
 
+	protected Semaphore loadAllCustomersSemaphore = new Semaphore(1);
+
+	
 	
 	protected Semaphore isRestrauntFullSemaphore = new Semaphore(1);
 	protected Semaphore putCustomersInOrderSemaphore = new Semaphore(1);
@@ -38,6 +43,46 @@ public class Restraunt implements Runnable {
 	protected Semaphore registerSemaphore = new Semaphore(1);
 	protected Semaphore ingredientSemaphore = new Semaphore(1);
 	protected Semaphore registerLineSemaphore = new Semaphore(1);
+	
+	
+	public void serverClockedin(Server server) {
+		if(!ServersList.isEmpty()) {
+			ServersList.add(server);
+			System.out.println(Thread.currentThread() + "****Servers Array****  size == " +ServersList.size());
+
+			for (int i = 0; i <= ServersList.size() -1; i++) {
+		System.out.println(Thread.currentThread() + " Server " + ServersList.get(i).getServerNumber());
+		//
+		RunABuisness.serverClocksInSemaphore.release();
+
+			}
+			
+				}
+		
+		
+		if (ServersList.isEmpty()) {
+			System.out.println(Thread.currentThread() + "Adding Server " + server.getServerNumber() + " to serverslist.");
+			ServersList.add(server);
+			System.out.println(Thread.currentThread() + "****Servers Array****  size == " +ServersList.size());
+			System.out.println(Thread.currentThread() + " Server " +"\t" + ServersList.get(0).getServerNumber());
+			
+			//Next Server can come in now that 1st has been added to array.
+			RunABuisness.serverClocksInSemaphore.release();
+		}
+		
+		if (ServersList.size() == 3) {
+			System.out.println(Thread.currentThread() + " All our servers are here lets start taking orders!");
+			System.out.println(Thread.currentThread() + "Lets wait for our customers to get here...");
+			System.out.println( " ");
+			
+
+
+		}
+	
+	}
+	
+	
+	
 
 	@Override
 	public void run() {
@@ -49,7 +94,7 @@ public class Restraunt implements Runnable {
 		try {
 			// Only one customer can come in until RELEASE is called.
 			isRestrauntFullSemaphore.acquire();
-			++customerNum;
+            ++customerNum;
 
 			
 			Customer customer = new Customer();
@@ -63,7 +108,6 @@ public class Restraunt implements Runnable {
 				
 				//customer in restraunt array.
 				totalCustomers.add(customer);
-				System.out.println(Thread.currentThread()+ " " + totalCustomers.size());
 				System.out.println(Thread.currentThread() + "Customer " + customer.getCustId() + " walked in wanting "
 						+ customer.getCustOrderSize() + " Burritos." + " There are " + totalCustomers.size()
 						+ " customers in the restraunt");
@@ -71,20 +115,20 @@ public class Restraunt implements Runnable {
 				// passes customer to be ordered in line.
 				AddCustomerToLine(customer, true);
 
-				servingCustomerSemaphore.release();
+//				servingCustomerSemaphore.release();
 				isRestrauntFullSemaphore.release();
 
 			} else {
-//			Customer customer = new Customer();
-//	        customer.setCustId(customerNum);
 				
 				makeCustomerWaitOutside(customer);
-				
-//				System.out.println(Thread.currentThread() + "Waiting list to get in now... " + AddToWaitingList.toString());
-
 				isRestrauntFullSemaphore.release();
 
+
+				//isRestrauntFullSemaphore.release();
+
 			}
+			
+			//serveFirstCustomerInline(ServersList.get(0));
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -380,5 +424,9 @@ public class Restraunt implements Runnable {
 	public static void setRestraunt(Restraunt restraunt) {
 		Restraunt.restraunt = restraunt;
 	}
+
+
+
+	
 
 }

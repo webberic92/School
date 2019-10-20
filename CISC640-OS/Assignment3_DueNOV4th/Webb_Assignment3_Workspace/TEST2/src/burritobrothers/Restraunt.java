@@ -62,16 +62,18 @@ public class Restraunt implements Runnable {
 	public void run() {
 		//Create twent customers
 		CustomerWalksInRestraunt();
-
-		System.out.println(Thread.currentThread() + "totalCustomers == " + totalCustomers.size());
-		System.out.println(Thread.currentThread() + "Cstmrs in Restraunt == " + totalInsideCustomers.size());
-		System.out.println(Thread.currentThread() + "Cstmrs outside Restraunt == " + totalOutsideCustomers.size());
+//
+//		System.out.println(Thread.currentThread() + "totalCustomers == " + totalCustomers.size());
+//		System.out.println(Thread.currentThread() + "Cstmrs in Restraunt == " + totalInsideCustomers.size());
+//		System.out.println(Thread.currentThread() + "Cstmrs outside Restraunt == " + totalOutsideCustomers.size());
 
 
 //			OneCustomersWalkInSemaphore.release();
 if (!totalInsideCustomers.isEmpty()) {
-			AddCustomerToLine(totalInsideCustomers.get(0),true);
-			totalInsideCustomers.remove(0);
+	Customer tempCust = totalInsideCustomers.get(0);
+	totalInsideCustomers.remove(0);
+
+			AddCustomerToLine(tempCust,true);
 		
 }
 		
@@ -212,7 +214,7 @@ if (!totalInsideCustomers.isEmpty()) {
 
 				for (Customer customers : sortByOrderSize) {
 					System.out.println(Thread.currentThread() + " Customer " + customers.getCustId() + "\t"
-							+ "Order size= " + customers.getCustOrderSize());
+							+ "Order size= " + customers.getCustOrderSize() + "Customers hash code == " + customers.hashCode());
 					sortByOrderSizefinal = sortByOrderSize;
 					AddCustomerToLineSemaphore.release();
 
@@ -254,9 +256,16 @@ if (!totalInsideCustomers.isEmpty()) {
 				e.printStackTrace();
 			} finally {
 
+				System.out.println(Thread.currentThread() + "totalCustomers == " + totalCustomers.size());
+				System.out.println(Thread.currentThread() + "Cstmrs in Restraunt == " + totalInsideCustomers.size());
+				System.out.println(Thread.currentThread() + "Cstmrs outside Restraunt == " + totalOutsideCustomers.size());
+
 				System.out.println(Thread.currentThread() + " Next server available needs to serve Customer  "
 						+ sortByOrderSizefinal.get(0).getCustId());
 
+				
+				
+				
 				AddCustomerToLineSemaphore.release();
 				ServingCustomerSemaphore.release();
 
@@ -372,7 +381,7 @@ if (!totalInsideCustomers.isEmpty()) {
 
 		for (Customer customers : sortByOrderSize) {
 			System.out.println(Thread.currentThread() + " Customer " + customers.getCustId() + "\t" + "Order size= "
-					+ customers.getCustOrderSize());
+					+ customers.getCustOrderSize() +"\t" + " Customer hash == " + customers.hashCode());
 			sortByOrderSizefinal = sortByOrderSize;
 			currentLineSemaphore.release();
 		}

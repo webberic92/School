@@ -67,13 +67,13 @@ public class Restraunt implements Runnable {
 		System.out.println(Thread.currentThread() + "Cstmrs in Restraunt == " + totalInsideCustomers.size());
 		System.out.println(Thread.currentThread() + "Cstmrs outside Restraunt == " + totalOutsideCustomers.size());
 
+
+//			OneCustomersWalkInSemaphore.release();
+if (!totalInsideCustomers.isEmpty()) {
 			AddCustomerToLine(totalInsideCustomers.get(0),true);
 			totalInsideCustomers.remove(0);
-			OneCustomersWalkInSemaphore.release();
-
-
 		
-		
+}
 		
 
 			
@@ -217,6 +217,8 @@ public class Restraunt implements Runnable {
 					AddCustomerToLineSemaphore.release();
 
 				}
+				OneCustomersWalkInSemaphore.release();
+
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -509,15 +511,15 @@ public class Restraunt implements Runnable {
 		}
 
 		// Addes outsie people.
-		if (!cstmrsOutsideList.isEmpty()) {
-			totalCustomers.add(cstmrsOutsideList.get(0));
+		if (!totalOutsideCustomers.isEmpty()) {
+			totalCustomers.add(totalOutsideCustomers.get(0));
 			System.out.println(Thread.currentThread() + " Time for a waiting customer #"
-					+ cstmrsOutsideList.get(0).getCustId() + " To come in the line. There is now "
+					+ totalOutsideCustomers.get(0).getCustId() + " To come in the line. There is now "
 					+ totalCustomers.size() + " Customers in the restraunt again.");
-			Customer CstmrToAdd = cstmrsOutsideList.get(0);
+			Customer CstmrToAdd = totalOutsideCustomers.get(0);
 			OrderLineMapUnsorted.put(0, CstmrToAdd);
 			AddCustomerToLine(CstmrToAdd, false);
-			cstmrsOutsideList.remove(0);
+			totalOutsideCustomers.remove(0);
 
 		}
 		if (cstmrsOutsideList.isEmpty() && !sortByOrderSizefinal.isEmpty()) {

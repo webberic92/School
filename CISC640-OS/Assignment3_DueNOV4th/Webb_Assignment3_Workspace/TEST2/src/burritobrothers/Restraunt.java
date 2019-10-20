@@ -81,23 +81,13 @@ public class Restraunt implements Runnable {
 				System.out.println(Thread.currentThread() + "Customer " + customer.getCustId() + " walked in wanting "
 						+ customer.getCustOrderSize() + " Burritos." + " There are " + totalCustomers.size()
 						+ " customers in the restraunt");
-
 				// passes customer to be ordered in line.
 				AddCustomerToLine(customer, true);
-
-//				servingCustomerSemaphore.release();
 				isRestrauntFullSemaphore.release();
-
 			} else {
-
 				makeCustomerWaitOutside(customer);
 				isRestrauntFullSemaphore.release();
-
-//				if(customersLine.)
-				// isRestrauntFullSemaphore.release();
-
 			}
-
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -118,8 +108,7 @@ public class Restraunt implements Runnable {
 		System.out.println(Thread.currentThread() + " Customer " + customer.getCustId()
 				+ " tried to come in but Restraunt full. Adding to outside list.");
 
-		System.out
-				.println(Thread.currentThread() + "*** Waiting Outside Line *** length = " + cstmrsOutsideList.size());
+		System.out.println(Thread.currentThread() + "*** Waiting Outside Line *** length = " + cstmrsOutsideList.size());
 
 		for (int i = 0; i < cstmrsOutsideListTemp.size(); i++) {
 			System.out.println(Thread.currentThread() + " CSTMR outside = " + cstmrsOutsideListTemp.get(i).getCustId());
@@ -133,7 +122,7 @@ public class Restraunt implements Runnable {
 		if (newCustomer == true) {
 			try {
 				putCustomersInOrderSemaphore.acquire();
-
+				
 				// puts customer into end of map.
 				// round robin
 				for (int i = 1; i <= sortByOrderSizefinal.size() + 1; i++) {
@@ -291,10 +280,25 @@ public class Restraunt implements Runnable {
 	}
 
 	private void clockOut(Server server) {
+		
+		
+		
+		if(!ServersList.isEmpty()) {
 		System.out.println(Thread.currentThread() + " Sever " + server.getServerNumber() + " clocked out");
-		System.out.println(Thread.currentThread() + " Restraunt is closed.");
-		System.exit(0);
+		ServersList.remove(server);
+		System.out.println(Thread.currentThread() + " Handling remaining servers...  servers left ==" +  ServersList.size());
+		
+		if(ServersList.isEmpty()) {
+			System.out.println(Thread.currentThread() + " No more Servers or Customers.");
+			System.out.println(Thread.currentThread() + " Restraunt is closed!");
 
+			System.exit(0);
+
+			}
+		
+		clockOut(ServersList.get(0));
+		}
+	
 	}
 
 	public void Cooking(Server server, Customer customerAtCounter) {
@@ -323,9 +327,6 @@ public class Restraunt implements Runnable {
 				Server moveServertoEndofLine = ServersList.get(0);
 				ServersList.remove(0);
 				ServersList.add(moveServertoEndofLine);
-				System.out.println(
-						Thread.currentThread() + "Does Server to end of line " + moveServertoEndofLine.getServerNumber()
-								+ " Equal ? " + ServersList.get(0).getServerNumber() + " ?");
 
 				serveFirstCustomerInline(ServersList.get(0));
 
@@ -390,7 +391,7 @@ public class Restraunt implements Runnable {
 	private void customerLeavingStore(Customer customerAtRegister, Server server) {
 
 		System.out.println(
-				Thread.currentThread() + " Customer " + customerAtRegister.getCustId() + " Has cashed out and left.");
+				Thread.currentThread() + " Server " + server.getServerNumber() + " Has cashed out customer " + customerAtRegister.getCustId() + " and they have left satisfied.");
 
 		totalCustomers.remove(customerAtRegister);
 		registerLineList.remove(0);
@@ -425,9 +426,13 @@ public class Restraunt implements Runnable {
 
 		if (cstmrsOutsideList.isEmpty() && sortByOrderSizefinal.isEmpty() && !registerLineList.isEmpty()) {
 			System.out.println(Thread.currentThread()
-					+ " Orderline and outside line is empty time to cash out remaining customers in register line..");
-
-			handleRemainingCashRegisterline(server);
+					+ " Orderline and outsideline is empty time to cash out remaining customers in register line..");
+			System.out.println(Thread.currentThread()
+					+ " Server " + server.getServerNumber() + " Served last customer at register, adding back to server line...");
+				Server nextServer = ServersList.get(0);
+				ServersList.remove(0);
+				ServersList.add(nextServer);
+				handleRemainingCashRegisterline(ServersList.get(0));
 		}
 
 	}

@@ -66,21 +66,12 @@ public class Restraunt implements Runnable {
 		System.out.println(Thread.currentThread() + "totalCustomers == " + totalCustomers.size());
 		System.out.println(Thread.currentThread() + "Cstmrs in Restraunt == " + totalInsideCustomers.size());
 		System.out.println(Thread.currentThread() + "Cstmrs outside Restraunt == " + totalOutsideCustomers.size());
-		//All customes inside and outside created.
-//		OneCustomersWalkInSemaphore.release();
-		
-		
-		
-//		try {
-//			AddCustomerToLineSemaphore.acquire();
+
 			AddCustomerToLine(totalInsideCustomers.get(0),true);
 			totalInsideCustomers.remove(0);
 			OneCustomersWalkInSemaphore.release();
 
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+
 		
 		
 		

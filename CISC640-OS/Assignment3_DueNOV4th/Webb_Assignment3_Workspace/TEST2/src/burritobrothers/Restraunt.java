@@ -27,6 +27,7 @@ public class Restraunt implements Runnable {
 	static List<Customer> sortByOrderSizefinal = new ArrayList<>(OrderLineMapUnsorted.values());
 
 	protected Semaphore currentLineSemaphore = new Semaphore(1);
+	protected Semaphore cookingSemaphore = new Semaphore(1);
 
 	protected Semaphore OneCustomersWalkInSemaphore = new Semaphore(1);
 	protected Semaphore AddCustomerToLineSemaphore = new Semaphore(1);
@@ -156,7 +157,8 @@ if (!totalInsideCustomers.isEmpty()) {
 			try {
 //				AddCustomerToOutsideSemaphore.release();
 				AddCustomerToLineSemaphore.acquire();
-				
+				cookingSemaphore.acquire();
+
 				// puts customer into end of map.
 				// round robin
 				for (int i = 1; i <= sortByOrderSizefinal.size() + 1; i++) {
@@ -177,6 +179,8 @@ if (!totalInsideCustomers.isEmpty()) {
 							+ "Order size= " + customers.getCustOrderSize() + " customers hash " + customers.hashCode());
 					sortByOrderSizefinal = sortByOrderSize;
 					AddCustomerToLineSemaphore.release();
+					cookingSemaphore.release();
+
 
 				}
 				OneCustomersWalkInSemaphore.release();
@@ -340,6 +344,8 @@ if (!totalInsideCustomers.isEmpty()) {
 					+ customers.getCustOrderSize());
 			sortByOrderSizefinal = sortByOrderSize;
 			currentLineSemaphore.release();
+			cookingSemaphore.release();
+
 		}
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -371,6 +377,15 @@ if (!totalInsideCustomers.isEmpty()) {
 	}
 
 	public void Cooking(Server server, Customer customerAtCounter) {
+		
+		try {
+			cookingSemaphore.acquire();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		System.out.println(
 				Thread.currentThread() + " Cooking method : Server = " + server.getServerNumber() + " Customer ID = "
 						+ customerAtCounter.getCustId() + " subtract 3 from " + customerAtCounter.getCustOrderSize());
@@ -390,19 +405,18 @@ if (!totalInsideCustomers.isEmpty()) {
 			System.out.println(Thread.currentThread() + " Sending customer " + customerAtCounter.getCustId()
 					+ " back to line. Server " + server.getServerNumber() + " goes back to server que.");
 			AddCustomerToLine(customerAtCounter, false);
-			try {
-				Thread.sleep(500);
+			
+				
 
 				Server moveServertoEndofLine = ServersList.get(0);
 				ServersList.remove(0);
 				ServersList.add(moveServertoEndofLine);
+				
+				
+				cookingSemaphore.release();
 
 				serveFirstCustomerInline(ServersList.get(0));
-
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
 		}
 
 	}
@@ -458,34 +472,39 @@ if (!totalInsideCustomers.isEmpty()) {
 	}
 
 	private void customerLeavingStore(Customer customerAtRegister, Server server) {
-
+		
 		System.out.println(
 				Thread.currentThread() + " Server " + server.getServerNumber() + " Has cashed out customer " + customerAtRegister.getCustId() + " and they have left satisfied.");
 
 		totalCustomers.remove(customerAtRegister);
 		registerLineList.remove(0);
 
+		int CustInRestraunt = registerLineList.size() + sortByOrderSizefinal.size();
+		
 		System.out
 				.println(Thread.currentThread() + " Resgister line now has " + registerLineList.size() + " Customers.");
 
-		System.out.println(Thread.currentThread() + " Customer in restraunt now has " + totalCustomers.size()
-				+ " customers in it.");
+		System.out
+		.println(Thread.currentThread() + " customer in restraunt now has 5 Customers again.");
 
-		if (totalCustomers.size() == 0) {
+		
+
+
+		if (CustInRestraunt  == 0) {
 			clockOut(server);
 		}
 
 		// Addes outsie people.
 		if (!totalOutsideCustomers.isEmpty()) {
 			totalCustomers.add(totalOutsideCustomers.get(0));
-			System.out.println(Thread.currentThread() + " Time for a waiting customer #"
+			System.out.println(Thread.currentThread() + " Time for a waiting outside customer # "
 					+ totalOutsideCustomers.get(0).getCustId() + " To come in the line. There is now "
-					+ totalInsideCustomers.size() + " Customers in the restraunt again.");
+					+ (CustInRestraunt) + " Customers in the restraunt again.");
 			Customer CstmrToAdd = totalOutsideCustomers.get(0);
 			OrderLineMapUnsorted.put(0, CstmrToAdd);
 			AddCustomerToLine(CstmrToAdd, false);
 			totalOutsideCustomers.remove(0);
-
+			totalInsideCustomers.add(CstmrToAdd);
 		}
 		if (cstmrsOutsideList.isEmpty() && !sortByOrderSizefinal.isEmpty()) {
 			System.out.println(Thread.currentThread()

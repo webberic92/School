@@ -62,7 +62,7 @@ public class Restraunt implements Runnable {
 	public void run() {
 		//Create twent customers
 		CustomerWalksInRestraunt();
-//
+
 //		System.out.println(Thread.currentThread() + "totalCustomers == " + totalCustomers.size());
 //		System.out.println(Thread.currentThread() + "Cstmrs in Restraunt == " + totalInsideCustomers.size());
 //		System.out.println(Thread.currentThread() + "Cstmrs outside Restraunt == " + totalOutsideCustomers.size());
@@ -74,31 +74,16 @@ if (!totalInsideCustomers.isEmpty()) {
 	totalInsideCustomers.remove(0);
 
 			AddCustomerToLine(tempCust,true);
+
 		
 }
-		
+
+
+//OneCustomersWalkInSemaphore.release();
 
 			
 		}
 
-	
-	
-//		try {
-//			
-////			System.out.println	("serverClocksInSemaphore.availablePermits()=========     "+ RunABuisness.serverClocksInSemaphore.availablePermits());
-////			System.out.println	("serverClocksInSemaphore.hasQueuedThreads();========     "+ RunABuisness.serverClocksInSemaphore.hasQueuedThreads());
-////			System.out.println	("serverClocksInSemaphore.getQueueLength();==========     " + RunABuisness.serverClocksInSemaphore.getQueueLength());
-//
-//			if (RunABuisness.serverClocksInSemaphore.tryAcquire(5, TimeUnit.SECONDS)) {
-//				if(totalCustomers.size() ==5) {
-//				serveFirstCustomerInline(ServersList.get(0));
-//				}
-//
-//			}
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}}
 
 
 	public void CustomerWalksInRestraunt() {
@@ -116,11 +101,15 @@ if (!totalInsideCustomers.isEmpty()) {
 				
 				
 				//4 or less go to inside
-				if(totalCustomers.size() <=5)
+				if(totalCustomers.size() <=5) {
 				totalInsideCustomers.add(customer);
+//				OneCustomersWalkInSemaphore.release();
+				}
 				//5 of more go outside.;
-				if(totalCustomers.size() > 5) {
+				if(totalCustomers.size() >= 6) {
 					totalOutsideCustomers.add(customer);
+//					OneCustomersWalkInSemaphore.release();
+
 				}
 				
 
@@ -128,38 +117,9 @@ if (!totalInsideCustomers.isEmpty()) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		//	ServingCustomerSemaphore.acquire();
 		
-			
 		}
 
-//			// Sets limit of how many people can come in restraunt.
-//			// change back to 15 when turning in.
-//			if (totalCustomers.size() == 5) {
-//				System.out.println(Thread.currentThread() + "888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888test34234 ");
-//
-//				makeCustomerWaitOutside(customer);
-//				OneCustomersWalkInSemaphore.release();
-//							
-//			} 
-//			if (totalCustomers.size() <= 4) { 	
-//				// customer in restraunt array.
-//				totalCustomers.add(customer);
-//				System.out.println(Thread.currentThread() + "Customer " + customer.getCustId() + " walked in wanting "
-//						+ customer.getCustOrderSize() + " Burritos." + " There are " + totalCustomers.size()
-//						+ " customers in the restraunt");
-//				// passes customer to be ordered in line.
-//				AddCustomerToLine(customer, true);
-//				
-//			}
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		System.out.println(Thread.currentThread() + "End of customerwalksinmethod  totalCustomers size ==" +totalCustomers.size());
-//		
-//		RunABuisness.serverClocksInSemaphore.release();
-	
 
 	public void makeCustomerWaitOutside(Customer customer) {
 		System.out.println(Thread.currentThread() + "*** Start of making cutomer outside mthod");
@@ -214,7 +174,7 @@ if (!totalInsideCustomers.isEmpty()) {
 
 				for (Customer customers : sortByOrderSize) {
 					System.out.println(Thread.currentThread() + " Customer " + customers.getCustId() + "\t"
-							+ "Order size= " + customers.getCustOrderSize() + "Customers hash code == " + customers.hashCode());
+							+ "Order size= " + customers.getCustOrderSize() + " customers hash " + customers.hashCode());
 					sortByOrderSizefinal = sortByOrderSize;
 					AddCustomerToLineSemaphore.release();
 
@@ -246,7 +206,7 @@ if (!totalInsideCustomers.isEmpty()) {
 
 				for (Customer customers : sortByOrderSizefinal) {
 					System.out.println(Thread.currentThread() + " Customer " + customers.getCustId() + "\t"
-							+ "Order size= " + customers.getCustOrderSize());
+							+ "Order size= " + customers.getCustOrderSize() + " customers hash " + customers.hashCode());
 
 					AddCustomerToLineSemaphore.release();
 
@@ -256,24 +216,19 @@ if (!totalInsideCustomers.isEmpty()) {
 				e.printStackTrace();
 			} finally {
 
-				System.out.println(Thread.currentThread() + "totalCustomers == " + totalCustomers.size());
-				System.out.println(Thread.currentThread() + "Cstmrs in Restraunt == " + totalInsideCustomers.size());
-				System.out.println(Thread.currentThread() + "Cstmrs outside Restraunt == " + totalOutsideCustomers.size());
-
 				System.out.println(Thread.currentThread() + " Next server available needs to serve Customer  "
 						+ sortByOrderSizefinal.get(0).getCustId());
 
-				
-				
-				
 				AddCustomerToLineSemaphore.release();
 				ServingCustomerSemaphore.release();
+				OneCustomersWalkInSemaphore.release();
 
 			}
 
 		}
 		if (totalCustomers.size() == 5) {
 			
+
 			if (firstServe == false) {
 				System.out.println(Thread.currentThread() + "**F Restraunt at max capacity **  size = "
 						+ totalCustomers.size() + " Lets start serving our customers!");
@@ -294,11 +249,11 @@ if (!totalInsideCustomers.isEmpty()) {
 						+ totalCustomers.size() + " Lets start serving our customers!");
 				firstServe = false;
 					//AddCustomerToOutsideSemaphore.acquire();
-				System.out.println("**First Server.**");
+				System.out.println(Thread.currentThread() + "**First Server.**");
 					serveFirstCustomerInline(ServersList.get(0));
 
 				
-
+					AddCustomerToLineSemaphore.release();
 			
 			}
 //			
@@ -340,6 +295,7 @@ if (!totalInsideCustomers.isEmpty()) {
 
 			// so you dont get an index out of bound exception.
 			customeraAtCounter = sortByOrderSizefinal.get(0);
+			//OneCustomersWalkInSemaphore.release();
 
 			System.out.println(Thread.currentThread() + " Server " + server.getServerNumber()
 					+ " serving smallest order, removing customer " + customeraAtCounter.getCustId()
@@ -381,7 +337,7 @@ if (!totalInsideCustomers.isEmpty()) {
 
 		for (Customer customers : sortByOrderSize) {
 			System.out.println(Thread.currentThread() + " Customer " + customers.getCustId() + "\t" + "Order size= "
-					+ customers.getCustOrderSize() +"\t" + " Customer hash == " + customers.hashCode());
+					+ customers.getCustOrderSize());
 			sortByOrderSizefinal = sortByOrderSize;
 			currentLineSemaphore.release();
 		}
@@ -524,7 +480,7 @@ if (!totalInsideCustomers.isEmpty()) {
 			totalCustomers.add(totalOutsideCustomers.get(0));
 			System.out.println(Thread.currentThread() + " Time for a waiting customer #"
 					+ totalOutsideCustomers.get(0).getCustId() + " To come in the line. There is now "
-					+ totalCustomers.size() + " Customers in the restraunt again.");
+					+ totalInsideCustomers.size() + " Customers in the restraunt again.");
 			Customer CstmrToAdd = totalOutsideCustomers.get(0);
 			OrderLineMapUnsorted.put(0, CstmrToAdd);
 			AddCustomerToLine(CstmrToAdd, false);

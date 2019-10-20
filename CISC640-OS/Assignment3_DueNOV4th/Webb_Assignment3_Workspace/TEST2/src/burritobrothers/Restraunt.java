@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.TimeUnit;
 
 public class Restraunt implements Runnable {
 
@@ -23,14 +24,12 @@ public class Restraunt implements Runnable {
 	static Map<Integer, Customer> OrderLineMapUnsorted = new HashMap<>();
 	static List<Customer> sortByOrderSizefinal = new ArrayList<>(OrderLineMapUnsorted.values());
 
+	protected Semaphore currentLineSemaphore = new Semaphore(1);
 
-	protected Semaphore makeCstmWaitSemaphore = new Semaphore(1);
-
-	protected Semaphore loadAllCustomersSemaphore = new Semaphore(1);
-
-	protected Semaphore isRestrauntFullSemaphore = new Semaphore(1);
-	protected Semaphore putCustomersInOrderSemaphore = new Semaphore(1);
-	protected Semaphore servingCustomerSemaphore = new Semaphore(0);
+	protected Semaphore OneCustomersWalkInSemaphore = new Semaphore(1);
+	protected Semaphore AddCustomerToLineSemaphore = new Semaphore(1);
+	protected Semaphore AddCustomerToOutsideSemaphore = new Semaphore(1);
+	protected Semaphore ServingCustomerSemaphore = new Semaphore(1);
 	protected Semaphore registerLineSemaphore = new Semaphore(1);
 
 	public void serverClockedin(Server server) {
@@ -61,12 +60,58 @@ public class Restraunt implements Runnable {
 	public void run() {
 
 		CustomerWalksInRestraunt();
-	}
+		OneCustomersWalkInSemaphore.release();
+		try {
+			
+//			System.out.println	("serverClocksInSemaphore.availablePermits()=========     "+ RunABuisness.serverClocksInSemaphore.availablePermits());
+//			System.out.println	("serverClocksInSemaphore.hasQueuedThreads();========     "+ RunABuisness.serverClocksInSemaphore.hasQueuedThreads());
+//			System.out.println	("serverClocksInSemaphore.getQueueLength();==========     " + RunABuisness.serverClocksInSemaphore.getQueueLength());
+//			
+			if (RunABuisness.serverClocksInSemaphore.tryAcquire(5, TimeUnit.SECONDS)) {
+				if(totalCustomers.size() ==5) {
+				serveFirstCustomerInline(ServersList.get(0));
+				}
+			}
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}}
+//		if(totalCustomers.size() == 5) {
+//			
+//		System.out.println	("System.out.Time to serve.////Before serving make sure outsidelist is before or after this method");
+//		
+//			//AddCustomerToOutsideSemaphore.acquire();
+//		
+//
+//		}
+//		
+//		try {
+//			AddCustomerToOutsideSemaphore.acquire();
+//			System.out.println	("AddCustomerToOutsideSemaphore.availablePermits()=========     "+ AddCustomerToOutsideSemaphore.availablePermits());
+//			System.out.println	("AddCustomerToOutsideSemaphore.hasQueuedThreads();========     "+ AddCustomerToOutsideSemaphore.hasQueuedThreads());
+//			System.out.println	("AddCustomerToOutsideSemaphore.getQueueLength();==========     " + AddCustomerToOutsideSemaphore.getQueueLength());
+//			
+			
+			
+			
+			
+//			AddCustomerToOutsideSemaphore.release();
+//serverClocksInSemaphore
+//			
+//
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		}
+	
 
 	public void CustomerWalksInRestraunt() {
 		try {
 			// Only one customer can come in until RELEASE is called.
-			isRestrauntFullSemaphore.acquire();
+			OneCustomersWalkInSemaphore.acquire();
+		//	ServingCustomerSemaphore.acquire();
 			++customerNum;
 
 			Customer customer = new Customer();
@@ -74,8 +119,12 @@ public class Restraunt implements Runnable {
 
 			// Sets limit of how many people can come in restraunt.
 			// change back to 15 when turning in.
-			if (totalCustomers.size() <= 4) {
-
+			if (totalCustomers.size() == 5) {
+				makeCustomerWaitOutside(customer);
+				OneCustomersWalkInSemaphore.release();
+							
+			} 
+			if (totalCustomers.size() <= 4) { 	
 				// customer in restraunt array.
 				totalCustomers.add(customer);
 				System.out.println(Thread.currentThread() + "Customer " + customer.getCustId() + " walked in wanting "
@@ -83,20 +132,23 @@ public class Restraunt implements Runnable {
 						+ " customers in the restraunt");
 				// passes customer to be ordered in line.
 				AddCustomerToLine(customer, true);
-				isRestrauntFullSemaphore.release();
-			} else {
-				makeCustomerWaitOutside(customer);
-				isRestrauntFullSemaphore.release();
+
+
+				
 			}
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println(Thread.currentThread() + "End of customerwalksinmethod  totalCustomers size ==" +totalCustomers.size());
+		RunABuisness.serverClocksInSemaphore.release();
 	}
 
 	public void makeCustomerWaitOutside(Customer customer) {
+		System.out.println(Thread.currentThread() + "*** Start of making cutomer outside mthod");
+
 		try {
-			makeCstmWaitSemaphore.acquire();
+			AddCustomerToOutsideSemaphore.acquire();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -113,7 +165,11 @@ public class Restraunt implements Runnable {
 		for (int i = 0; i < cstmrsOutsideListTemp.size(); i++) {
 			System.out.println(Thread.currentThread() + " CSTMR outside = " + cstmrsOutsideListTemp.get(i).getCustId());
 		}
-		makeCstmWaitSemaphore.release();
+		System.out.println(Thread.currentThread() + "*** end of making cutomer outside mthod");
+
+		AddCustomerToOutsideSemaphore.release();
+
+		//ServingCustomerSemaphore.release();
 
 	}
 
@@ -121,7 +177,7 @@ public class Restraunt implements Runnable {
 
 		if (newCustomer == true) {
 			try {
-				putCustomersInOrderSemaphore.acquire();
+				AddCustomerToLineSemaphore.acquire();
 				
 				// puts customer into end of map.
 				// round robin
@@ -142,7 +198,7 @@ public class Restraunt implements Runnable {
 					System.out.println(Thread.currentThread() + " Customer " + customers.getCustId() + "\t"
 							+ "Order size= " + customers.getCustOrderSize());
 					sortByOrderSizefinal = sortByOrderSize;
-					putCustomersInOrderSemaphore.release();
+					AddCustomerToLineSemaphore.release();
 
 				}
 			} catch (InterruptedException e) {
@@ -153,7 +209,7 @@ public class Restraunt implements Runnable {
 
 		if (newCustomer == false) {
 			try {
-				putCustomersInOrderSemaphore.acquire();
+				AddCustomerToLineSemaphore.acquire();
 
 				sortByOrderSizefinal.add(customer);
 
@@ -163,7 +219,7 @@ public class Restraunt implements Runnable {
 			}
 
 			try {
-				putCustomersInOrderSemaphore.acquire();
+				AddCustomerToLineSemaphore.acquire();
 				Collections.sort(sortByOrderSizefinal, Comparator.comparing(Customer::getCustOrderSize));
 				System.out.println(
 						Thread.currentThread() + " **** UPDATED LINE IS ***  Size = " + sortByOrderSizefinal.size());
@@ -172,7 +228,7 @@ public class Restraunt implements Runnable {
 					System.out.println(Thread.currentThread() + " Customer " + customers.getCustId() + "\t"
 							+ "Order size= " + customers.getCustOrderSize());
 
-					putCustomersInOrderSemaphore.release();
+					AddCustomerToLineSemaphore.release();
 
 				}
 			} catch (InterruptedException e) {
@@ -183,36 +239,57 @@ public class Restraunt implements Runnable {
 				System.out.println(Thread.currentThread() + " Next server available needs to serve Customer  "
 						+ sortByOrderSizefinal.get(0).getCustId());
 
-				putCustomersInOrderSemaphore.release();
-				// servingCustomerSemaphore.release();
+				AddCustomerToLineSemaphore.release();
+				ServingCustomerSemaphore.release();
 
 			}
 
 		}
 		if (totalCustomers.size() == 5) {
-			if (firstServe == true) {
-				System.out.println(Thread.currentThread() + "** Restraunt at max capacity **  size = "
-						+ totalCustomers.size() + " Lets start serving our customers!");
-				firstServe = false;
-				serveFirstCustomerInline(ServersList.get(0));
-			}
+			
 			if (firstServe == false) {
-				System.out.println(Thread.currentThread() + "** Restraunt at max capacity **  size = "
+				System.out.println(Thread.currentThread() + "**F Restraunt at max capacity **  size = "
 						+ totalCustomers.size() + " Lets start serving our customers!");
 
 				Server moveServertoEndofLine = ServersList.get(0);
 				ServersList.remove(0);
 				ServersList.add(moveServertoEndofLine);
 
-				serveFirstCustomerInline(ServersList.get(0));
+				//note here
+			
+					//AddCustomerToOutsideSemaphore.acquire();
+					serveFirstCustomerInline(ServersList.get(0));
+					//AddCustomerToOutsideSemaphore.release();
+				
 			}
+			if (firstServe == true) {
+				System.out.println(Thread.currentThread() + "**T Restraunt at max capacity **  size = "
+						+ totalCustomers.size() + " Lets start serving our customers!");
+				firstServe = false;
+					//AddCustomerToOutsideSemaphore.acquire();
+				System.out.println("**First Server.**");
+					serveFirstCustomerInline(ServersList.get(0));
 
+				
+
+			
+			}
 //			
 		}
 	}
 
 	public void serveFirstCustomerInline(Server server) {
 
+		
+		try {
+			ServingCustomerSemaphore.acquire();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+			
+		
 		Customer customeraAtCounter;
 
 		if (sortByOrderSizefinal.isEmpty() && registerLineList.isEmpty()) {
@@ -222,14 +299,14 @@ public class Restraunt implements Runnable {
 
 		}
 
+		//Handles remaining register customers.
 		if (sortByOrderSizefinal.isEmpty() && !registerLineList.isEmpty()) {
 			System.out.println(Thread.currentThread()
 					+ " No more Customers in order line, STILL customers in register line time for server "
 					+ server.getServerNumber() + " to handle the cash register.");
-			// customerInRestraunt=registerLineList.size();
 
 			handleRemainingCashRegisterline(server);
-
+//			AddCustomerToOutsideSemaphore.release();
 		}
 
 		if (!sortByOrderSizefinal.isEmpty()) {
@@ -244,6 +321,7 @@ public class Restraunt implements Runnable {
 
 			sortByOrderSizefinal.remove(0);
 
+			//AddCustomerToOutsideSemaphore.release();
 			showCurrentLine();
 			Cooking(server, customeraAtCounter);
 
@@ -265,6 +343,10 @@ public class Restraunt implements Runnable {
 	}
 
 	private void showCurrentLine() {
+		try {
+			currentLineSemaphore.acquire();
+	
+
 		List<Customer> sortByOrderSize = sortByOrderSizefinal;
 
 		Collections.sort(sortByOrderSize, Comparator.comparing(Customer::getCustOrderSize));
@@ -274,7 +356,11 @@ public class Restraunt implements Runnable {
 			System.out.println(Thread.currentThread() + " Customer " + customers.getCustId() + "\t" + "Order size= "
 					+ customers.getCustOrderSize());
 			sortByOrderSizefinal = sortByOrderSize;
-
+			currentLineSemaphore.release();
+		}
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}
@@ -370,8 +456,8 @@ public class Restraunt implements Runnable {
 
 		System.out.println(
 				Thread.currentThread() + " server " + server.getServerNumber() + " going back to server line.");
-		Server moveServertoEndofLine = ServersList.get(0);
-		ServersList.remove(0);
+		Server moveServertoEndofLine = server;
+		ServersList.remove(server);
 		ServersList.add(moveServertoEndofLine);
 
 		if (ServersList.get(0) == server) {
@@ -381,7 +467,7 @@ public class Restraunt implements Runnable {
 			System.out.println(Thread.currentThread() + " ^^^^ Does server list 0 = server ?");
 
 		}
-
+		ServingCustomerSemaphore.release();
 		registerLineSemaphore.release();
 
 		serveFirstCustomerInline(ServersList.get(0));
@@ -421,7 +507,6 @@ public class Restraunt implements Runnable {
 		if (cstmrsOutsideList.isEmpty() && !sortByOrderSizefinal.isEmpty()) {
 			System.out.println(Thread.currentThread()
 					+ " More Customers in register line to cash out. but server going back to server first customer.");
-			servingCustomerSemaphore.release();
 		}
 
 		if (cstmrsOutsideList.isEmpty() && sortByOrderSizefinal.isEmpty() && !registerLineList.isEmpty()) {

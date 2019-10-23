@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Restraunt implements Runnable {
 
-	 static Restraunt restraunt = new Restraunt();
+	static Restraunt restraunt = new Restraunt();
 	int customerNum = 0;
 	public static boolean firstServe = true;
 
@@ -23,12 +23,13 @@ public class Restraunt implements Runnable {
 	static ArrayList<Customer> totalInsideCustomers = new ArrayList();
 	static ArrayList<Customer> totalOutsideCustomers = new ArrayList();
 
+	
+	//Need these for sorting.
 	static Map<Integer, Customer> OrderLineMapUnsorted = new HashMap<>();
 	static List<Customer> sortByOrderSizefinal = new ArrayList<>(OrderLineMapUnsorted.values());
 
 	protected Semaphore currentLineSemaphore = new Semaphore(1);
 	protected Semaphore cookingSemaphore = new Semaphore(1);
-
 	protected Semaphore OneCustomersWalkInSemaphore = new Semaphore(1);
 	protected Semaphore AddCustomerToLineSemaphore = new Semaphore(1);
 	protected Semaphore AddCustomerToOutsideSemaphore = new Semaphore(1);
@@ -69,7 +70,7 @@ public class Restraunt implements Runnable {
 //		System.out.println(Thread.currentThread() + "Cstmrs outside Restraunt == " + totalOutsideCustomers.size());
 
 
-//			OneCustomersWalkInSemaphore.release();
+// Gets first customer inside and sends them to the counter.
 if (!totalInsideCustomers.isEmpty()) {
 	Customer tempCust = totalInsideCustomers.get(0);
 	totalInsideCustomers.remove(0);
@@ -104,12 +105,10 @@ if (!totalInsideCustomers.isEmpty()) {
 				//4 or less go to inside
 				if(totalCustomers.size() <=5) {
 				totalInsideCustomers.add(customer);
-//				OneCustomersWalkInSemaphore.release();
 				}
 				//5 of more go outside.;
 				if(totalCustomers.size() >= 6) {
 					totalOutsideCustomers.add(customer);
-//					OneCustomersWalkInSemaphore.release();
 
 				}
 				
@@ -122,34 +121,6 @@ if (!totalInsideCustomers.isEmpty()) {
 		}
 
 
-	public void makeCustomerWaitOutside(Customer customer) {
-		System.out.println(Thread.currentThread() + "*** Start of making cutomer outside mthod");
-
-		try {
-			AddCustomerToOutsideSemaphore.acquire();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		ArrayList<Customer> cstmrsOutsideListTemp = cstmrsOutsideList;
-		cstmrsOutsideListTemp.add(customer);
-		cstmrsOutsideList = cstmrsOutsideListTemp;
-		System.out.println(Thread.currentThread() + " Customer " + customer.getCustId()
-				+ " tried to come in but Restraunt full. Adding to outside list.");
-
-		System.out.println(Thread.currentThread() + "*** Waiting Outside Line *** length = " + cstmrsOutsideList.size());
-
-		for (int i = 0; i < cstmrsOutsideListTemp.size(); i++) {
-			System.out.println(Thread.currentThread() + " CSTMR outside = " + cstmrsOutsideListTemp.get(i).getCustId());
-		}
-		System.out.println(Thread.currentThread() + "*** end of making cutomer outside mthod");
-
-		AddCustomerToOutsideSemaphore.release();
-
-		//ServingCustomerSemaphore.release();
-
-	}
 
 	public void AddCustomerToLine(Customer customer, Boolean newCustomer) {
 

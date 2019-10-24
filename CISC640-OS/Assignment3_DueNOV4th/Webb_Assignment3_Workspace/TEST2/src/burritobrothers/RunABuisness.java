@@ -7,9 +7,7 @@ import java.util.concurrent.Semaphore;
 public class RunABuisness {
 
 	protected static Semaphore serverClocksInSemaphore = new Semaphore(1);
-	protected static Semaphore customersLoadedSemphore = new Semaphore(1);
 	protected static Integer input;
-	protected static boolean startServing = false;
 
 
 	public static void main(String[] args) throws Exception {
@@ -32,27 +30,14 @@ public class RunABuisness {
 		
 	   getCustomerNumberInput();
 		
-		// creates 15 customers
-		// Suppose to be 15 customers.change before turning in.
 		for (int i = 1; i < input +1 ; ++i) {
 			
-			//customersLoadedSemphore.acquire();
 			new Restraunt();
 			Thread Customer = new Thread(Restraunt.getRestraunt());
 			Customer.start();
 
 		}
 		
-		
-		//Restraunt.getRestraunt();
-//		Restraunt.totalCustomers.size();
-//		System.out.println("total customer size. --> " +Restraunt.totalCustomers.size() + " input size --> " + input);
-//		System.out.println("total customer  inside size. --> " +Restraunt.totalInsideCustomers.size() + " outside size --> " + Restraunt.totalOutsideCustomers.size());
-//
-//		if(Restraunt.totalCustomers.size() == input){
-//			System.out.println("Gangs all here lets serve ");
-
-		//}
 		}
 	
 
@@ -78,27 +63,23 @@ public class RunABuisness {
 		
 		 // 1. Create a Scanner using the InputStream available.
 	    Scanner scanner = new Scanner( System.in );
-
-	    // 2. Don't forget to prompt the user
 		System.out.println("Please enter how many customers are coming in this day...");
-
-	    // 3. Use the Scanner to read a line of text from the user.
 	     input = scanner.nextInt();
 
 	     if (input < 1) {
-	 	    // 4. Now, you can do anything with the input string that you need to.
-	 	    // Like, output it to the user.
 	 	    System.out.println( "has to be greater then 1 " + input );
 	 	    getCustomerNumberInput();
 	 	     }
 	     
 	     
-	     if (input > 100) {
+	     if (input > 500) {
 	    // 4. Now, you can do anything with the input string that you need to.
 	    // Like, output it to the user.
 	    System.out.println( "You chose TO MANY customers..." + input );
 	    getCustomerNumberInput();
 	     }
+	     
+	     //to prevent stack overflow
 	     if (input <= 100) {
 	 	    // 4. Now, you can do anything with the input string that you need to.
 	 	    // Like, output it to the user.

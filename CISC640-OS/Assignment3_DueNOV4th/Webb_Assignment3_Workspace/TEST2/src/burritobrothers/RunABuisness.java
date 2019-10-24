@@ -9,9 +9,12 @@ public class RunABuisness {
 	protected static Semaphore serverClocksInSemaphore = new Semaphore(1);
 	protected static Semaphore customersLoadedSemphore = new Semaphore(1);
 	protected static Integer input;
+	protected static boolean startServing = false;
+
 
 	public static void main(String[] args) throws Exception {
 
+		
 		System.out.println(Thread.currentThread() + " Store is now open!");
 		System.out.println(Thread.currentThread() + " Creating 3 Server Threads.");
 
@@ -31,16 +34,43 @@ public class RunABuisness {
 		
 		// creates 15 customers
 		// Suppose to be 15 customers.change before turning in.
-		for (int i = 1; i < input; ++i) {
+		for (int i = 1; i < input +1 ; ++i) {
+			
+			//customersLoadedSemphore.acquire();
 			new Restraunt();
 			Thread Customer = new Thread(Restraunt.getRestraunt());
 			Customer.start();
 
 		}
 		
-	}
+		
+		//Restraunt.getRestraunt();
+//		Restraunt.totalCustomers.size();
+//		System.out.println("total customer size. --> " +Restraunt.totalCustomers.size() + " input size --> " + input);
+//		System.out.println("total customer  inside size. --> " +Restraunt.totalInsideCustomers.size() + " outside size --> " + Restraunt.totalOutsideCustomers.size());
+//
+//		if(Restraunt.totalCustomers.size() == input){
+//			System.out.println("Gangs all here lets serve ");
+
+		//}
+		}
+	
+
+		
+	
 
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public static void getCustomerNumberInput() {
 		
 		try {

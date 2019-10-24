@@ -434,13 +434,7 @@ if (!totalInsideCustomers.isEmpty()) {
 		ServersList.remove(server);
 		ServersList.add(moveServertoEndofLine);
 
-		if (ServersList.get(0) == server) {
-			System.out.println(
-					Thread.currentThread() + " ^^^^ Does server list 0 = server ?" + ServersList.get(0).equals(server));
-
-			System.out.println(Thread.currentThread() + " ^^^^ Does server list 0 = server ?");
-
-		}
+		
 		ServingCustomerSemaphore.release();
 		registerLineSemaphore.release();
 
@@ -479,7 +473,7 @@ if (!totalInsideCustomers.isEmpty()) {
 					+ (CustInRestraunt) + " Customers in the restraunt again.");
 			Customer CstmrToAdd = totalOutsideCustomers.get(0);
 			OrderLineMapUnsorted.put(0, CstmrToAdd);
-			AddCustomerToLine(CstmrToAdd, true);
+			AddCustomerToLine(CstmrToAdd, false);
 			totalOutsideCustomers.remove(0);
 			totalInsideCustomers.add(CstmrToAdd);
 		}

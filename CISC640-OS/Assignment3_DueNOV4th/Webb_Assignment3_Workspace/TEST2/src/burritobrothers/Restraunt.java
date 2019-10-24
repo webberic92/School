@@ -103,7 +103,7 @@ public class Restraunt implements Runnable {
 				
 				
 				//4 or less go to inside
-				if(totalCustomers.size() <=5) {
+				if(totalCustomers.size() <=15) {
 				totalInsideCustomers.add(customer);
 				AddCustomerToLine(customer,true);
 				}
@@ -111,7 +111,7 @@ public class Restraunt implements Runnable {
 				
 				
 				//5 of more go outside.;
-				if(totalCustomers.size() >= 6) {
+				if(totalCustomers.size() >= 16) {
 					totalOutsideCustomers.add(customer);
 					System.out.println("  ");
 
@@ -156,7 +156,7 @@ System.out.println(" ");
 
 
 
-if ((newCustomer == true) && totalInsideCustomers.size()  <= 5) {
+if ((newCustomer == true) && totalInsideCustomers.size()  <= 15) {
 //			try {
 ////				AddCustomerToOutsideSemaphore.release();
 //				AddCustomerToLineSemaphore.acquire();
@@ -194,17 +194,21 @@ if ((newCustomer == true) && totalInsideCustomers.size()  <= 5) {
 //			}
 		} 
 
-//		if (newCustomer == false) {
-//			try {
-//				AddCustomerToLineSemaphore.acquire();
-//
-//				sortByOrderSizefinal.add(customer);
-//
-//			} catch (InterruptedException e1) {
-//				// TODO Auto-generated catch block
-//				e1.printStackTrace();
-//			}
-//
+		if (newCustomer == false) {
+			try {
+				AddCustomerToLineSemaphore.acquire();
+
+				sortByOrderSizefinal.add(customer);
+				showCurrentLine();
+				AddCustomerToLineSemaphore.release();
+				ServingCustomerSemaphore.release();
+				serveFirstCustomerInline(ServersList.get(0));
+
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
 //			try {
 //				AddCustomerToLineSemaphore.acquire();
 //				Collections.sort(sortByOrderSizefinal, Comparator.comparing(Customer::getCustOrderSize));
@@ -413,7 +417,7 @@ if ((newCustomer == true) && totalInsideCustomers.size()  <= 5) {
 		else {
 			System.out.println(Thread.currentThread() + " Sending customer " + customerAtCounter.getCustId()
 					+ " back to line. Server " + server.getServerNumber() + " goes back to server que.");
-//			AddCustomerToLine(customerAtCounter, false);
+			AddCustomerToLine(customerAtCounter, false);
 			
 				
 
@@ -504,7 +508,11 @@ if ((newCustomer == true) && totalInsideCustomers.size()  <= 5) {
 					+ totalOutsideCustomers.get(0).getCustId() + " To come in the line. There is now "
 					+ (CustInRestraunt) + " Customers in the restraunt again.");
 			Customer CstmrToAdd = totalOutsideCustomers.get(0);
-			OrderLineMapUnsorted.put(0, CstmrToAdd);
+			
+			//OrderLineMapUnsorted.put(0, CstmrToAdd);
+			
+			sortByOrderSizefinal.add(CstmrToAdd);
+			showCurrentLine();
 //			AddCustomerToLine(CstmrToAdd, false);
 			totalOutsideCustomers.remove(0);
 			totalInsideCustomers.add(CstmrToAdd);

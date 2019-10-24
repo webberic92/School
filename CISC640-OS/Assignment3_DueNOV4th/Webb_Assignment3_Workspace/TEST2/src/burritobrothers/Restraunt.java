@@ -139,11 +139,11 @@ if (!totalInsideCustomers.isEmpty()) {
 
 				List<Customer> sortByOrderSize = new ArrayList<>(OrderLineMapUnsorted.values());
 
-				System.out.println(Thread.currentThread() + "New Customer " + customer.getCustId()
+				System.out.println(Thread.currentThread() + " AddcsutomertoLine new True New Customer " + customer.getCustId()
 						+ " added to line time to SORT! ");
 				Collections.sort(sortByOrderSize, Comparator.comparing(Customer::getCustOrderSize));
 				System.out.println(
-						Thread.currentThread() + " ****NEW LINE IS*** Size = " + (sortByOrderSizefinal.size() + 1));
+						Thread.currentThread() + " addtoline new true ****NEW LINE IS*** Size = " + (sortByOrderSizefinal.size() + 1));
 
 				for (Customer customers : sortByOrderSize) {
 					System.out.println(Thread.currentThread() + " Customer " + customers.getCustId() + "\t"
@@ -177,7 +177,7 @@ if (!totalInsideCustomers.isEmpty()) {
 				AddCustomerToLineSemaphore.acquire();
 				Collections.sort(sortByOrderSizefinal, Comparator.comparing(Customer::getCustOrderSize));
 				System.out.println(
-						Thread.currentThread() + " **** UPDATED LINE IS ***  Size = " + sortByOrderSizefinal.size());
+						Thread.currentThread() + " Addcustomer to line new false **** UPDATED LINE IS ***  Size = " + sortByOrderSizefinal.size());
 
 				for (Customer customers : sortByOrderSizefinal) {
 					System.out.println(Thread.currentThread() + " Customer " + customers.getCustId() + "\t"
@@ -197,6 +197,12 @@ if (!totalInsideCustomers.isEmpty()) {
 				AddCustomerToLineSemaphore.release();
 				ServingCustomerSemaphore.release();
 				OneCustomersWalkInSemaphore.release();
+				try {
+					AddCustomerToLineSemaphore.acquire();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 			}
 
@@ -308,10 +314,10 @@ if (!totalInsideCustomers.isEmpty()) {
 		List<Customer> sortByOrderSize = sortByOrderSizefinal;
 
 		Collections.sort(sortByOrderSize, Comparator.comparing(Customer::getCustOrderSize));
-		System.out.println(Thread.currentThread() + " ****NEW LINE IS***");
+		System.out.println(Thread.currentThread() + "  ShCL-M ****NEW LINE IS***");
 
 		for (Customer customers : sortByOrderSize) {
-			System.out.println(Thread.currentThread() + " Customer " + customers.getCustId() + "\t" + "Order size= "
+			System.out.println(Thread.currentThread() + "SCL-M Customer " + customers.getCustId() + "\t" + "Order size= "
 					+ customers.getCustOrderSize());
 			sortByOrderSizefinal = sortByOrderSize;
 			currentLineSemaphore.release();
@@ -473,7 +479,7 @@ if (!totalInsideCustomers.isEmpty()) {
 					+ (CustInRestraunt) + " Customers in the restraunt again.");
 			Customer CstmrToAdd = totalOutsideCustomers.get(0);
 			OrderLineMapUnsorted.put(0, CstmrToAdd);
-			AddCustomerToLine(CstmrToAdd, false);
+			AddCustomerToLine(CstmrToAdd, true);
 			totalOutsideCustomers.remove(0);
 			totalInsideCustomers.add(CstmrToAdd);
 		}

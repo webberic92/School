@@ -1,0 +1,106 @@
+Below are examples on how to compile and run from command prompt with specific paths.
+
+
+
+************* javac *.java  command*************
+
+
+
+Microsoft Windows [Version 10.0.17763.805]
+(c) 2018 Microsoft Corporation. All rights reserved.
+
+C:\Users\ERIC\Desktop\NOVA_MASTERS\CISC640-OS\Assignment3_DueNOV4th\Webb_Assignment_3\SourceCode\Webb_Assignment_3\src>dir
+ Volume in drive C is OS
+ Volume Serial Number is 98CC-FC10
+
+ Directory of C:\Users\ERIC\Desktop\NOVA_MASTERS\CISC640-OS\Assignment3_DueNOV4th\Webb_Assignment_3\SourceCode\Webb_Assignment_3\src
+
+10/24/2019  06:11 PM    <DIR>          .
+10/24/2019  06:11 PM    <DIR>          ..
+10/24/2019  06:01 PM             2,312 Burrito.java
+10/24/2019  06:01 PM               628 Customer.java
+10/24/2019  06:03 PM            16,293 Restraunt.java
+10/24/2019  06:01 PM             1,145 Server.java
+               4 File(s)         20,378 bytes
+               2 Dir(s)  153,010,249,728 bytes free
+
+C:\Users\ERIC\Desktop\NOVA_MASTERS\CISC640-OS\Assignment3_DueNOV4th\Webb_Assignment_3\SourceCode\Webb_Assignment_3\src>javac *.java
+Note: Restraunt.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+C:\Users\ERIC\Desktop\NOVA_MASTERS\CISC640-OS\Assignment3_DueNOV4th\Webb_Assignment_3\SourceCode\Webb_Assignment_3\src>dir
+ Volume in drive C is OS
+ Volume Serial Number is 98CC-FC10
+
+ Directory of C:\Users\ERIC\Desktop\NOVA_MASTERS\CISC640-OS\Assignment3_DueNOV4th\Webb_Assignment_3\SourceCode\Webb_Assignment_3\src
+
+10/24/2019  06:12 PM    <DIR>          .
+10/24/2019  06:12 PM    <DIR>          ..
+10/24/2019  06:12 PM             2,209 Burrito.class
+10/24/2019  06:01 PM             2,312 Burrito.java
+10/24/2019  06:12 PM               639 Customer.class
+10/24/2019  06:01 PM               628 Customer.java
+10/24/2019  06:12 PM            10,808 Restraunt.class
+10/24/2019  06:03 PM            16,293 Restraunt.java
+10/24/2019  06:12 PM             1,543 Server.class
+10/24/2019  06:01 PM             1,145 Server.java
+               8 File(s)         35,577 bytes
+               2 Dir(s)  153,009,700,864 bytes free
+
+
+
+*********java burrito command********
+
+C:\Users\ERIC\Desktop\NOVA_MASTERS\CISC640-OS\Assignment3_DueNOV4th\Webb_Assignment_3\SourceCode\Webb_Assignment_3\src>
+C:\Users\ERIC\Desktop\NOVA_MASTERS\CISC640-OS\Assignment3_DueNOV4th\Webb_Assignment_3\SourceCode\Webb_Assignment_3\src>java Burrito
+Thread[main,5,main] Store is now open!
+Thread[main,5,main] Creating 3 Server Threads.
+Thread[Thread-0,5,main]Server 1 Came into work and is clocked in.
+Thread[Thread-0,5,main]Adding Server 1 to serverslist.
+Thread[Thread-0,5,main]****Servers Array****  size == 1
+Thread[Thread-0,5,main] Server  1
+Thread[Thread-1,5,main]Server 2 Came into work and is clocked in.
+Thread[Thread-1,5,main]****Servers Array****  size == 2
+Thread[Thread-1,5,main] Server 1
+Thread[Thread-1,5,main] Server 2
+Thread[Thread-2,5,main]Server 3 Came into work and is clocked in.
+Thread[Thread-2,5,main]****Servers Array****  size == 3
+Thread[Thread-2,5,main] Server 1
+Thread[Thread-2,5,main] Server 2
+Thread[Thread-2,5,main] Server 3
+Thread[Thread-2,5,main] All our servers are here lets start taking orders!
+Thread[Thread-2,5,main]Lets wait for our customers to get here...
+
+Please enter how many customers are coming in this day...
+
+
+
+
+
+
+******* Running Burrito JAR******************
+
+
+
+C:\Users\ERIC\Desktop\NOVA_MASTERS\CISC640-OS\Assignment3_DueNOV4th\Webb_Assignment_3>java -jar Burrito.jar
+Thread[main,5,main] Store is now open!
+Thread[main,5,main] Creating 3 Server Threads.
+Thread[Thread-0,5,main]Server 1 Came into work and is clocked in.
+Thread[Thread-0,5,main]Adding Server 1 to serverslist.
+Thread[Thread-0,5,main]****Servers Array****  size == 1
+Thread[Thread-0,5,main] Server  1
+Thread[Thread-1,5,main]Server 2 Came into work and is clocked in.
+Thread[Thread-1,5,main]****Servers Array****  size == 2
+Thread[Thread-1,5,main] Server 1
+Thread[Thread-1,5,main] Server 2
+Thread[Thread-2,5,main]Server 3 Came into work and is clocked in.
+Thread[Thread-2,5,main]****Servers Array****  size == 3
+Thread[Thread-2,5,main] Server 1
+Thread[Thread-2,5,main] Server 2
+Thread[Thread-2,5,main] Server 3
+Thread[Thread-2,5,main] All our servers are here lets start taking orders!
+Thread[Thread-2,5,main]Lets wait for our customers to get here...
+
+Please enter how many customers are coming in this day...
+100Exception in thread "main"
+C:\Users\ERIC\Desktop\NOVA_MASTERS\CISC640-OS\Assignment3_DueNOV4th\Webb_Assignment_3>

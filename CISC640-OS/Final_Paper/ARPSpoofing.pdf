@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en-uS"  ng-app="authApp">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> <!--Google Chrome Frame for IE-->
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9"><![endif]-->
+<!--[if gt IE 8]><html dir="ltr" lang="en-US" class="no-js ie"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"><!--<![endif]-->
+
+<head>
+    <!-- Metas
+    ======================
+    --> <meta charset="utf-8">
+        <title>Library Login - Nova Southeastern University Libraries</title>
+
+
+    <!-- Mobile Metas
+    ======================
+    -->	<meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        
+
+    <link rel="stylesheet" href="//sherman.library.nova.edu/cdn/styles/css/public-global/public-2.0.min.css" type="text/css" media="all">
+
+
+    <style>
+        [ng\:cloak],[ng-cloak],.ng-cloak, .empty, .login-error{display:none !important}
+        .empty {display: none};
+        .not-empty{};
+        .overlayContainer { display: none;}
+        .overlayBackground { top:0px; left:0px; padding-left:100px;position:absolute;z-index:1000;height:100%;width:100%;background-color:#808080;opacity:0.3;}
+        .overlayContent { position:absolute; border: 1px solid #000; background-color:#fff;font-weight: bold;height: 100px;width: 300px;z-index:1000;text-align:center;}
+    </style>
+
+</head>
+
+<body>
+
+<svg display="none" version="1.1" xmlns="http://www.w3.org/2000/svg"  width="32" height="32" viewBox="0 0 32 32">
+    <defs>
+
+        <g id="icon-menu">
+            <rect width="18" height="2"/>
+            <rect y="5" width="18" height="2"/>
+            <rect y="10" width="18" height="2"/>
+        </g>
+
+
+        <g id="icon-search">
+            <path class="path1" d="M31.008 27.231l-7.58-6.447c-0.784-0.705-1.622-1.029-2.299-0.998 1.789-2.096 2.87-4.815 2.87-7.787 0-6.627-5.373-12-12-12s-12 5.373-12 12c0 6.627 5.373 12 12 12 2.972 0 5.691-1.081 7.787-2.87-0.031 0.677 0.293 1.515 0.998 2.299l6.447 7.58c1.104 1.226 2.907 1.33 4.007 0.23s0.997-2.903-0.23-4.007zM12 20c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"></path>
+        </g>
+    </defs>
+</svg>
+
+<svg display="none" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+    <symbol id="icon-cart" viewBox="0 0 1024 1024">
+        <title>cart</title>
+            <path class="path1" d="M384 928c0 53.019-42.981 96-96 96s-96-42.981-96-96c0-53.019 42.981-96 96-96s96 42.981 96 96z">              </path>
+            <path class="path2" d="M1024 928c0 53.019-42.981 96-96 96s-96-42.981-96-96c0-53.019 42.981-96 96-96s96 42.981 96 96z">       </path>
+            <path class="path3" d="M1024 512v-384h-768c0-35.346-28.654-64-64-64h-192v64h128l48.074 412.054c-29.294 23.458-48.074 59.5-48.074 99.946 0 70.696 57.308 128 128 128h768v-64h-768c-35.346 0-64-28.654-64-64 0-0.218 0.014-0.436 0.016-0.656l831.984-127.344z"></path>
+    </symbol>
+    </defs>
+</svg>
+
+<div id="container">
+
+    <nav class="menu universal tinsley-gradient">
+        <div class="wrap clearfix">
+
+            <a class="nsu" href="http://nova.edu/community/libraries.html" title="Nova Southeastern University Libraries" >
+                <img src="https://sherman.library.nova.edu/cdn/media/images/logos/NSUFloridaWebWhite.png"  style="max-width:417px; padding:25px; height:auto; width:100%;" alt="Alvin Sherman Library, Research, and Information Technology Center.">
+            </a>
+
+        </div>
+    </nav><!--/.universal-->
+
+    <input type="checkbox" id="top-menu" class="checkbox-toggle" />
+
+
+<!-- Header
+======================
+-->	<header class="header white polar" role="banner">
+
+        <div id="inner-header" class="wrap clearfix">
+
+            <div class="pill-menu">
+                <ul>
+                    <li class="pill-menu__title">
+                        <a class="link link--undecorated" href=".">Library Login</a>
+                    </li>
+                </ul>
+            </div>
+
+            
+        </div><!--/.inner-header-->
+
+    </header><!--/.header-->
+<div id="content">
+<div class="has-cards hero--small">
+
+    <div class="wrap clearfix">
+
+
+<div class="col-md--sixcol col-lg--threecol">
+    <!-- Shark Form
+    ======================
+    --> <div id="sharkform" class="login tinsley-gradient">
+
+        <header class="clearfix">
+
+            <img src="//sherman.library.nova.edu/cdn/styles/css/brand/shark-logo(2x).png">
+
+            <h3 class="delta title" id="sharkform__title">
+                <span class="hide-accessible">Login for</span>
+                Students, Faculty, and Staff
+            </h3>
+        </header>
+
+        <form id="sharkForm" name="sharkForm" class="form" method="post" action="." autocomplete="off" role="form">
+
+            <input type="hidden" name="action" value="sharklog">
+            <input style="display:none;" type="text" name="go" />
+            <input style="display:none;" type="password" name="gone" />
+
+            <ul>
+                <li class="form__field">
+                    <label class="form__label" for="nuid">Shark ID *</label>
+                    <input id="nuid" class="form__input" placeholder="jsmith" type="text" name="id"  required aria-describedby="sharkform__title">
+                 </li>
+
+                <li class="form__field">
+                    <label class="form__label" for="npwd">Password</label>
+                    <input id="npwd" class="pw form__input" type="password" name="pwd" required>
+
+                </li>
+                <p id="sharkErrorResponse"></p>
+
+                <button  class="button button--default button--small small-text" input type="submit" name="submit" value="shark">
+                    Log in <span class="hide-accessible">as a student, faculty, or staff member</span>
+                </button>
+
+                <a id="sharkHelp" href class="quad-help small-text" style="color: white;">Help</a>
+            </ul>
+        </form>
+
+    </div><!--/#sharkform-->
+</div><!--/.threecol-->
+
+<div class="col-md--sixcol col-lg--threecol">
+
+    <!-- Broward Form
+    ======================
+    --> <div id="browardform" class="login public-gradient">
+
+        <header class="clearfix">
+            <img src="//sherman.library.nova.edu/cdn/styles/css/brand/broward-logo(2x).png">
+
+            <h3 class="delta title no-margin" id="browardform__title">
+              <span class="hide-accessible">Login for</span>
+                Registered Broward County Patrons
+            </h3>
+        </header>
+
+        <form id="browardForm" name="browardForm" class="form clearfix" action="."  method="post" autocomplete="off">
+            <input type="hidden" name="action" value="browardlog">
+            <input style="display:none;" type="text" name="go" />
+            <input style="display:none;" type="password" name="gone" />
+            <ul>
+                <li class="form__field">
+                    <label class="form__label" for="bpwd">Last Name</label>
+                    <input id="bpwd" class="form__input" type="text" name="pwd" placeholder="Smith" required aria-describedby="browardform__title">
+                </li>
+
+                <li class="form__field">
+                    <label class="form__label" for="buid">Library Card Number</label>
+                    <input id="buid" class="form__input" type="password" name="id" required>
+                </li>
+
+                <p id="browardErrorResponse"></p>
+
+                <div class="col-md--sixcol">
+                    <button class="button button--default button--small small-text" input type="submit" name="submit" value="broward">Log in <span class="hide-accessible">as a registered Broward county patron</span></button>
+                    <a id="browardHelp" href class="quad-help small-text" style="color: white;">Help</a>
+                </div>
+                <div class="col-md--sixcol align-right">
+                    <a href="http://public.library.nova.edu/card" class="small-text link" target="new" style="color: white; position: relative; top: 10px;">Get a Card</a>
+                </div>
+            </ul>
+        </form>
+    </div>
+
+</div>
+
+<div class="col-md--sixcol col-lg--threecol">
+
+    <!-- HPD Form
+    ======================
+    --> <div id="hpdform" class="login HPD-gradient">
+
+        <header class="clearfix">
+            <img src="//sherman.library.nova.edu/cdn/styles/css/brand/shark-logo(2x).png">
+
+            <h3 class="delta title" id="hpdform__title">
+              <span class="hide-accessible">Login for</span>
+                Alumni and NSU Affiliates
+            </h3>
+        </header>
+
+        <form id="hpdForm" name="hpdForm" class="form" action="."  method="post" autocomplete="off">
+            <input type="hidden" name="action" value="hpdlog">
+            <input style="display:none;" type="text" name="go" />
+            <input style="display:none;" type="password" name="gone" />
+
+            <ul>
+                <li class="form__field">
+                    <label class="form__label" for="hpwd">Last Name</label>
+                    <input id="hpwd" class="form__input" type="text" id="hpwd" name="pwd" placeholder="Doe" required aria-describedby="hpdform__title">
+                </li>
+
+                <li class="form__field">
+                    <label class="form__label" for="huid">NSU or HPD ID</label>
+                    <input id="huid" class="form__input" type="password" name="id" required>
+                </li>
+
+                <p id="hpdErrorResponse"></p>
+
+                <button class="button button--default button--small small-text" input type="submit" name="submit" value="hpd">
+                    Log in <span class="hide-accessible">as an Alumni or NSU Affiliate</span>
+                </button>
+                <a id="hpdHelp" href class="quad-help small-text" style="color: white;">Help</a>
+            </ul>
+        </form>
+
+    </div>
+</div>
+
+<div class="col-md--sixcol col-lg--threecol">
+
+    <!-- University School Form
+    ======================
+    --> <div id="unsform" class="login UNS-gradient">
+
+        <header class="align-center clearfix hero--small" style="padding: 1.6666em 0;">
+            <img src="//sherman.library.nova.edu/cdn/media/images/logos/uschool.png" alt="NSU University School logo">
+
+            <h3 class="hide-accessible" id="unsform__title">
+              <span class="hide-accessible">Login for</span>
+                University School Students
+            </h3> <br>
+        </header>
+
+        <form id="unsForm" name="unsForm" class="form" action="."  method="post" autocomplete="off">
+            <input type="hidden" name="action" value="unslog">
+            <input style="display:none;" type="text" name="go" />
+            <input style="display:none;" type="password" name="gone" />
+            <ul>
+                <li class="form__field">
+                    <label class="form__label" for="uuid">USchool Student Login</label>
+                    <input id="uuid" class="form__input" type="text"  name="id" required aria-describedby="unsform__title">
+
+                </li>
+                <li class="form__field">
+                    <label class="form__label" for="upwd">Password</label>
+                    <input id="upwd" class="form__input" type="password" name="pwd" required>
+                </li>
+                <p id="unsErrorResponse"></p>
+
+                <button class="button button--default button--small small-text" input type="submit" name="submit" value="uns">
+                    Log in <span class="hide-accessible">as a USchool student</span>
+                </button>
+                <a id="unsHelp" href class="quad-help small-text" style="color: white;">Help</a>
+            </ul>
+        </form>
+    </div>
+</div>
+
+<!--help modal---------------------------------------->
+<div class="clearfix"></div>
+<section class="modal semantic-content" id="modal" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
+
+    <div class="modal-inner">
+
+        <header id="modal-label">
+            <h3 class="gamma">Authentication Help</h3>
+        </header>
+
+        <div class="modal-content epsilon wrap clearfix">
+            <div id="shark-help" class="empty">
+                <img src="assets/images/pverifyheader1.jpg" alt="Current NSU Students, Faculty, and Staff" title="Current NSU Students, Faculty, and Staff" />
+
+                <h5>Use your SharkLink ID and password to log in. </h5>
+
+                Authentication is required to:
+
+                <ul>
+                    <li>View your checked out items</li>
+                    <li>View your holds list</li>
+                    <li>Check/update your personal information</li>
+                    <li>Renew   books</li>
+                    <li>Place holds</li>
+                    <li>Access databases and other electronic resources</li>
+                </ul>
+
+                <h5>If you have trouble logging in:</h5>
+                <ul>
+                    <li> See if you can access the <a href="https://sharklink.nova.edu/cp/home/displaylogin" target="_blank"><strong>SharkLink portal</strong></a></li>
+                    <li>Look up your <a href="https://www.nova.edu/sbin/nsulookup/ac/sharklook"><strong> SharkLink ID</strong></a> </li>
+                    <li>Check the Caps Lock key - the password is case sensitive<br />
+                    </li>
+                </ul>
+
+                <h5>If you can get into the portal but not into library resources, you may need to reset your password.</h5>
+                <p>
+                    You can <a href="https://reset.nova.edu/default.html#/" target="_blank">reset your password here</a> if you know your current one, or ask the <a href="http://www.nova.edu/help/" target="_blank">OIIT Help Desk</a> to reset it for you.
+                    <br /><br />
+                    You should be able to access both the SharkLink portal and the library's resources after you reset your password.
+                </p>
+
+                <div id="block">
+                    <h5>Still need help?</h5>
+                    <ul>
+                        <li>You can <a href="https://sherman.library.nova.edu/sites/ask-a-librarian/" target="_blank"><strong>Ask a Librarian here</strong></a><br /><br /></li>
+                        <li>Or <a href="http://systems.library.nova.edu/form/view.php?id=28" target="_blank"><strong>report the problem here</strong></a> when the library is closed. You will receive a response within 1 business day. <br /><br /></li>
+                    </ul>
+                </div>
+
+
+            </div>
+            <div id="broward-help" class="empty">
+                <img src="assets/images/pverifyheader4.jpg" alt="Registered Broward County Patrons" title="Registered Broward County Patrons"  />
+
+                <h5>Enter your last name and your Alvin Sherman Library card number to log in.</h5>
+
+                <p>
+                    Authentication is required to:
+                </p>
+                <ul>
+                    <li>View your checked out items</li>
+                    <li>View your holds list</li>
+                    <li>Check/update your personal information</li>
+                    <li>Renew   books</li>
+                    <li>Place holds</li>
+                    <li>Access databases and other electronic resources</li>
+                </ul>
+
+                <h5>If you have trouble logging in:</h5>
+                <ul>
+                    <li>Check the Caps Lock key</li>
+                    <li>Enter all 14 digits with no spaces</li>
+                    <li>Note: Your card number is on the back of your library card<br />
+                        <img src="assets/images/BROWARD_CARD_BACK.gif" alt="Back of Alvin Sherman Library card" /></li>
+                </ul>
+
+
+                <div id="block">
+                    <h5>Still need help?</h5>
+                    <ul>
+                        <li>You can <a href="https://sherman.library.nova.edu/sites/ask-a-librarian/" target="_blank"><strong>Ask a Librarian here</strong></a><br /><br /></li>
+
+                        <li><strong>Call the Alvin Sherman Library Reference desk</strong> at 954-262-4613<br /><br /></li>
+
+                        <li>Or <a href="http://systems.library.nova.edu/form/view.php?id=28" target="_blank"><strong>report the problem here</strong></a> when the library is closed. You will receive a response within 1 business day. <br /><br /></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="hpd-help" class="empty">
+                <img src="assets/images/pverifyheader3.jpg" alt="Registered Alumni and HPD Clinical Faculty" title="Registered Alumni and HPD Clinical Faculty" />
+
+                <h5>Use your last name and University-issued "N number" to log in.</h5>
+
+                <p>Authentication is required to:</p>
+                <ul>
+                    <li>View your checked out items</li>
+                    <li>View your holds list</li>
+                    <li>Check/update your personal information</li>
+                    <li>Renew   books</li>
+                    <li>Place holds</li>
+                    <li>Access databases and other electronic resources</li>
+                </ul>
+
+                <h5>Not registered?</h5>
+                <p>
+                    You can <a href="http://novacat.nova.edu/screens/selfreg_nsu.html" target="_blank"><strong> register here.</strong></a>
+                </p>
+
+
+                <h5>If you have trouble logging in: </h5>
+                <ul>
+                    <li>Enter the N number starting with the N</li>
+                    <li>Include all 8 digits with no spaces</li>
+                    <li>Check the Caps Lock key</li>
+                </ul>
+
+
+
+                <div id="block">
+                    <h5>Still need help?</h5>
+                    <ul>
+                        <li>You can <a href="https://sherman.library.nova.edu/sites/ask-a-librarian/" target="_blank"><strong>Ask a Librarian here</strong></a><br /><br /></li>
+                        <li>Or <a href="http://systems.library.nova.edu/form/view.php?id=28" target="_blank"><strong>report the problem here</strong></a> when the library is closed. You will receive a response within 1 business day. <br /><br /></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div id="uns-help" class="empty">
+                <img src="assets/images/pverifyheader2.jpg" alt="University School Students" title="University School Students" />
+
+                <p>Authentication is required to:</p>
+                <ul>
+                    <li>View your checked out items</li>
+                    <li>View your holds list</li>
+                    <li>Check/update your personal information</li>
+                    <li>Renew   books</li>
+                    <li>Place holds</li>
+                    <li>Access databases and other electronic resources</li>
+                </ul>
+
+                <h5>Special login instructions</h5>
+                <ul>
+                    <li><strong>UNIVERSITY SCHOOL STUDENTS</strong><br />
+                        &raquo; Use your University School Student Login and Password to log in.<br /><br />
+                    </li>
+
+
+
+                    <li><strong>ALL UNIVERSITY SCHOOL STAFF</strong><br />
+                        &raquo; Log in via the <strong><em>NSU Current Students, Faculty,
+                                Staff</em></strong> box using your SharkLink ID<br /><br /></li>
+                </ul>
+
+
+                <div id="block">
+                    <h5>Still need help?</h5>
+                    <ul>
+                        <li>You can <a href="https://sherman.library.nova.edu/sites/ask-a-librarian/" target="_blank"><strong>Ask a Librarian here</strong></a><br /><br /></li>
+                        <li>Or <a href="http://systems.library.nova.edu/form/view.php?id=28" target="_blank"><strong>report the problem here</strong></a> when the library is closed. You will receive a response within 1 business day. <br /><br /></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href class="modal-close" title="Close this modal" data-close="Close" data-dismiss="modal">×</a>
+
+</section>
+</div>
+
+</div><!--/.wrap-->
+
+<div class="wrap hero--small clearfix">
+
+    <div class="col-lg--eightcol col--centered">
+
+        <h3 class="gamma">Disclaimer</h3>
+        <p class="no-margin">Access to electronic resources varies depending on whether:</p>
+
+        <ul class="epsilon">
+
+            <li>you are an active NSU student, faculty, or staff; </li>
+            <li>a registered Broward County patron; registered alumni;</li>
+            <li>a University School patron; </li>
+            <li>an HPD Clinical Faculty member;
+            <li>or a walk-in user.</li>
+            <li>If you are in the library, elsewhere on campus, or off campus.</li>
+        </ul>
+
+        <p>Systematic downloading of electronic journal articles, ebooks, or other database content violates library contracts and copyright law.
+            Violators risk having library access suspended and causing access to
+            the product for all NSU users to be blocked. By accessing our electronic resources,
+            you agree to abide by the library's <a href="http://sherman.library.nova.edu/sites/our-policies/use-of-licensed-electronic-resources-policy/">Use of Licensed Electronic Resources Policy</a>.</p>
+
+    </div>
+
+</div>
+
+<script>
+   var script = document.createElement("script"); script.type = "text/javascript"; script.src = "assets/js/loginmodule.js"; document.getElementsByTagName("head")[0].appendChild(script);
+</script>
+</div><!--/#content-->
+</div> <!-- end #container -->
+
+<footer id="footer" class="footer" role="contentinfo">
+
+    <div id="inner-footer" class="wrap clearfix">
+	
+      <div class="col-sm--twelvecol col-lg--sixcol media">
+	  
+        <a href="//sherman.library.nova.edu/" title="Alvin Sherman Library - Home">
+          <img src="https://sherman.library.nova.edu/cdn/media/images/jointuselogowhite.png" 
+		  alt="The Alvin Sherman Library is a joint-use facility between Nova Southeastern University and the Broward 
+		  County Board of County Commissioners">
+        </a>
+		</div>
+			
+			 <div class="col-sm--twelvecol col-lg--sixcol align-right">
+				<div class="col-sm--twelvecol col-md--twocol col-lg--twelvecol no-margin share">		
+					<a class="link" onclick="_gaq.push(['_trackEvent', 'Footer', 'Click', 'Facebook']);" href="//www.facebook.com/AlvinShermanLibrary" title="Alvin Sherman Library Facebook Page" alt="We are on Facebook"><svg class="svg svg--facebook" style="fill: #fff;"><use xlink:href="#icon-facebook"></use></svg></a>
+					<a class="link" onclick="_gaq.push(['_trackEvent', 'Footer', 'Click', 'Instagram']);" href="//www.instagram.com/shermanlibrary/" title="Alvin Sherman Library on Instagram" alt="We are on Instagram">
+					<svg class="svg svg--instagram" style="fill: #fff;"><use xlink:href="#icon-instagram"></use></svg></a>
+					<a class="link" onclick="_gaq.push(['_trackEvent', 'Footer', 'Click', 'Twitter']);" href="//www.twitter.com/shermanlibrary" title="Alvin Sherman Library on Twitter" alt="We are on Twitter">
+					<svg class="svg svg--twitter" style="fill: #fff;"><use xlink:href="#icon-twitter"></use></svg></a>
+			</div>
+      
+
+        <a class="link link--undecorated" href="http://sherman.library.nova.edu/sites/contact/" onclick="_gaq.push(['_trackEvent', 'Footer', 'Click', 'Contact Form']);" target="_self">Contact</a> /
+        <a class="link link--undecorated" href="http://sherman.library.nova.edu/sites/directions/" onclick="_gaq.push(['_trackEvent', 'Footer', 'Click', 'Directions']);" target="_self">Directions</a> /
+        <a class="link link--undecorated" href="http://sherman.library.nova.edu/sites/hours/" onclick="_gaq.push(['_trackEvent', 'Footer', 'Click', 'Hours']);" target="_self"> Hours</a> /
+        <a class="link link--undecorated" href="http://liverootnova.sharepoint.com/sites/LibraryStaff" onclick="_gaq.push(['_trackEvent', 'Footer', 'Click', 'Staff']);"> Staff</a>
+
+
+
+        <section class="modal semantic-content"  ng-class="{'is-active' : ac.modal.show }" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
+            <div class="modal-inner">
+                <span data-ng-if="ac.modal.element=='bib-record' && ac.modal.show" data-ng-include="'assets/js/templates/bib-record.html'"></span>
+                <span data-ng-if="ac.modal.element=='contact' && ac.modal.show" data-ng-include="'assets/js/templates/contact.html'"></span>
+                <span data-ng-if="ac.modal.element=='guides'  && ac.modal.show"  data-ng-include="'assets/js/templates/libraryguides.html'"></span>
+                <span data-ng-if="ac.modal.element=='homelib'  && ac.modal.show"  data-ng-include="'assets/js/templates/homelibrary.html'"></span>
+            </div>
+            <a href class="modal-close" title="Close this modal" data-close="Close" data-dismiss="modal" ng-click="ac.closeModalWindow()">×</a>
+        </section>
+
+
+      </div>
+    </div> <!-- end #inner-footer -->
+</footer> <!-- end footer -->
+
+  <!-- load angular via CDN -->
+		<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-route.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-sanitize.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-cookies.min.js"></script>
+        <!-- load local angular files -->
+        <script src="assets/js/app.js"></script>
+		<script src="assets/js/services/dataservice.js"></script>
+
+        <script src="assets/js/controllers/requestcontroller.js"></script>
+</body>
+</html>
+

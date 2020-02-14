@@ -1,0 +1,19 @@
+Hello all,
+
+ 
+
+     This discussion instantly reminds me of my first instance growing up witnessing someone getting caught doing something nefarious on a computer. I remember in grade school a kid got caught going to a website they should have not been on and got in trouble for it. Our principal then sat the class down the next day and explained the dangers of the internet. In this instance from what I could recollect, the teacher was able to use the computer to prove that the student had visited a banned site. Although this makes me now wonder why the school didn’t have a firewall up protecting from that type of content? Or if the young student at the time was able to negate the firewall? Either way I remember it being a big deal in my school considering it was circa 2000.
+
+     In my previous studies through my digital forensics and CEH courses we have gone through many mock trials of collecting evidence. Similar to our first assignment in this class they started out with some type of chain of custody documentation. Along with that they typically would have documentation pertaining to the scene of investigation such as who was involved with the investigation, what was on the background of the computer, and etc. One important factor that was discussed was when transporting digital evidence it is important to preserve the biological evidence of digital evidence when confiscating from a crime scene, one must not focus on the digital evidence so much that they contaminate the biological evidence of the device. In these mock trials evidence would initially be given a hash value typically in Sha1sum or Md5sum values to verify the identity of the evidence is not changed downstream. From there investigations were used using tools such as FTK imager, Sleuthkit, and John the Ripper. Documentation was needed every step of the way when these tools were used and how their results sets were obtained. Information such as version number of the tools and version of operating system on the examiners device were small examples of details that needed to be documented. Once the results sets were analyzed, a formal non-bias professional document would be constructed explaining at a high level to non-technical users what was found and how it relates. These mock trials are what I believe be a good rough outline of the digital forensic procedures and are similar to the procedures mentioned on the forensic science simplified organizations website.
+
+ 
+
+Thanks again ALL!
+
+-ERIC WEBB
+
+ 
+
+Digital Evidence. (n.d.). Retrieved January 20, 2020, from http://www.forensicsciencesimplified.org/digital/how.html
+
+ 

@@ -1,0 +1,46 @@
+@CHARSET "ISO-8859-1";
+
+
+body {
+	background-color: teal;
+	  text-align: center;
+	  padding-top: 10px;
+	  padding-left: 60px;
+	  padding-right: 60px;
+	  border-radius: 25px;
+	  
+	}
+
+
+#Headers {
+  -webkit-align-self: center; /* Safari 7.0+ */
+  align-self: center;
+  text-align: center;
+  background-color:grey;
+  border: 5px solid limegreen;
+  border-radius: 15px;
+  
+}
+
+hr{
+	  border: 5px solid limegreen;
+	
+	
+}
+
+
+table.center {
+    margin-left:auto; 
+    margin-right:auto;
+  }
+
+tableDemo,th,td {
+  border: 1px solid limegreen;
+  border-radius: 3px;
+  border-collapse: collapse;
+  align : center;
+  padding: 8px;
+  	background-color: teal;
+  
+  
+}

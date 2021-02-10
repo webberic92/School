@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  	
+    <title>Webb_Assignment4</title>
+    <script type='text/javascript' src='styles.js'></script>   
+    <link rel="stylesheet" type="text/css" href="./styles.css">
+</head>
+ <body>
+  <br>
+  	<div id="Headers">
+  	  	
+  <br>
+ 	 Eric Webb 
+  <br>
+  ISEC640 Assignment 4.
+  <br>
+ Password Validator.
+<br>
+RULES:
+<br>
+<ol>
+  <li>The password should be at least 10 characters strong. </li>
+  <li>The password should contain at least one upper case letter.</li>
+  <li>The password should contain at least TWO lower case letters.</li>
+  <li>The password should have at least one special character.</li>
+  <li>The password should have at least one digit.</li>
+  <li>The password should not be one of the 10 listed from password.txt.</li>
+  <li>The password should match the confirm password.</li>
+
+</ol>
+  
+  <br>
+  <p>Username : <input type="text" id="username" placeholder="Username">
+  <br>
+  <p>Password : <input type="password" id="password" placeholder="password">
+  <br>
+  <p>Confirm Password : <input type="password" id="confirmPassword" placeholder="Confirm password">
+  </p>
+	<br>
+ 	<button onclick="validatePassword()">Check Password Validity</button>
+  <br>
+  <br>
+  <button onclick="clearAddress()">Clear</button>
+
+    <p id="username">
+      <p id="doPasswordsMatch">
+        <p id="isAtleastTenCharacters">
+          <p id="isUpperCasePresent">
+            <p id="isLowerCasePresentAtLeastTwice">
+
+            
+
+            <p id="isPasswordValid"></p>
+        </p>
+  <br>
+  
+   <table id="demoTable" class="center"> </table>
+  
+  <br>
+    <br>
+  
+  
+ 
+  </div>
+  
+  
+  
+  
+  <br>
+  <br>
+
+
+  
+ 
+ </body>
+</html>

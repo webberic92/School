@@ -7,6 +7,7 @@ function validatePassword(){
  
   //Initalize as false, always is false unless proven true.
    isPasswordValid = false;
+   counter = 0;
 
   //Initialize as strings then set values.
   var username =  "";
@@ -21,15 +22,18 @@ function validatePassword(){
 //Returns 0 if strings DO MATCH
   var doPasswordsMatch = password.localeCompare(confirmPassword);
   if (doPasswordsMatch == 0){
-    document.getElementById("doPasswordsMatch").innerHTML = "The two passwords DO match";
+    document.getElementById("doPasswordsMatch").innerHTML = "<span style='color: green;'>The two passwords DO match</span>";
+    counter++
   } else{
-    document.getElementById("doPasswordsMatch").innerHTML = "The two passwords DO NOT match";
+    document.getElementById("doPasswordsMatch").innerHTML = "<span style='color: red;'>The two passwords DO NOT match</span>";
   }
 
   //Must be atleast 10 characters long.
   //Dont need to test for both because we proved both password and confirmPassword are same value in above logic.
   if (password.length >9){
     document.getElementById("isAtleastTenCharacters").innerHTML = "Password DOES have atleast 10 characters.";
+    counter++
+
   } else{
     document.getElementById("isAtleastTenCharacters").innerHTML = "Password DOES NOT have atleast 10 characters.";
 
@@ -57,6 +61,8 @@ function validatePassword(){
 
   if(isUppercasePresent){
       document.getElementById("isUpperCasePresent").innerHTML = "Password DOES contain atleast one uppercase value.";
+      counter++
+
   }else{
     document.getElementById("isUpperCasePresent").innerHTML = "Password DOES NOT contain an uppercase value.";
   }
@@ -67,6 +73,8 @@ function validatePassword(){
 
   if(isLowerCasePresentAtleastTwice){
     document.getElementById("isLowerCasePresentAtLeastTwice").innerHTML = "Password DOES contain atleast two lowercase values.";
+    counter++
+
 }else{
   document.getElementById("isLowerCasePresentAtLeastTwice").innerHTML = "Password DOES NOT contain atleast two lowercase values.";
 }
@@ -75,6 +83,8 @@ function validatePassword(){
   //Must have 1 special character
   if(/^[a-zA-Z0-9]*$/.test(password) == false){
     document.getElementById("isSpecialCharacterPresent").innerHTML = "Password DOES contain atleast one special character value.";
+    counter++
+
     
   }else{
   document.getElementById("isSpecialCharacterPresent").innerHTML = "Password DOES NOT contain atleast one special character value.";
@@ -99,6 +109,8 @@ i++;
 
   if(isNumberPresentBoolean){
     document.getElementById("isNumberPresent").innerHTML = "Password DOES contain atleast one Number.";
+    counter++
+
     
   }else{
   document.getElementById("isNumberPresent").innerHTML = "Password DOES NOT contain atleast one Number.";
@@ -140,13 +152,18 @@ let d = document.querySelector('input');
 
   if(isInPasswordTextFile){
     document.getElementById("isInPasswordTextFile").innerHTML = "Password IS IN password.txt file.";
+    counter++
+
     
   }else{
   document.getElementById("isInPasswordTextFile").innerHTML = "Password IS NOT IN password.txt file.";
 }
 
 
+if (counter = 7){
+  isPasswordValid = true;
 
+}
 
 
   document.getElementById("isPasswordValid").innerHTML = "Is Password Valid? : " + isPasswordValid;

@@ -3,17 +3,16 @@
  */
 
 
-
-
 function validatePassword(){
  
   //Initalize as false, always is false unless proven true.
-  var isPasswordValid = false;
+   isPasswordValid = false;
 
   //Initialize as strings then set values.
   var username =  "";
   var password = "";
   var confirmPassword = "";
+
   username = document.getElementById("username").value;
   password = document.getElementById("password").value;
   confirmPassword = document.getElementById("confirmPassword").value;
@@ -84,21 +83,18 @@ function validatePassword(){
 
 
 
-//NOT working try REGEX instead???
-  //Must have 1 number
+ //Must have 1 number
 var isNumberPresentBoolean = false;
 var i=0;
 var char ="";
 
-while (i>password.length){
-
+while (i<password.length){
 char = password.charAt(i);
 
-if(isNaN(char)==false){
+if(Number.isNaN(char)==false){
   isNumberPresentBoolean = true
 }
 i++;
-
 }
 
   if(isNumberPresentBoolean){
@@ -109,9 +105,53 @@ i++;
 }
 
 
+//Must check passord.txt file
+
+
+isInPasswordTextFile = false;
+  var x = document.getElementById("passwordList");
+  x.style.display === "none";
+
+let d = document.querySelector('input');
+
+  let file = d.files[0];
+
+  var reader = new FileReader();
+  reader.onload = function(progressEvent){
+    // Entire file
+    console.log(this.result);
+
+    // By lines
+    var lines = this.result.split('\n');
+    for(var line = 0; line < lines.length; line++){
+      let current = "";
+      current= lines[line];
+      let newCurrent = current.replace('\r','');
+      
+      if (password.localeCompare(newCurrent) == 0){
+        isInPasswordTextFile = true
+      }
+      console.log(lines[line]);
+    }
+  };
+  reader.readAsText(file);
+
+
+
+  if(isInPasswordTextFile){
+    document.getElementById("isInPasswordTextFile").innerHTML = "Password IS IN password.txt file.";
+    
+  }else{
+  document.getElementById("isInPasswordTextFile").innerHTML = "Password IS NOT IN password.txt file.";
+}
+
+
+
+
+
   document.getElementById("isPasswordValid").innerHTML = "Is Password Valid? : " + isPasswordValid;
 
-  }
+}
  
 function clear() {
 	  document.getElementById("doPasswordsMatch").innerHTML = "";

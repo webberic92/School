@@ -6,12 +6,13 @@
     <title>Webb_Assignment4</title>
     <script type='text/javascript' src='styles.js'></script>   
     <link rel="stylesheet" type="text/css" href="./styles.css">
-</head>
- <body>
+
+  </head>
+ <body onload="loadDefaultPws()">
   <br>
   	<div id="Headers" >
 
-<p hidden ><input type="file" id="passwordList" value="password.txt"></p> 
+
      
 
   <br>
@@ -20,6 +21,12 @@
   ISEC640 Assignment 4.
   <br>
  Password Validator.
+<br>
+Please upload a password file to compare to, If none are chosen then the following are defualted:
+<p id="defualtPwList"></p>
+
+<input type="file" id="passwordList">
+<br>
 <br>
 RULES:
 <br>
@@ -31,21 +38,25 @@ RULES:
   <li>The password should have at least one digit.</li>
   <li>The password should not be one of the 10 listed from password.txt.</li>
   <li>The password should match the confirm password.</li>
-
 </ol>
-  
-  <br>
+
+
+  <form id="myForm">
+    <br>
   <p>Username : <input type="text" id="username" placeholder="Username">
   <br>
   <p>Password : <input type="password" id="password" placeholder="password">
   <br>
   <p>Confirm Password : <input type="password" id="confirmPassword" placeholder="Confirm password">
   </p>
-	<br>
+	<br> 
+  </form>
+ 
  	<button onclick="validatePassword()">Check Password Validity</button>
   <br>
   <br>
-  <button onclick="clear()">Clear</button>
+  <button onclick="window.clear()">Clear</button>
+
 
     <p id="username">
       <p id="doPasswordsMatch">
@@ -55,8 +66,6 @@ RULES:
               <p id="isSpecialCharacterPresent">
                 <p id="isNumberPresent">
                   <p id="isInPasswordTextFile">
-
-      
 
             <p id="isPasswordValid"></p>
         </p>

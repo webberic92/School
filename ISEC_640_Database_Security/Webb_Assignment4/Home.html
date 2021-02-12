@@ -24,7 +24,7 @@
 <br>
 Please upload a password file to compare to, If none are chosen then the following are defualted:
 <p id="defualtPwList"></p>
-
+<form id="myForm">
 <input type="file" id="passwordList">
 <br>
 <br>
@@ -41,7 +41,7 @@ RULES:
 </ol>
 
 
-  <form id="myForm">
+  
     <br>
   <p>Username : <input type="text" id="username" placeholder="Username">
   <br>
@@ -55,7 +55,7 @@ RULES:
  	<button onclick="validatePassword()">Check Password Validity</button>
   <br>
   <br>
-  <button onclick="window.clear()">Clear</button>
+  <button onclick="window.clearAll()">Clear</button>
 
 
     <p id="username">
@@ -66,26 +66,13 @@ RULES:
               <p id="isSpecialCharacterPresent">
                 <p id="isNumberPresent">
                   <p id="isInPasswordTextFile">
-
-            <p id="isPasswordValid"></p>
+                     <p id="isPasswordValid"></p>
         </p>
   <br>
-  
   <br>
     <br>
-  
-  
- 
   </div>
-  
-  
-  
-  
   <br>
   <br>
-
-
-  
- 
  </body>
 </html>

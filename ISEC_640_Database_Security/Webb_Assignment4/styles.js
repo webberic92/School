@@ -22,7 +22,7 @@ function validatePassword() {
   hasSpecialCharacter(password);
   hasOneNumber(password);
   compareWithLoadedPasswordFileDefualtPasswordListIfEmpty(password);
-  document.getElementById("isPasswordValid").innerHTML = "Is Password Valid? : " + isPasswordValid;
+  document.getElementById("isPasswordValid").innerHTML = "Password Accepted? : " + isPasswordValid;
 }
 
 
@@ -186,7 +186,7 @@ function compareWithLoadedPasswordFileDefualtPasswordListIfEmpty(password) {
 
         if (counter = 7) {
           isPasswordValid = true;
-          document.getElementById("isPasswordValid").innerHTML = "Is Password Valid? : " + isPasswordValid;
+          document.getElementById("isPasswordValid").innerHTML = "Password Accepted? : " + isPasswordValid;
         }
       }
     };
@@ -207,7 +207,7 @@ function compareWithLoadedPasswordFileDefualtPasswordListIfEmpty(password) {
 
       if (counter == 7) {
         isPasswordValid = true;
-        document.getElementById("isPasswordValid").innerHTML = "Is Password Valid? : " + isPasswordValid;
+        document.getElementById("isPasswordValid").innerHTML = "Password Accepted? : " + isPasswordValid;
       }
     }
   }

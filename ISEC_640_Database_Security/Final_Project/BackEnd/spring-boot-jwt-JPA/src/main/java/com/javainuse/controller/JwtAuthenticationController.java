@@ -74,8 +74,21 @@ public class JwtAuthenticationController {
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception {
-		return ResponseEntity.ok(userDetailsService.save(user));
+		
+		boolean retVal = true;
+		try {
+			userDetailsService.save(user);
+			} catch (Exception e) {
+			retVal = false;
+			return ResponseEntity.ok(retVal);
+
+		}
+		return ResponseEntity.ok(retVal);
+
 	}
+		
+		
+	
 
 	private void authenticate(String username, String password) throws Exception {
 		try {

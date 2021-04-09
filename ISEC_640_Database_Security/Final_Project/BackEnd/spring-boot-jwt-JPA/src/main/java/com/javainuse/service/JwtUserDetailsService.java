@@ -3,7 +3,6 @@ package com.javainuse.service;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -33,10 +32,16 @@ public class JwtUserDetailsService implements UserDetailsService {
 				new ArrayList<>());
 	}
 	
-	public DAOUser save(UserDTO user) {
-		DAOUser newUser = new DAOUser();
-		newUser.setUsername(user.getUsername());
-		newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
-		return userDao.save(newUser);
+	public DAOUser save(UserDTO user) throws Exception {
+		
+		if(userDao.findByUsername(user.getUsername())==null) {
+			DAOUser newUser = new DAOUser();
+			newUser.setUsername(user.getUsername());
+			newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
+			return userDao.save(newUser);
+		}else {
+			throw new Exception("That user already exsists.");
+		}
+
 	}
 }

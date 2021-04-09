@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Webb_Final_Assignment</title>
+    <script type='text/javascript' src='styles.js'></script>   
+    <link rel="stylesheet" type="text/css" href="./styles.css">
+
+  </head>
+  <br>
+  	<div id="Headers" >
+
+
+     
+
+  <br>
+ 	 Eric Webb 
+  <br>
+  ISEC640 Final Project.
+  <br>
+ Password Changer.
+<br>
+<br>
+<br>
+RULES:
+<br>
+<ol>
+  <li>The password should be at least 10 characters strong. </li>
+  <li>The password should contain at least one upper case letter.</li>
+  <li>The password should contain at least TWO lower case letters.</li>
+  <li>The password should have at least one special character.</li>
+  <li>The password should have at least one digit.</li>
+  <li>The password should not be one of the 10 listed from password.txt.</li>
+  <li>The password should match the confirm password.</li>
+</ol>
+
+
+
+    <button onclick="validateEmail()">Check Email</button>
+  <form id="myEmailForm">
+
+    <br>
+  <p>Email : <input type="text" id="email" placeholder="Email">
+  <p id="validateEmail">
+    <br>
+    <p>Password : <input type="test" id="password" placeholder="Password">    
+  <p id="didUserGetAdded">
+  </form> 
+  <button onclick="registerNewUser()">Create New User</button>
+
+
+      <form id="myForm">
+
+ 
+  <p>New Password : <input type="newPassword" id="newPassword" placeholder="New password">
+  <br>
+  <p>Confirm New Password : <input type="confirmNewPassword" id="confirmNewPassword" placeholder="Confirm password">
+  </p>
+	<br> 
+</form>
+ 	<button onclick="validatePassword()">Check Password Validity</button>
+  <br>
+  <br>
+  <button onclick="window.clearAll()">Clear</button>
+
+
+    <p id="username">
+      <p id="doPasswordsMatch">
+        <p id="isAtleastTenCharacters">
+          <p id="isUpperCasePresent">
+            <p id="isLowerCasePresentAtLeastTwice">
+              <p id="isSpecialCharacterPresent">
+                <p id="isNumberPresent">
+                  <p id="isInPasswordTextFile">
+                     <p id="isPasswordValid"></p>
+        </p>
+  <br>
+  <br>
+    <br>
+  </div>
+  <br>
+  <br>
+ </body>
+</html>

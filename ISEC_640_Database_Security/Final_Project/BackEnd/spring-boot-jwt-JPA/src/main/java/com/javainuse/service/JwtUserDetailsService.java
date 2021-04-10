@@ -1,6 +1,7 @@
 package com.javainuse.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,7 +10,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.javainuse.dao.PasswordListEntryDAO;
 import com.javainuse.dao.UserDao;
+import com.javainuse.model.DAOPasswordListEntry;
 import com.javainuse.model.DAOUser;
 import com.javainuse.model.UserDTO;
 
@@ -18,6 +21,9 @@ public class JwtUserDetailsService implements UserDetailsService {
 	
 	@Autowired
 	private UserDao userDao;
+	
+	@Autowired
+	private PasswordListEntryDAO passwordListEntryDAO;
 
 	@Autowired
 	private PasswordEncoder bcryptEncoder;
@@ -32,13 +38,23 @@ public class JwtUserDetailsService implements UserDetailsService {
 				new ArrayList<>());
 	}
 	
-	public DAOUser save(UserDTO user) throws Exception {
+	public void save(UserDTO user) throws Exception {
+		String un = user.getUsername();
+		final String pwd = bcryptEncoder.encode(user.getPassword());
 		
 		if(userDao.findByUsername(user.getUsername())==null) {
+			
 			DAOUser newUser = new DAOUser();
-			newUser.setUsername(user.getUsername());
-			newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
-			return userDao.save(newUser);
+			newUser.setUsername(un);
+			newUser.setPassword(pwd);
+			userDao.save(newUser);
+			
+			DAOPasswordListEntry passwordListEntry = new DAOPasswordListEntry();
+			passwordListEntry.setUsername(un);
+			passwordListEntry.setPassword(pwd);
+			passwordListEntry.setDate(new Date());
+			passwordListEntryDAO.save(passwordListEntry);
+			
 		}else {
 			throw new Exception("That user already exsists.");
 		}

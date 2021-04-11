@@ -1,14 +1,11 @@
 package com.javainuse.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.util.NumberUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -66,89 +63,112 @@ public class JwtAuthenticationController {
 	public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception {
 		boolean retVal = false;
 
-		if (passwordValidation(user.getPassword())) {
+		try {
+			passwordIsTenCharactersLong(user.getPassword());
+			passwordHas1UpperCase(user.getPassword());
+			passowrdHas2LowerCase(user.getPassword());
+			passwordHas1SpecialChar(user.getPassword());
+			passwordHas1Number(user.getPassword());
+			userDetailsService.save(user);
+			retVal = true;
+		} catch (Exception e) {
+			return ResponseEntity.ok(e.getMessage());
 
-			try {
-				userDetailsService.save(user);
-				retVal = true;
-			} catch (Exception e) {
-				return ResponseEntity.ok(retVal);
-
-			}
 		}
 
 		return ResponseEntity.ok(retVal);
 
 	}
 
-	private boolean passwordValidation(String password) throws Exception {
+	private boolean passwordHas1Number(String password) throws Exception {
+		boolean retVal = false;
+		for (int l = 0; l < password.length(); l++) {
+
+			if (Character.isDigit(password.charAt(l))) {
+				return true;
+			}
+
+					
+				}			if (!retVal) {
+					throw new Exception("Password does not conatin a number.");
+					
+				}
+			
+		return retVal;
+
+	}
+
+	private boolean passwordHas1SpecialChar(String password) throws Exception {
+		boolean retVal = false;
 		
+		for (int i = 0; i < password.length(); i++) {
+
+			if (!Character.isLetterOrDigit(password.charAt(i))) {
+
+				return true;
+			}
+	
+		}
+		
+		if (!retVal) {
+			
+						throw new Exception("Password does not conatin special character.");
+
+		}
+	
+		return retVal;
+	}
+
+	private boolean passowrdHas2LowerCase(String password) throws Exception {
 		long lowerCaseCounter = 0;
 		boolean retVal = false;
 
-		
-			//The password should be at least 10 characters strong.
-		if (password.length()<= 9) {
+		for (int j = 0; j < password.length(); j++) {
+
+			if (Character.isLowerCase((password.charAt(j)))) {
+
+				lowerCaseCounter++;
+				if (lowerCaseCounter >= 2) {
+					return true;
+				}
+
+			}
+		}
+
+		if (lowerCaseCounter <=1) {
+			throw new Exception("Password does not contain 2 lower case letters.");
+
+		}
+		return retVal;
+	}
+
+	private boolean passwordHas1UpperCase(String password) throws Exception {
+		boolean retVal = false;
+		for (int i = 0; i < password.length(); i++) {
+
+			if (Character.isUpperCase((password.charAt(i)))) {
+
+				return true;
+			}
+	
+		}
+
+		if (!retVal) {
+
+			throw new Exception("Password Does not conatin uppercause value.");
+
+		}
+
+		return retVal;
+	}
+
+	private boolean passwordIsTenCharactersLong(String password) throws Exception {
+		if (password.length() <= 9) {
 			throw new Exception("Password must be 10 characters.");
-			
+
 		}
-			
-			for (int i =0; i < password.length();i++) {
-				// The password should contain at least one upper case letter.
-
-				if(String.valueOf(password.charAt(i)).matches("[A-Z]*")) {
-							
-					// The password should contain at least 2 lower case letters.
-
-					for (int j =0; j < password.length();j++) {
-
-						if(String.valueOf(password.charAt(j)).matches("[a-z]*")) {
-							
-							lowerCaseCounter++;
-						
-						}j++;
-					}
-							
-							if(lowerCaseCounter>=2) {
-								
-								
-								
-								for (int k =0; k < password.length();k++) {
-
-									//		The password should have at least one special character.
-
-									if(!String.valueOf(password.charAt(k)).matches("[A-Za-z0-9 ]*")) {
-										
-										for (int l =0; l < password.length();l++) {
-
-											if (String.valueOf(password.charAt(l)).matches("[0-9]*")) {
-												return true;
-										}else {
-											throw new Exception("Password does not conatin a number.");
-										}
-
-										
-										
-									}k++;
-									
-							}else {
-								throw new Exception("Password does not conatin special character.");
-							}
-							
-								}}
-							
-					else {
-						throw new Exception("Password does not conatin 2 lower case letters.");
-					}
-					
-				i++;
-
-	}else
-		{
-		throw new Exception("Password Does not conatin uppercause value.");
-		}
-		}
-		return retVal;}
+		return true;
+	}
 
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/updatePassword", method = RequestMethod.PUT)
@@ -156,7 +176,19 @@ public class JwtAuthenticationController {
 		boolean retVal = false;
 
 		try {
+			    passwordIsTenCharactersLong(updatedUser.getNewPassword());
+				passwordHas1UpperCase(updatedUser.getNewPassword());
+				passowrdHas2LowerCase(updatedUser.getNewPassword());
+				passwordHas1SpecialChar(updatedUser.getNewPassword());
+				passwordHas1Number(updatedUser.getNewPassword());
 			DAOUser originalUser = userDao.findByUsername(updatedUser.getUsername());
+			if(originalUser==null) {
+				
+				throw new Exception("User Does not Exsist.");
+			}
+			
+
+
 			String oldPassword = updatedUser.getOldPassword();
 			String newPassword = bcryptEncoder.encode(updatedUser.getNewPassword());
 

@@ -63,7 +63,9 @@ public class JwtAuthenticationController {
 	public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception {
 		boolean retVal = false;
 
-		try {
+		
+		if (user.getUsername()!= null && !user.getUsername().isEmpty()) {
+				try {
 			passwordIsTenCharactersLong(user.getPassword());
 			passwordHas1UpperCase(user.getPassword());
 			passowrdHas2LowerCase(user.getPassword());
@@ -75,6 +77,11 @@ public class JwtAuthenticationController {
 			return ResponseEntity.ok(e.getMessage());
 
 		}
+		}else {
+			throw new Exception("Username can not be empty.");
+
+		}
+
 
 		return ResponseEntity.ok(retVal);
 

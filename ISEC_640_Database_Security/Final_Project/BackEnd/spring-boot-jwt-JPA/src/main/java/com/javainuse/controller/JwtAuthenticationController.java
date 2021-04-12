@@ -51,8 +51,8 @@ public class JwtAuthenticationController {
 		try {
 			userDetailsService.loadUserByUsername(user.getUsername());
 		} catch (Exception e) {
-			retVal = false;
-			return ResponseEntity.ok(retVal);
+
+			return ResponseEntity.ok(e.getMessage());
 		}
 		return ResponseEntity.ok(retVal);
 

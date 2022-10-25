@@ -1,0 +1,76 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ArtChain: Blockchain-Enabled Platform for Art Marketplace
+Date Added to IEEE Xplore: 02 January 2020
+ISBN Information:
+INSPEC Accession Number: 19246045
+DOI: 10.1109/Blockchain.2019.00068
+
+
+Effective Scheme against 51% Attack on Proof-of-Work Blockchain with History Weighted Information
+INSPEC Accession Number: 19246019
+DOI: 10.1109/Blockchain.2019.00041
+
+ETH Relay: A Cost-efficient Relay for Ethereum-based Blockchains
+https://ieeexplore-ieee-org.ezproxylocal.library.nova.edu/document/9284781
+INSPEC Accession Number: 20260591
+DOI: 10.1109/Blockchain50366.2020.00032
+
+Research and Implementation on the Operation and Transaction System Based on Blockchain Technology for Virtual Power Plant
+Date Added to IEEE Xplore: 11 August 2022
+ISBN Information:
+INSPEC Accession Number: 21972564
+DOI: 10.1109/ICBCTIS55569.2022.00046
+
+
+
+Visualization of Blockchain Consensus Degradation
+INSPEC Accession Number: 21844000
+DOI: 10.1109/ICBC54727.2022.9805498
+
+
+
+Committable: A Decentralised and Trustless Open-Source Protocol
+INSPEC Accession Number: 21844007
+DOI: 10.1109/ICBC54727.2022.9805541
+
+
+Zhenyu Chen, Dong Liu, Xingyu Gao, Fangchun Di, Yunhao Huang, Dapeng Li & Jie Zhang. 2020. An efficient operation and maintenance method for power dispatching and control cloud. Power System Protection and Control(14), 175-181. https://doi:10.19783/j.cnki.pspc.190965.
+
+
+Casino, F., Dasaklis, T. K., & Patsakis, C. 2019. A systematic literature review of blockchain-based applications: Current status, classification and open issues. Telematics and informatics, 36, 55-81.
+
+    Y. Yuan and F. Wang, "Towards blockchain-based intelligent transportation systems," 2016 IEEE 19th International Conference on Intelligent Transportation Systems (ITSC), 2016, pp. 2663-2668, doi: 10.1109/ITSC.2016.7795984.
+    
+    Tianhao Liu, Jiqiang Liu, Jian Wang, Di Zhai, Yufei Liu, and Xudong He. 2021. Anonymous Storage and Verification Model of IIoT Based on Blockchain: Anonymous storage and verification model of IIoT production status based on blockchain. In 2021 4th International Conference on Blockchain Technology and Applications (ICBTA 2021). Association for Computing Machinery, New York, NY, USA, 144–150. https://doi-org.ezproxylocal.library.nova.edu/10.1145/3510487.3510508
+
+
+
+
+
+https://www.research.manchester.ac.uk/portal/files/85712237/FULL_TEXT.PDF
+GOOD DIagram ^^
+
+https://scholarworks.gsu.edu/cgi/viewcontent.cgi?article=1111&context=bus_admin_diss
+
+
+
+    
+    

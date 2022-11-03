@@ -36,6 +36,7 @@ DOI: 10.1109/ICBC54727.2022.9805541
 Zhenyu Chen, Dong Liu, Xingyu Gao, Fangchun Di, Yunhao Huang, Dapeng Li & Jie Zhang. 2020. An efficient operation and maintenance method for power dispatching and control cloud. Power System Protection and Control(14), 175-181. https://doi:10.19783/j.cnki.pspc.190965.
 
 
+
 Casino, F., Dasaklis, T. K., & Patsakis, C. 2019. A systematic literature review of blockchain-based applications: Current status, classification and open issues. Telematics and informatics, 36, 55-81.
 
     Y. Yuan and F. Wang, "Towards blockchain-based intelligent transportation systems," 2016 IEEE 19th International Conference on Intelligent Transportation Systems (ITSC), 2016, pp. 2663-2668, doi: 10.1109/ITSC.2016.7795984.
@@ -53,5 +54,317 @@ https://scholarworks.gsu.edu/cgi/viewcontent.cgi?article=1111&context=bus_admin_
 
 
 X. Yang, Y. Chen and X. Chen, "Effective Scheme against 51% Attack on Proof-of-Work Blockchain with History Weighted Information," 2019 IEEE International Conference on Blockchain (Blockchain), 2019, pp. 261-265, doi: 10.1109/Blockchain.2019.00041.
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    NOT USED 
+
+ 
+ 
+ 
+
+ 
+ 
+ 
+
+https://ethereum.org/en/upgrades/merge/ 
+
+ 
+ 
+ 
+
+(HASH GRAPH) 
+
+L. Baird and A. Luykx, "The Hashgraph Protocol: Efficient Asynchronous BFT for High-Throughput Distributed Ledgers," 2020 International Conference on Omni-layer Intelligent Systems (COINS), 2020, pp. 1-7, doi: 10.1109/COINS49042.2020.9191430. 
+
+ 
+ 
+ 
+
+ 
+ 
+ 
+
+Tang, H., Sun, Y., & Ouyang, J. (2020). Excellent practical byzantine fault tolerance. Journal of Cybersecurity, 2(4), 167-182. doi:https://doi.org/10.32604/jcs.2020.011341  
+
+ 
+ 
+ 
+
+Xiong, H., Chen, M., Wu, C., Zhao, Y., & Yi, W. (2022). Research on progress of blockchain consensus algorithm: A review on recent progress of blockchain consensus algorithms. Future Internet, 14(2), 47. doi:https://doi.org/10.3390/fi14020047  
+
+ 
+ 
+ 
+
+ 
+ 
+ 
+
+ArtChain: Blockchain-Enabled Platform for Art Marketplace 
+
+Date Added to IEEE Xplore: 02 January 2020 
+
+ISBN Information: 
+
+INSPEC Accession Number: 19246045 
+
+DOI: 10.1109/Blockchain.2019.00068 
+
+ 
+ 
+ 
+
+ 
+ 
+ 
+
+Effective Scheme against 51% Attack on Proof-of-Work Blockchain with History Weighted Information 
+
+INSPEC Accession Number: 19246019 
+
+DOI: 10.1109/Blockchain.2019.00041 
+
+ 
+ 
+ 
+
+ETH Relay: A Cost-efficient Relay for Ethereum-based Blockchains 
+
+https://ieeexplore-ieee-org.ezproxylocal.library.nova.edu/document/9284781 
+
+INSPEC Accession Number: 20260591 
+
+DOI: 10.1109/Blockchain50366.2020.00032 
+
+ 
+ 
+ 
+
+ 
+ 
+ 
+
+Oyinloye DP, Teh JS, Jamil N, Alawida M. Blockchain Consensus: An Overview of Alternative Protocols. Symmetry. 2021; 13(8):1363. https://doi.org/10.3390/sym13081363  
+
+https://www.mdpi.com/2073-8994/13/8/1363#cite 
+
+ 
+ 
+ 
+
+Research and Implementation on the Operation and Transaction System Based on Blockchain Technology for Virtual Power Plant 
+
+Date Added to IEEE Xplore: 11 August 2022 
+
+ISBN Information: 
+
+INSPEC Accession Number: 21972564 
+
+DOI: 10.1109/ICBCTIS55569.2022.00046 
+
+ 
+ 
+ 
+
+ 
+ 
+ 
+
+ 
+ 
+ 
+
+ 
+ 
+ 
+
+L. Ambrosini, M. Piškorec and C. J. Tessone, "Visualization of Blockchain Consensus Degradation," 2022 IEEE International Conference on Blockchain and Cryptocurrency (ICBC), 2022, pp. 1-2, doi: 10.1109/ICBC54727.2022.9805498. 
+
+ 
+ 
+ 
+
+ 
+ 
+ 
+
+Committable: A Decentralised and Trustless Open-Source Protocol 
+
+INSPEC Accession Number: 21844007 
+
+DOI: 10.1109/ICBC54727.2022.9805541 
+
+ 
+ 
+ 
+
+ 
+ 
+ 
+
+Zhenyu Chen, Dong Liu, Xingyu Gao, Fangchun Di, Yunhao Huang, Dapeng Li & Jie Zhang. 2020. An efficient operation and maintenance method for power dispatching and control cloud. Power System Protection and Control(14), 175-181. https://doi:10.19783/j.cnki.pspc.190965. 
+
+ 
+ 
+ 
+
+ 
+ 
+ 
+
+Casino, F., Dasaklis, T. K., & Patsakis, C. 2019. A systematic literature review of blockchain-based applications: Current status, classification and open issues. Telematics and informatics, 36, 55-81. 
+
+ 
+ 
+ 
+
+Y. Yuan and F. Wang, "Towards blockchain-based intelligent transportation systems," 2016 IEEE 19th International Conference on Intelligent Transportation Systems (ITSC), 2016, pp. 2663-2668, doi: 10.1109/ITSC.2016.7795984. 
+
+Tianhao Liu, Jiqiang Liu, Jian Wang, Di Zhai, Yufei Liu, and Xudong He. 2021. Anonymous Storage and Verification Model of IIoT Based on Blockchain: Anonymous storage and verification model of IIoT production status based on blockchain. In 2021 4th International Conference on Blockchain Technology and Applications (ICBTA 2021). Association for Computing Machinery, New York, NY, USA, 144–150. https://doi-org.ezproxylocal.library.nova.edu/10.1145/3510487.3510508 
+
+ 
+ 
+ 
+
+ 
+ 
+ 
+
+Y. Bai, H. Lei, S. Li, H. Gao, J. Li and L. Li, "Decentralized and Self-Sovereign Identity in the Era of Blockchain: A Survey," 2022 IEEE International Conference on Blockchain (Blockchain), 2022, pp. 500-507, doi: 10.1109/Blockchain55522.2022.00077. 
+
+ 
+ 
+ 
+
+J. M. Sobral, M. Solari and S. Matalonga, "Preliminary Results of a Multi-Vocal Literature Review of Blockchain Networks," 2020 39th International Conference of the Chilean Computer Science Society (SCCC), 2020, pp. 1-8, doi: 10.1109/SCCC51225.2020.9281265. 
+
+ 
+ 
+ 
+
+S. Joseph and S. Karunan, "A Blockchain Based Decentralized Transaction Settlement System in Banking Sector," 2021 Fourth International Conference on Microelectronics, Signals & Systems (ICMSS), 2021, pp. 1-6, doi: 10.1109/ICMSS53060.2021.9673610. 
+
+ 
+ 
+ 
+
+ArtChain: Blockchain-Enabled Platform for Art Marketplace 
+
+Date Added to IEEE Xplore: 02 January 2020 
+
+ISBN Information: 
+
+INSPEC Accession Number: 19246045 
+
+DOI: 10.1109/Blockchain.2019.00068 
+
+Effective Scheme against 51% Attack on Proof-of-Work Blockchain with History Weighted Information 
+
+INSPEC Accession Number: 19246019 
+
+DOI: 10.1109/Blockchain.2019.00041 
+
+ETH Relay: A Cost-efficient Relay for Ethereum-based Blockchains 
+
+https://ieeexplore-ieee-org.ezproxylocal.library.nova.edu/document/9284781 
+
+INSPEC Accession Number: 20260591 
+
+DOI: 10.1109/Blockchain50366.2020.00032 
+
+Research and Implementation on the Operation and Transaction System Based on Blockchain Technology for Virtual Power Plant 
+
+Date Added to IEEE Xplore: 11 August 2022 
+
+ISBN Information: 
+
+INSPEC Accession Number: 21972564 
+
+DOI: 10.1109/ICBCTIS55569.2022.00046 
+
+Visualization of Blockchain Consensus Degradation 
+
+INSPEC Accession Number: 21844000 
+
+DOI: 10.1109/ICBC54727.2022.9805498 
+
+Committable: A Decentralised and Trustless Open-Source Protocol 
+
+INSPEC Accession Number: 21844007 
+
+DOI: 10.1109/ICBC54727.2022.9805541 
+
+Zhenyu Chen, Dong Liu, Xingyu Gao, Fangchun Di, Yunhao Huang, Dapeng Li & Jie Zhang. 2020. An efficient operation and maintenance method for power dispatching and control cloud. Power System Protection and Control(14), 175-181. https://doi:10.19783/j.cnki.pspc.190965. 
+
+Casino, F., Dasaklis, T. K., & Patsakis, C. 2019. A systematic literature review of blockchain-based applications: Current status, classification and open issues. Telematics and informatics, 36, 55-81. 
+
+Y. Yuan and F. Wang, "Towards blockchain-based intelligent transportation systems," 2016 IEEE 19th International Conference on Intelligent Transportation Systems (ITSC), 2016, pp. 2663-2668, doi: 10.1109/ITSC.2016.7795984. 
+
+Tianhao Liu, Jiqiang Liu, Jian Wang, Di Zhai, Yufei Liu, and Xudong He. 2021. Anonymous Storage and Verification Model of IIoT Based on Blockchain: Anonymous storage and verification model of IIoT production status based on blockchain. In 2021 4th International Conference on Blockchain Technology and Applications (ICBTA 2021). Association for Computing Machinery, New York, NY, USA, 144–150. https://doi-org.ezproxylocal.library.nova.edu/10.1145/3510487.3510508 
+
+https://www.research.manchester.ac.uk/portal/files/85712237/FULL_TEXT.PDF 
+
+GOOD DIagram ^^ 
+
+https://scholarworks.gsu.edu/cgi/viewcontent.cgi?article=1111&context=bus_admin_diss 
+
+X. Yang, Y. Chen and X. Chen, "Effective Scheme against 51% Attack on Proof-of-Work Blockchain with History Weighted Information," 2019 IEEE International Conference on Blockchain (Blockchain), 2019, pp. 261-265, doi: 10.1109/Blockchain.2019.00041. 
+
+GILAD, Y., HEMO, R., MICALI, S., VLACHOS, 
+ G., AND ZELDOVICH, N. Algorand: Scaling 
+ byzantine agreements for cryptocurrencies. In 
+ Proceedings of the 26th Symposium on Operating 
+ Systems Principles (New York, NY, USA, 2017), 
+ SOSP ’17, ACM, pp. 51–68. 
+    
+    
     
     

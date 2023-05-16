@@ -1,0 +1,57 @@
+﻿-------------------------------------
+    Research the Enron fraud case as well as SOX requirements
+    Identify the key elements of fraud committed by Enron that led to the Sarbanes-Oxley (SOX) compliance law.
+    Identify other compliance laws in the United States that have been drafted for other vertical industries as a result of Enron’s issues
+    Write a 2-3 page APA-formatted essay describing the Enron fraud case’s impact and the U.S. government’s reaction to this and other industry compliance needs
+---------------------------------
+
+The Enron fraud case is one of the most notorious corporate scandals in American history. In 2001, Enron, once considered one of the world’s leading energy companies, collapsed, and it was revealed that the company had been engaged in widespread fraudulent accounting practices. The company’s executives had misled investors and the public about its financial health and used complex financial instruments to hide debt and inflate profits. This led to the Sarbanes-Oxley (SOX) compliance law, which was enacted to prevent corporate fraud and protect investors.
+
+The key elements of fraud committed by Enron included accounting manipulations, false financial reporting, and insider trading. The company’s executives used off-balance-sheet special purpose entities to conceal debt, and they manipulated earnings reports to create the illusion of profitability. They also engaged in insider trading, using their positions to sell their shares before the company’s true financial situation was revealed to the public. These fraudulent practices ultimately led to Enron’s bankruptcy and the loss of billions of dollars for investors and employees.
+
+In response to the Enron scandal, Congress passed the Sarbanes-Oxley Act in 2002. This law requires publicly traded companies to establish and maintain internal controls over financial reporting and to provide more accurate and transparent financial statements. It also created the Public Company Accounting Oversight Board (PCAOB) to regulate accounting firms and auditors who work for public companies. The law’s provisions also include increased penalties for corporate fraud and the requirement for executives to certify the accuracy of financial statements.
+
+The Enron scandal also led to the passage of other compliance laws in the United States, particularly in the financial industry. The Dodd-Frank Wall Street Reform and Consumer Protection Act was passed in 2010 to prevent another financial crisis similar to the one that occurred in 2008. This law requires financial institutions to be more transparent in their dealings and to establish stronger risk management procedures. The law also created the Consumer Financial Protection Bureau to protect consumers from financial fraud and abuse.
+
+In conclusion, the Enron fraud case had a significant impact on corporate governance and compliance laws in the United States. The Sarbanes-Oxley Act was passed to prevent corporate fraud and protect investors, and it established new standards for financial reporting and accountability. The Enron scandal also led to the passage of other compliance laws in various industries, including the Dodd-Frank Act. Overall, the Enron case serves as a reminder of the importance of transparency and accountability in corporate governance and the need for strong regulatory oversight.
+
+
+
+Identify the minimum baseline requirements and hardening guidelines that provide a framework to which a government network and business unit should adhere 
+    • Assess all the available sites under the Department of Defense (DoD) and identify the agencies in charge of providing security guidelines and best practices for federal entities 
+    • Review all the hardening and best practice guidelines provided by DoD’s Defense Information Systems Agency (DISA), Information Assurance Support Environment (IASE), NIST 800-53 series, and National Institute of Standards and Technology (NIST) Framework for Improving Critical Infrastructure Cybersecurity (https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.04162018.pdf) 
+    • Write a 2-3 page APA-formatted essay identifying and explaining two auditing frameworks or hardening guidelines/security checklists used by DoD 
+
+
+
+Government Network and Business Unit Hardening Guidelines
+
+The security of government networks and business units is critical, and adherence to minimum baseline requirements and hardening guidelines is essential. These guidelines provide a framework for establishing a secure network infrastructure, maintaining the confidentiality, integrity, and availability of data and systems, and reducing the risk of cyber-attacks. In this essay, we will identify and explain two auditing frameworks or hardening guidelines/security checklists used by the Department of Defense (DoD).
+
+Auditing Frameworks and Hardening Guidelines used by DoD
+
+    Defense Information Systems Agency (DISA) Security Technical Implementation Guides (STIGs)
+
+The Defense Information Systems Agency (DISA) Security Technical Implementation Guides (STIGs) are a collection of documents that provide guidelines for securing computer systems and networks. The STIGs outline the minimum security requirements for the deployment of systems and applications, covering all aspects of security, including access control, auditing and logging, configuration management, network security, and vulnerability management. The STIGs are available for a wide range of products, including operating systems, databases, web servers, and other applications. The guidelines are updated frequently and aligned with the latest security standards.
+
+    National Institute of Standards and Technology (NIST) Special Publication (SP) 800-171
+
+The National Institute of Standards and Technology (NIST) Special Publication (SP) 800-171 provides guidelines for protecting the confidentiality of Controlled Unclassified Information (CUI) in nonfederal information systems and organizations. The guideline provides a framework of 14 control families that cover all aspects of security, including access control, awareness and training, configuration management, incident response, and network security. Compliance with NIST SP 800-171 is mandatory for all non-federal organizations that process, store or transmit CUI.
+
+Conclusion
+
+In conclusion, the DoD provides various auditing frameworks and hardening guidelines that provide a framework for securing government networks and business units. The DISA Security Technical Implementation Guides (STIGs) and the NIST Special Publication (SP) 800-171 are two examples of frameworks and guidelines that are available for securing DoD systems and networks. It is essential to adhere to these guidelines to ensure that DoD networks and systems are secure and safeguarded against cyber-attacks.
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,43 @@
+﻿Describe your knowledge and ability in each of the six (6) competency areas below. The evaluation points are very high in this area. You must address each area identified. If you do not provide this information, your package will be deemed non-responsive and will not be considered.
+* 1. Knowledge of the techniques of the cybersecurity discipline, including encryption, access control, physical security, training, threat analysis, and authentication. (2000 characters maximum)
+
+Encryption:I have converted an old internal HTTP based application to HTTPS via TLS to encrypt data transmissions for an internal Enterprise Holdings' application called "Tour Super User", I have written many scripts transferring information over securely encrypted channels like SFTP or SSH and have a solid understanding that sensitive data should be encrypted in motion and at rest. 
+        
+Access Controls:I have demonstrated proficiency in access controls such as Linux environments at Northrop Grumman, utilizing commands like chown, chgrp, chmod, etc.
+Applied precise access controls to safeguard critical resources and maintain secure system configurations.
+
+Physical Security: I adhere to stringent physical security measures at the workplace such as using badges and door codes while observing other physical security means such as man traps and bollards.
+
+Training:Actively engaged in knowledge transfers, consistently mentoring new hires to accelerate their onboarding. Utilized Confluence pages and on-the-job training (OJT) methodologies, fostering a culture of continuous learning. Hosted informative "Lunch and Learn" sessions within the Army Cyber Protection Brigade (CPB) to share insights and expertise.
+
+Threat Analysis:Leveraged a comprehensive tool suite, including Wireshark for packet inspection and Splunk as a Security Information and Event Management (SIEM) system. Demonstrated proficiency in dissecting network activity, identifying potential threats, and responding effectively to security incidents.
+
+Authentication:Exhibited familiarity with various authentication methods, including Multi-Factor Authentication (MFA) and Web3 authentication such as metamask wallets. Demonstrated a nuanced understanding of secure authentication practices, balancing robust security measures with user convenience.
+
+* 2. Knowledge of the human factors in cybersecurity, including human computer interaction, design, training, sabotage, human error prevention and identification, personal use policies, and monitoring. (2000 characters maximum)
+
+Knowing human factors in cybersecurity is an important task, doing so will prevent breaches or hacks based off of human error or sabotage. A good example of this when designing systems to be resistant to improper human interactions such as designing the user interface in a way that is intuitive to the user but also performs validation. Establishing frontend and backend validation is key to human error prevention as it allows for protection from the human side off house and also protects the software side of house as well. Using validation can prevent human errors but using a SIEM like ArcSight or Splunk can also be useful when identifying and monitoring sabotage. Its is imperative for organizations to implement personal use policies to establish guidelines about the length of passwords, safe use of Wi-Fi,  a clean desk policy, sending personal data over email, or private use of company equipment, like laptops and smartphones. This is beneficial to the organization by offsetting risks that can be provided by an employee.
+
+
+
+* 3. Ability to identify and analyze problems, distinguish between relevant and irrelevant information to make logical decisions, and provide solutions to individual and organizational problems. (2000 characters maximum)
+
+I have the ability to identify and analyze problems. This has been demonstrated extensively through my engineering career. An example of this is combing though wireshark packet captures to gather information about network traffic or searching though software logs to find relevant information about bugs. I have led many projects to add additional features to software that have added value to organizations and help alleviate some of their problems. An example of this at my current organization is a database I proposed and built that gathered information into a central location to be more readily accessible to management. These are just some technical examples but I have also brought procedural decisions to organizations to help solve problems such as implementing AGILE software development practices in organizations that needed it.
+
+
+
+* 4. Ability to consider and respond appropriately to the needs, feelings, and capabilities of different people in different situations; is tactful, compassionate and sensitive, and treats others with respect. (2000 characters maximum)
+
+As a software engineer it is imperative to respond appropriately to the needs, feelings, and capabilities of different people and situations. As a team lead and scrum master on many software projects I have demonstrated this by being the liaison between the customers and the capabilities of colleagues on my teams. I understand that everyone has different strengths, weaknesses, and emotional needs. This has been demonstrated throughout my career working in fortune 500 companies, government, and military projects. It is important to remain tactical in your decision making while still keeping in mind compassion for others. Most importantly once should remain professional and respectful at all times.
+
+
+
+* 5. Ability to make clear and convincing oral presentations to individuals or groups; listens effectively and clarifies information as needed; facilitates an open exchange of ideas and fosters an atmosphere of open communication. (2000 characters maximum)
+
+I am exceptional at making clear and convincing oral presentations to individuals and groups. This has been performed extensively through software design and review meetings where I have had to present and professionally argue my logic on why systems should be designed the way the should. I have done this in ways that facilitate engagement among my peers. Working on such advanced systems such as the F35 of Northrop Satellites has taught me to be an avid listener because one person can not simply know everything. I have fostered an atmosphere for open communication through my oral presentations and also my online presence through code reviews through github and discussions about design on confluence. I would like to think communication is one of my stronger skills.
+
+
+
+* 6. Ability to express facts and ideas in writing in clear, convincing, and organized manners appropriate to the audience and occasion. (2000 characters maximum)
+
+I have demonstrated the ability to express facts and ideas in writing. This has been expressed through technical documentation I have written for many software projects. This has included “How To” guides that have been deployed on servers or confluence pages. Another example of expressing ideas and facts in writing has been demonstrated on pull request reviews where I have had to write ideas or facts about changes to a code base that I may or may not have agreed with while explaining why. Another example of writing I have done is leading project increment planning, sprint planning, daily standups, and retroactive meetings where writing was needed to express facts or ideas of the tasks at hand.

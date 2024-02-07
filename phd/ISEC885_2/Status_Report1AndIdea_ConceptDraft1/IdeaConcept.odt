@@ -1,94 +1,10 @@
 ﻿Introduction:
-	The exploratory research for the Fall 2023 ISEC 885 course aims to develop a problem direction for a doctoral research idea concept paper, leading to an idea paper, with the ultimate objective of providing to the field of asynchronous consensus by creating a replicatable  asynchronous infrastructure that can measure throughput, latency,  and other metrics. Asynchronous consensus refers to the ability of a distributed system to reach an agreement without any timing assumptions even in the events of faults, message delays, and unpredictable delivery times. Asynchronous consensus ensures that systems can reach an agreement even when there is no bound on the time it takes for messages to be delivered or for nodes to respond. Not knowing the bound on the time in an asynchronous setting directly contrasts synchronous consensus, which does know its bound on time, along with partially-synchronous consensus, which knows there is a bound on time, but doesn't know what that bound is (Miller et al., 2016 "Many Forms of Timing Assumptions," p. 3). A problem with synchronous or partially synchronous protocols is the failure or suffering of performance degradation when network conditions are unpredictable, such as on the open internet. This is directly supported in the works of the Honey Badger Byzantine Fault Tolerant (HBFT) protocol whose research highlights the ability to bring down a well researched partially-synchronous protocol called Practical Byzantine Fault Tolerant (PBFT). This is done by the means of an adversarial network scheduler abusing the leader selection and halting progress by making the intermittent synchronicity connections too small for the network to catch up (Miller et al., 2016 "When Weak Synchrony Fails," p. 4). In contrast, the advantage of asynchronous consensus and by nature the HBFT, is that during these smaller intermittent windows of synchronicity, the HBFT still makes progress. Highlighting the benefit that the HBFT can synchronize relatively instantaneously when the network connects again, in contrast to synchronous protocols which might not have a long enough synchronization window to catch up. It is important to note that the HBFT is significant to the realm of asynchronous consensus as it touts itself as “the first practical asynchronous Byzantine Fault Tolerant (BFT) protocol, which guarantees liveness without making any timing assumptions” (Miller et al., 2016 "Abstract," p. 1). This is relevant because of how HBFT’s asynchronous consensus relates to the Fischer, Lynch, Paterson (FLP) theorem. The FLP theorem argues you can't do agreement in an asynchronous message passing system if even one crash failure is allowed, unless you augment the basic model in some way, such by adding randomization(Fischer et al., 1985). It is crucial to note that HBFT argues to practically get around the FLP theorem asynchronously by using cryptographic techniques and assumptions, such as threshold signatures, rather than strictly refuting the FLP result. This is supported in future asynchronous consensus research such as in another asynchronous consensus protocol called BEAT, who states “However, state machine replication cannot be achieved in asynchronous environments (Fischer et al., 1985), unless it uses randomization to circumvent this impossibility result. HoneyBadgerBFT and BEAT fall into this category.”(Duan et al., 2018 “Related Work” p. 3 ) From this statement we can see research that supports the FLP theorem impossibility must be circumvented through randomization and that other research has supported HBFT’s claims of being one of the first practical asynchronous BFT protocols to do so. HBFT has historically been chosen as the bench mark in the field of Asynchronous Consensus through newer research such as BEAT, DUMBO, Asynchronous Byzantine Fault Tolerance (ABFT), and the AlephBFT that will later be discussed (Knudsen et al., 2021,Duan et al., 2018, and Guo, Lu, Tang, Xu, & Zhang, 2020 (ALEPH REF). 
+	The exploratory research for the Fall 2023 ISEC 885 course aims to develop a problem direction for a doctoral research idea concept paper, leading to an idea paper, with the ultimate objective of providing to the field of asynchronous consensus by creating a replicatable  asynchronous infrastructure that can measure throughput, latency, and other metrics. Asynchronous consensus refers to the ability of a distributed system to reach an agreement without any timing assumptions even in the events of faults, message delays, and unpredictable delivery times. Asynchronous consensus ensures that systems can reach an agreement even when there is no bound on the time it takes for messages to be delivered or for nodes to respond. Not knowing the bound on the time in an asynchronous setting directly contrasts synchronous consensus, which does know its bound on time, along with partially-synchronous consensus, which knows there is a bound on time, but doesn't know what that bound is (Miller et al., 2016 "Many Forms of Timing Assumptions," p. 3). A problem with synchronous or partially synchronous protocols is the failure or suffering of performance degradation when network conditions are unpredictable, such as on the open internet. This is directly supported in the works of the Honey Badger Byzantine Fault Tolerant (HBFT) protocol whose research highlights the ability to bring down a well researched partially-synchronous protocol called Practical Byzantine Fault Tolerant (PBFT). This is done by the means of an adversarial network scheduler abusing the leader selection and halting progress by making the intermittent synchronicity connections too small for the network to catch up (Miller et al., 2016 "When Weak Synchrony Fails," p. 4). In contrast, the advantage of asynchronous consensus and by nature the HBFT, is that during these smaller intermittent windows of synchronicity, the HBFT still makes progress. Highlighting the benefit that the HBFT can synchronize relatively instantaneously when the network connects again, in contrast to synchronous protocols which might not have a long enough synchronization window to catch up. It is important to note that the HBFT is significant to the realm of asynchronous consensus as it touts itself as “the first practical asynchronous Byzantine Fault Tolerant (BFT) protocol, which guarantees liveness without making any timing assumptions” (Miller et al., 2016 "Abstract," p. 1). This is relevant because of how HBFT’s asynchronous consensus relates to the Fischer, Lynch, Paterson (FLP) theorem. The FLP theorem argues you can't make an agreement in an asynchronous message environment even one crash failure is allowed, unless you augment the basic model in some way, such by adding randomization(Fischer et al., 1985). It is crucial to note that HBFT argues to practically get around the FLP theorem impossibility by using cryptographic techniques and assumptions to perform randomization. This is supported in future asynchronous consensus research such as in another asynchronous consensus protocol called BEAT, who states “However, state machine replication cannot be achieved in asynchronous environments (Fischer et al., 1985), unless it uses randomization to circumvent this impossibility result. HoneyBadgerBFT and BEAT fall into this category.”(Duan et al., 2018 “Related Work” p. 3 ) From this statement we can see research that supports the FLP theorem impossibility must be circumvented through randomization and that other research has supported HBFT’s claims of being one of the first practical asynchronous BFT protocols to do so. HBFT has historically been chosen as the bench mark in the field of Asynchronous Consensus through newer research such as BEAT, DUMBO, Asynchronous Byzantine Fault Tolerance (ABFT), and the AlephBFT that will later be discussed (Knudsen et al., 2021,Duan et al., 2018, and Guo, Lu, Tang, Xu, & Zhang, 2020, Gągol et al., 2019). 
 
-Problem: These implementation all use a trusted dealer.
-
-
-HBFT
-
-
-(Trusted setup) For ease of presentation, we assume that nodes
-may interact with a trusted dealer during an initial protocol-
-specific setup phase, which we will use to establish public keys
-and secret shares. Note that in a real deployment, if an actual
-trusted party is unavailable, then a distributed key generation
-protocol could be used instead (c.f., Boldyreva [11]). All the
-distributed key generation protocols we know of rely on timing
-assumptions; fortunately these assumptions need only to hold
-during setup.
+Problem: The current problem being that most modern research in the field of Asynchronous Consensus is implemented with a trusted dealer. While having a trusted dealer is advantageous for permissioned blockchains they are not ideal for permission-less blockchains where it is assumed that all nodes on the network can be faulty as in the case of the open internet. The advantage of having a permissioned blockchain is that they typically make gains in speed and efficiency while giving up decentralization. On the other hand permission-less blockchains typically have a higher decentralization factor with weaker speed and efficiency (Woznica & Kedziora, 2022 “Blockchain fundamentals” P.1) The problem of the lack of decentralization in permissioned blockchains is directly argued the Aleph’s research stating that “in blockchain systems, no trusted entities can be assumed to exist, and thus a trusted setup is tricky if not impossible to achieve in real-world applications.” (Gągol et al., 2019 “Our Contribution” P. 4) Previous Asynchronous Consensus protocols admit to these fallacies such as in HBFT who admits to using a trusted dealer and solidifies that the known alternatives of using Distributed Key Generation (DKG) are synchronous in nature “we assume that nodes may interact with a trusted dealer during an initial protocol specific setup phase, which we will use to establish public keys and secret shares. Note that in a real deployment, if an actual trusted party is unavailable, then a distributed key generation protocol could be used instead (Boldyreva, 2002). All the distributed key generation protocols we know of rely on timing assumptions” (Miller et al., 2016 “Problem Definition: Atomic Broadcast” P. 5)  The previous works of DKG being used in a synchronous manner is also supported in Aleph's research that states “ There has been a lot of prior work on DKG (Gennaro et al., 2003 & Gennaro et al., 2007 & Kate et al., 2012 & Kotla et al., 2009), however none of the so far proposed protocols has been designed to run under full asynchrony.”  (Gągol et al., 2019 “Verifiable Secret Sharing” P. 9) Relying on timing assumptions means that HBFT has a problem of being designed for asynchronous permissioned blockchains or giving up its asynchronous status to become permission-less and is once again supported in the works of Aleph who states “an unpleasant drawback of HBFT, especially in the context of trustless applications, is that it requires a trusted dealer to initialize.” (Gągol et al., 2019 “Introduction” P. 2) Using DKG in a manner that is  advantageous for permissioned blockchains is also used in other Asynchronous Consensus research such as in HBFT’s predecessor the BEAT protocol suite who admits “BEAT0 and all subsequent BEAT instances allow efficient distributed key generation (Gennaro et al., 2007 & Kate et al., 2012), which should be run during setup.” (Duan et al., 2018 “Distributed Key Generation.” p. 7) Another example of using a trusted dealer being an issue in Asynchronous Consensus can be seen in the the works of ABFT who admits that “One potential limitation of ABFT is that we do not implement the full threshold ECDSA scheme. The precomputing of the signing material is done using a trusted dealer. Related to this, we do not evaluate the cost of running the precomputing protocol for the threshold ECDSA scheme in the context of ABFT.” (Knudsen et al., 2021 “Limitations of ABFT” P. 7) From the works of ABFT we can see that they admit to using a trusted dealer making the protocol less suited for permission-less systems. Some more recent advancements of the trusted dealer issue can be seen in Aleph’s research who claims to be the first Asynchronous Consensus protocol without a trusted dealer ( Gągol et al., 2019 “Abstract” P.1) and is done by creating a DKG via a proprietary trustless protocol “that performs the setup instead of a trusted dealer.” (Gągol et al., 2019 “Randomness Beacon with Trustless Setup” P.12) Aleph's research demonstrates two versions of the protocol. The trusted dealer version and the dealer-less version. The problem with the dealer-less version is that it is less cryptographically secure then its trusted dealer counterpart while arguing gains in decentralization for permission-less blockchain systems (Gągol et al., 2019 “Randomness Beacon with Trustless Setup” P.12). Aleph’s advancements in permission-less blockchain systems via Asynchronous Consensus wihtout a trusted dealer has been solidified in the research of DUMBO whose “Related Work” states that  “Very recently, Aleph and DAG-rider proposed to use direct acyclic graph for consensus besides sequential ACS, which provides a theoretical alternative for implementing asynchronous atomic broadcast besides sequentially executing ACS.” (Gao et al., 2022) and that “One interesting technique of Aleph is to remove the trusted dealer assumption.” (Gao et al., 2022) From the above research we can conclude that current problem with Asynchronous Consensus protocols is that a majority of them rely on a trusted dealer making them less advantageous for permission-less blockchain systems. While the current permission-less asynchronous research provided by Aleph admits to still being less secure then its trusted dealer counterpart.
 
 
 
-
-
-BEAT
-
-Distributed key generation. Our threshold encryption and thresh-
-old PRF are discrete-log based, and BEAT0 and all subsequent BEAT
-instances allow efficient distributed key generation [39, 57], which
-should be run during setup. The implementation of distributed key
-generation, however, is outside the scope of the present paper.
-
- 
-
- 
-
-	
-ABFT
-V. D ISCUSSIONS
-A. Limitations of ABFT
-One potential limitation of ABFT is that we do not imple-
-ment the full threshold ECDSA scheme. The precomputing of
-the signing material is done using a trusted dealer. Related to
-this, we do not evaluate the cost of running the precomputing
-protocol for the threshold ECDSA scheme in the context of
-ABFT.
-
-DUMBO Speeding up
-REALTED WORK PG 4
-In addition, BEAT [21]
-cherry-picked concrete implementations for each component
-in HoneyBadgerBFT to demonstrate better performance in
-different settings. Very recently, Aleph [24] and DAG-rider
-[29] proposed to use direct acyclic graph for consensus besides
-sequential ACS, which provides a theoretical alternative for
-implementing asynchronous atomic broadcast besides sequen-
-tially executing ACS.
-
-“Aleph is to remove the trusted dealer assumption”
-
-
-
-Aleph
-(INTRO) Still, an unpleasant drawback of HBBFT,
-especially in the context of trustless applications, is that it requires
-a trusted dealer to initialize.
-
-nother important property of our protocol is that unlike [15, 33],
-it does not require a trusted dealer. The role of a trusted dealer
-is typically to distribute certain cryptographic keys among nodes
-before the protocol starts. Clearly, in blockchain systems, no trusted
-entities can be assumed to exist, and thus a trusted setup is tricky
-if not impossible to achieve in real-world applications.
-
-The idea of using threshold signatures as a source of randomness
-is not new and has been studied in the literature [15], especially
-in the context of blockchain [26, 33]. While this technique indeed
-produces unbiased randomness assuming that the tossing keys
-have been correctly dealt to all nodes, the true challenge becomes:
-How to deal secret keys without involving a trusted dealer? This
-problem is known in the literature under the name of Distributed
-Key Generation (DKG). There has been a lot of prior work on
-DKG [23, 24, 27, 39], however none of the so far proposed protocols
-has been designed to run under full asynchrony.
-
-Randomness Beacon with Trustless Setup
-Finally, to get rid of the trusted dealer, in Subsection 4.3 we
-describe a trustless protocol that performs the setup instead of
-a trusted dealer.
-This, while being slightly weaker
-than the outcome of the setup of trusted dealer, still allows to
-implement SecretBits
 
 
 
@@ -129,6 +45,9 @@ signatures based on the gap-diffie-hellman-group signature
 scheme. In Public key cryptographyâĂŤPKC 2003, pages
 31–46. Springer, 2002.
 
+I. Keidar, E. Kokoris-Kogias, O. Naor, and A. Spiegelman, “All you need
+is dag,” in Proceedings of the 2021 ACM Symposium on Principles of
+Distributed Computing, 2021, pp. 165–175.
 
 Duan, S., Reiter, M., & Zhang, H. (2018). BEAT: Asynchronous BFT Made Practical. In ACM SIGSAC Conference on Computer and Communications Security, pp. 2028–2041. https://doi.org/10.1145/3243734.3243812
 
@@ -140,18 +59,34 @@ Miller, A., Xia, Y., Croman, K., Shi, E., & Song, D. (2016). The Honey Badger of
 
 Bingyong Guo, Zhenliang Lu, Qiang Tang, Jing Xu, and Zhenfeng Zhang. 2020. Dumbo: Faster Asynchronous BFT Protocols. In Proceedings of the 2020 ACM SIGSAC Conference on Computer and Communications Security (CCS '20). Association for Computing Machinery, New York, NY, USA, 803–818. https://doi-org.ezproxylocal.library.nova.edu/10.1145/3372297.3417262
 
-FaSTER DUMBOs https://dl.acm.org/doi/10.1145/3548606.3559379
+Gao, Y., Lu, Y., Lu, Z., Tang, Q., Xu, J., & Zhang, Z. (2022). Dumbo-NG: Fast Asynchronous BFT Consensus with Throughput-Oblivious Latency. In Proceedings of the 2022 ACM SIGSAC Conference on Computer and Communications Security (CCS '22) (pp. 1187–1201). Association for Computing Machinery. https://doi.org/10.1145/3548606.3559379
 
 
 H. Knudsen, “Asynchronous byzantine fault tolerance,” 2021. [Online].
 Available: https://github.com/Henriknu/consensus-unstable-throughput
 
 Duan, Sisi, Michael K. Reiter, and Haibin Zhang. "BEAT: Asynchronous bft made practical." Proceedings of the ACM SIGSAC Conference on Computer and Communications Security (CCS). 2018.
+
+Woznica, A., & Kedziora, M. (2022). Performance and scalability evaluation of a permissioned Blockchain based on the Hyperledger Fabric, Sawtooth and Iroha. Comput. Sci. Inf. Syst., 19, 659-678.
+
 Adam Gągol, Damian Leśniak, Damian Straszak, and Michał Świętek. 2019. Aleph:
 Efficient Atomic Broadcast in Asynchronous Networks with Byzantine Nodes.
 In Proceedings of the 1st ACM Conference on Advances in Financial Technologies.
 214–228.
 
+R. Gennaro, S. Jarecki, H. Krawczyk, and T. Rabin. Secure distributed key genera-
+tion for discrete-log based cryptosystems. J. Cryptology 20(1): 51–83 (2007)
+
+A. Kate, Y. Huang, and I. Goldberg. Distributed key generation in the wild. IACR
+Cryptology ePrint Archive 2012: 377 (2012).
+
+Gennaro, R., Jarecki, S., Krawczyk, H., & Rabin, T. (2003). Secure Applications of Pedersen’s Distributed Key Generation Protocol. In Topics in Cryptology - CT-RSA 2003, The Cryptographers’ Track at the RSA Conference 2003, San Francisco, CA, USA, April 13-17, 2003, Proceedings (pp. 373–390). https://doi.org/10.1007/3-540-36563-X_26
+
+Gennaro, R., Jarecki, S., Krawczyk, H., & Rabin, T. (2007). Secure Distributed Key Generation for Discrete-Log Based Cryptosystems. Journal of Cryptology, 20(1), 51–83. https://doi.org/10.1007/s00145-006-0347-3
+
+Ramakrishna Kotla, Lorenzo Alvisi, Michael Dahlin, Allen Clement, and Ed-
+mund L. Wong. 2009. Zyzzyva: Speculative Byzantine fault tolerance. ACM Trans.
+Comput. Syst. 27, 4 (2009), 7:1–7:39. https://doi.org/10.1145/1658357.1658358
 
 
 
@@ -163,12 +98,5 @@ In Proceedings of the 1st ACM Conference on Advances in Financial Technologies.
 
 
 
-	https://gitlab.liu.se/felbo44/beat (Only BEAT 0) out even though they provide a “framework” but does provide a framework for deployment on AWS EC2 in python
-(not authors of paper)
 
-https://github.com/initc3/HoneyBadgerBFT-Python/blob/dev/ROADMAP.rst says test network is in the works. Not really
 
-H. Knudsen, “Asynchronous byzantine fault tolerance,” 2021. [Online].
-Available: https://github.com/Henriknu/consensus-unstable-throughput
-
-ABFT protocol was chosen for the upper bounds of this research because it is an amalgamation of the works of  previous asynchronous consensus protocols like HBFT, BEAT, and DUMBO (Knudsen, Li, Notland, Haro, & Ræder, 2021 "ABFT Design and Implementation on EC2" p. 9). Noting that ABFT claims empirical gains in the fields of throughput and latency when compared to HBFT, DUMBO, and inherently BEAT (Knudsen et al., 2021 “Results of RQ1” p. 6).

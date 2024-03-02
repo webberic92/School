@@ -1,0 +1,39 @@
+﻿Abraham, I., Jovanovic, P., Maller, M., Meiklejohn, S., Stern, G., & Tomescu, A. (2021). Reaching consensus for asynchronous distributed key generation. In Proceedings of the 2021 ACM Symposium on Principles of Distributed Computing (pp. 363–373).
+Adam Gągol, Damian Leśniak, Damian Straszak, and Michał Świętek. 2019. Aleph:
+Efficient Atomic Broadcast in Asynchronous Networks with Byzantine Nodes.
+In Proceedings of the 1st ACM Conference on Advances in Financial Technologies.
+214–228.
+
+Baird, L., & Luykx, A. (2020). The Hashgraph Protocol: Efficient Asynchronous BFT for High-Throughput Distributed Ledgers. International Conference on Omni-layer Intelligent Systems, pp. 1-7. https://doi.org/10.1109/COINS49042.2020.9191430
+
+Boldyreva, A. (2002). Threshold signatures, multisignatures and blind signatures based on the gap-diffie-hellman-group signature scheme. In Public key cryptography–PKC 2003 (pp. 31–46). Springer.
+
+Das, S., Xiang, Z., & Ren, L. (2020). Asynchronous data dissemination and its applications. In Proceedings of the 2021 ACM SIGSAC Conference on Computer and Communications Security.
+
+Duan, S., Reiter, M., & Zhang, H. (2018). Beat: Asynchronous BFT Made Practical. In ACM SIGSAC Conference on Computer and Communications Security, pp. 2028–2041. https://doi.org/10.1145/3243734.3243812
+
+Fischer, M. J., Lynch, N. A., & Paterson, M. S. (1982). Impossibility of distributed consensus with one faulty process (Technical Report No. MIT/LCS/TR-728). Massachusetts Institute of Technology, Laboratory for Computer Science, Cambridge.
+
+Gao, Y., Lu, Y., Lu, Z., Tang, Q., Xu, J., & Zhang, Z. (2022). Dumbo-NG: Fast Asynchronous BFT Consensus with Throughput-Oblivious Latency. In Proceedings of the 2022 ACM SIGSAC Conference on Computer and Communications Security (CCS '22) (p. 1187–1201). Association for Computing Machinery. https://doi.org/10.1145/3548606.3559379
+
+Gennaro, R., Jarecki, S., Krawczyk, H., & Rabin, T. (2003). Secure Applications of Pedersen’s Distributed Key Generation Protocol. In Topics in Cryptology - CT-RSA 2003, The Cryptographers’ Track at the RSA Conference 2003, San Francisco, CA, USA, April 13-17, 2003, Proceedings (pp. 373–390). https://doi.org/10.1007/3-540-36563-X_26
+
+Djari, A., Anceaume, E., & Tucci-Piergiovanni, S. (2022). An extensive agent-based simulation study of sycomore++, a DAG-based permissionless ledger. In Proceedings of the 37th ACM/SIGAPP Symposium on Applied Computing (SAC '22) (pp. 334–336). Association for Computing Machinery. https://doi-org.ezproxylocal.library.nova.edu/10.1145/3477314.3507245
+
+
+Gennaro, R., Jarecki, S., Krawczyk, H., & Rabin, T. (2007). Secure Distributed Key Generation for Discrete-Log Based Cryptosystems. Journal of Cryptology, 20(1), 51–83. https://doi.org/10.1007/s00145-006-0347-3
+
+Guo, B., Lu, Z., Tang, Q., Xu, J., & Zhang, Z. (2020). Dumbo: Faster Asynchronous BFT Protocols. In Proceedings of the 2020 ACM SIGSAC Conference on Computer and Communications Security (CCS '20) (pp. 803–818). Association for Computing Machinery. https://doi.org/10.1145/3372297.3417262
+
+Hood, K., Oglio, J., Nesterenko, M., & Sharma, G. (2021). Partitionable Asynchronous Cryptocurrency Blockchain. IEEE International Conference on Blockchain and Cryptocurrency, pp. 1-9. https://doi.org/10.1109/ICBC51069.2021.9461080
+
+
+
+Knudsen, H., Li, J., Notland, J., Haro, P., & Ræder, T. (2021). High-Performance Asynchronous Byzantine Fault Tolerance Consensus Protocol. IEEE International Conference on Blockchain, pp. 476-483. https://doi.org/10.1109/Blockchain53845.2021.00073
+
+Miller, A., Xia, Y., Croman, K., Shi, E., & Song, D. (2016). The Honey Badger of BFT Protocols. Proceedings of the 2016 ACM SIGSAC Conference on Computer and Communications Security, pp. 31–42. https://doi.org/10.1145/2976749.2978399
+
+Ramakrishna Kotla, Lorenzo Alvisi, Michael Dahlin, Allen Clement, and Edmund L. Wong. (2009). Zyzzyva: Speculative Byzantine fault tolerance. ACM Transactions on Computer Systems (TOCS), 27(4), 7:1–7:39. https://doi.org/10.1145/1658357.1658358
+Silva, P., Matos, M., & Barreto, J. (2023). NimbleChain: Speeding up Cryptocurrencies in General-purpose Permissionless Blockchains. Distributed Ledger Technology, 2(1), Article 8. https://doi-org.ezproxylocal.library.nova.edu/10.1145/3573895
+
+Woznica, A., & Kedziora, M. (2022). Performance and scalability evaluation of a permissioned Blockchain based on the Hyperledger Fabric, Sawtooth and Iroha. Comput. Sci. Inf. Syst., 19, 659-678.

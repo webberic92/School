@@ -1,0 +1,11 @@
+Hedera Hashgraph (HBAR) operates on a hybrid permissioned model. While the network is permissioned in terms of governance and access to certain features, it also incorporates elements of permissionlessness, particularly in terms of participation in transactions and use of decentralized applications (dApps).
+
+Here's how the permissioned and permissionless aspects of Hedera Hashgraph work:
+
+    Permissioned Governance: Hedera Hashgraph employs a governing council composed of leading organizations from various industries and regions. This council oversees network operations, including software updates, fee adjustments, and other governance decisions. The council members are selected based on their expertise, reputation, and geographic distribution, and they have the authority to make decisions that affect the network.
+
+    Permissionless Transactions: Despite the permissioned governance structure, the Hedera network allows for permissionless participation in transactions and interactions with decentralized applications (dApps). Users can freely access the network, create accounts, and transact with HBAR tokens without needing permission from any central authority. Additionally, developers can deploy dApps on the network without needing approval from the governing council.
+
+    Council Node Operators: While the consensus process in Hedera Hashgraph is permissioned, with council nodes responsible for achieving consensus on transactions, the network also allows for public nodes to participate in transaction validation and earn rewards. These public nodes operate in a permissionless manner, contributing to network security and decentralization.
+
+In summary, Hedera Hashgraph employs a hybrid model that combines permissioned governance with permissionless transactional capabilities. While the network governance is controlled by a council of trusted organizations, users and developers have the freedom to participate in transactions and utilize dApps without needing permission.

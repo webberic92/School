@@ -1,0 +1,10 @@
+ id | protocol |               filename               | nodes | txpb | rounds | avg_tps | avg_overhead | avg_cpu | avg_mem | latency_seconds 
+----+----------+--------------------------------------+-------+------+--------+---------+--------------+---------+---------+-----------------
+  1 | MERKLE   | 12nodes_256txpb_16rounds_MERKLE.txt  |    12 |  256 |     16 |   81.03 |       452.75 |   38.79 |   12.58 |          58.526
+  2 | MERKLE   | 16nodes_1024txpb_16rounds_MERKLE.txt |    16 | 1024 |     16 |   36.97 |        711.5 |    47.5 |   25.22 |         480.372
+  3 | MERKLE   | 8nodes_128txpb_16rounds_MERKLE.txt   |     8 |  128 |     16 |  185.85 |       310.12 |      31 |   11.07 |           17.41
+  4 | RSA      | 12nodes_256txpb_16rounds_RSA.txt     |    12 |  256 |     16 |  234.42 |       570.83 |   21.23 |   11.04 |           23.56
+  5 | RSA      | 16nodes_1024txpb_16rounds_RSA.txt    |    16 | 1024 |     16 |   37.03 |       726.81 |   48.04 |   25.28 |         476.765
+  6 | RSA      | 8nodes_128txpb_16rounds_RSA.txt      |     8 |  128 |     16 |  401.95 |       379.37 |   17.02 |   10.78 |          10.228
+(6 rows)
+

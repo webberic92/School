@@ -1,20 +1,21 @@
-📦 AlephResearch Final Metrics Report (MERKLE)
+📦 AlephResearch Final Metrics Report
 ==============================================
 
 🚀 Transaction Throughput (TPS)
 ----------------------------------------------
 📊 Transaction Throughput per Node
 ----------------------------------
-node-1/                                  TPS: 399.92
-node-2/                                  TPS: 402.07
-node-3/                                  TPS: 397.36
-node-4/                                  TPS: 405.90
-node-5/                                  TPS: 403.85
-node-6/                                  TPS: 402.79
-node-7/                                  TPS: 403.23
-node-8/                                  TPS: 400.49
+Node                                     TPS
+node-1                                   TPS: 399.88
+node-2                                   TPS: 402.03
+node-3                                   TPS: 397.32
+node-4                                   TPS: 405.86
+node-5                                   TPS: 403.77
+node-6                                   TPS: 402.71
+node-7                                   TPS: 403.19
+node-8                                   TPS: 400.44
 ----------------------------------
-📈 Average TPS across 8 nodes (Tx/Round: 128, Rounds: 16): 401.95
+📈 Average TPS across 8 nodes (Tx/Round: 128, Rounds: 16): 401.90
 
 📡 Communication Overhead
 ----------------------------------------------

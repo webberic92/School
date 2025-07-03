@@ -1,0 +1,52 @@
+📦 AlephResearch Final Metrics Report
+==============================================
+
+🚀 Transaction Throughput (TPS)
+----------------------------------------------
+📊 Transaction Throughput per Node
+----------------------------------
+Node                                     TPS
+node-1                                   TPS: 554.90
+node-2                                   TPS: 571.95
+node-3                                   TPS: 569.12
+node-4                                   TPS: 589.78
+node-5                                   TPS: 566.19
+----------------------------------
+📈 Average TPS across 5 nodes (Tx/Round: 1024, Rounds: 16): 570.39
+
+📡 Communication Overhead
+----------------------------------------------
+📡 Communication Overhead per Node (Final Round Only)
+------------------------------------------------------
+node-1/                                  Overhead: 171 messages
+node-2/                                  Overhead: 178 messages
+node-3/                                  Overhead: 233 messages
+node-4/                                  Overhead: 177 messages
+node-5/                                  Overhead: 218 messages
+------------------------------------------------------
+📈 Average Communication Overhead across 5 nodes: 195.40 messages
+
+🖥️  Resource Utilization (CPU & Memory)
+----------------------------------------------
+🖥️  Resource Utilization per Node (Average)
+---------------------------------------------------------
+Node                                     CPU Util (%)    Mem Util (%)   
+---------------------------------------------------------
+node-1/                                  21.97           11.44          
+node-2/                                  22.71           11.41          
+node-3/                                  20.34           11.44          
+node-4/                                  34.86           11.34          
+node-5/                                  23.03           11.51          
+---------------------------------------------------------
+📊 Average CPU Utilization across 5 nodes: 24.58%
+📊 Average Memory Utilization across 5 nodes: 11.42%
+
+⏱️  Consensus Latency
+----------------------------------------------
+⏱️  Measuring Latency Across Nodes
+--------------------------------------------
+📍 Earliest Start: 2025-07-02T04:55:44.288069
+📍 Latest End:     2025-07-02T04:56:19.085264
+--------------------------------------------
+📈 Total Latency: 34.797 seconds
+

@@ -464,6 +464,57 @@ BEGIN
 END $$;
 
 
+-- 8nodes_1024txpb_16rounds_RSA.txt
+DO $$
+DECLARE
+  experiment_id INTEGER;
+BEGIN
+  INSERT INTO experiment_summary 
+  (protocol, filename, nodes, txpb, rounds, avg_tps, avg_overhead, avg_cpu, avg_mem, latency_seconds)
+  VALUES 
+  ('MERKLE', '8nodes_1024txpb_16rounds_RSA.txt', 8, 1024, 16, 
+   126.86, 
+   322.5,
+   40.17,
+   16.19,
+   142.795)
+  RETURNING id INTO experiment_id;
+
+  INSERT INTO node_tps (experiment_id, node_id, tps)
+  VALUES
+    (experiment_id, 'node-1', 125.86),
+    (experiment_id, 'node-2', 126.99),
+    (experiment_id, 'node-3', 127.11),
+    (experiment_id, 'node-4', 125.66),
+    (experiment_id, 'node-5', 127.28),
+    (experiment_id, 'node-6', 127.67),
+    (experiment_id, 'node-7', 126.72),
+    (experiment_id, 'node-8', 127.57);
+
+  INSERT INTO node_overhead (experiment_id, node_id, overhead_messages)
+  VALUES
+    (experiment_id, 'node-1', 326),
+    (experiment_id, 'node-2', 316),
+    (experiment_id, 'node-3', 315),
+    (experiment_id, 'node-4', 333),
+    (experiment_id, 'node-5', 333),
+    (experiment_id, 'node-6', 311),
+    (experiment_id, 'node-7', 328),
+    (experiment_id, 'node-8', 318);
+
+  INSERT INTO node_resource_utilization (experiment_id, node_id, cpu_util, mem_util)
+  VALUES
+    (experiment_id, 'node-1', 38.54, 16.11),
+    (experiment_id, 'node-2', 39.88, 16.15),
+    (experiment_id, 'node-3', 39.97, 16.24),
+    (experiment_id, 'node-4', 40.26, 16.23),
+    (experiment_id, 'node-5', 40.73, 16.15),
+    (experiment_id, 'node-6', 41.28, 16.22),
+    (experiment_id, 'node-7', 39.28, 16.20),
+    (experiment_id, 'node-8', 41.44, 16.24);
+END $$;
+
+
 -- 8nodes_128txpb_16rounds_MERKLE.txt
 DO $$
 DECLARE
@@ -512,6 +563,108 @@ BEGIN
     (experiment_id, 'node-6', 33.76, 11.22),
     (experiment_id, 'node-7', 31.22, 11.06),
     (experiment_id, 'node-8', 29.78, 11.06);
+END $$;
+
+
+-- 8nodes_512txpb_16rounds_RSA.txt
+DO $$
+DECLARE
+  experiment_id INTEGER;
+BEGIN
+  INSERT INTO experiment_summary 
+  (protocol, filename, nodes, txpb, rounds, avg_tps, avg_overhead, avg_cpu, avg_mem, latency_seconds)
+  VALUES 
+  ('MERKLE', '8nodes_512txpb_16rounds_RSA.txt', 8, 512, 16, 
+   146.86, 
+   316.0,
+   36.13,
+   12.96,
+   64.759)
+  RETURNING id INTO experiment_id;
+
+  INSERT INTO node_tps (experiment_id, node_id, tps)
+  VALUES
+    (experiment_id, 'node-1', 147.32),
+    (experiment_id, 'node-2', 145.78),
+    (experiment_id, 'node-3', 147.19),
+    (experiment_id, 'node-4', 146.61),
+    (experiment_id, 'node-5', 147.34),
+    (experiment_id, 'node-6', 146.66),
+    (experiment_id, 'node-7', 146.74),
+    (experiment_id, 'node-8', 147.26);
+
+  INSERT INTO node_overhead (experiment_id, node_id, overhead_messages)
+  VALUES
+    (experiment_id, 'node-1', 328),
+    (experiment_id, 'node-2', 329),
+    (experiment_id, 'node-3', 315),
+    (experiment_id, 'node-4', 321),
+    (experiment_id, 'node-5', 305),
+    (experiment_id, 'node-6', 316),
+    (experiment_id, 'node-7', 299),
+    (experiment_id, 'node-8', 315);
+
+  INSERT INTO node_resource_utilization (experiment_id, node_id, cpu_util, mem_util)
+  VALUES
+    (experiment_id, 'node-1', 40.92, 13.22),
+    (experiment_id, 'node-2', 35.19, 12.94),
+    (experiment_id, 'node-3', 34.02, 12.78),
+    (experiment_id, 'node-4', 37.11, 13.05),
+    (experiment_id, 'node-5', 39.79, 13.24),
+    (experiment_id, 'node-6', 35.81, 12.90),
+    (experiment_id, 'node-7', 33.98, 12.84),
+    (experiment_id, 'node-8', 32.22, 12.76);
+END $$;
+
+
+-- 8nodes_5txpb_16rounds_RSA.txt
+DO $$
+DECLARE
+  experiment_id INTEGER;
+BEGIN
+  INSERT INTO experiment_summary 
+  (protocol, filename, nodes, txpb, rounds, avg_tps, avg_overhead, avg_cpu, avg_mem, latency_seconds)
+  VALUES 
+  ('MERKLE', '8nodes_5txpb_16rounds_RSA.txt', 8, 5, 16, 
+   49.66, 
+   308.5,
+   17.12,
+   10.65,
+   7.046)
+  RETURNING id INTO experiment_id;
+
+  INSERT INTO node_tps (experiment_id, node_id, tps)
+  VALUES
+    (experiment_id, 'node-1', 49.78),
+    (experiment_id, 'node-2', 49.47),
+    (experiment_id, 'node-3', 49.68),
+    (experiment_id, 'node-4', 49.60),
+    (experiment_id, 'node-5', 49.62),
+    (experiment_id, 'node-6', 49.78),
+    (experiment_id, 'node-7', 49.81),
+    (experiment_id, 'node-8', 49.53);
+
+  INSERT INTO node_overhead (experiment_id, node_id, overhead_messages)
+  VALUES
+    (experiment_id, 'node-1', 305),
+    (experiment_id, 'node-2', 309),
+    (experiment_id, 'node-3', 313),
+    (experiment_id, 'node-4', 305),
+    (experiment_id, 'node-5', 312),
+    (experiment_id, 'node-6', 318),
+    (experiment_id, 'node-7', 301),
+    (experiment_id, 'node-8', 305);
+
+  INSERT INTO node_resource_utilization (experiment_id, node_id, cpu_util, mem_util)
+  VALUES
+    (experiment_id, 'node-1', 19.52, 10.61),
+    (experiment_id, 'node-2', 12.57, 10.76),
+    (experiment_id, 'node-3', 18.08, 10.64),
+    (experiment_id, 'node-4', 13.53, 10.75),
+    (experiment_id, 'node-5', 16.11, 10.61),
+    (experiment_id, 'node-6', 21.79, 10.52),
+    (experiment_id, 'node-7', 15.35, 10.78),
+    (experiment_id, 'node-8', 20.06, 10.54);
 END $$;
 
 
@@ -944,6 +1097,57 @@ BEGIN
 END $$;
 
 
+-- 8nodes_1024txpb_16rounds_RSA.txt
+DO $$
+DECLARE
+  experiment_id INTEGER;
+BEGIN
+  INSERT INTO experiment_summary 
+  (protocol, filename, nodes, txpb, rounds, avg_tps, avg_overhead, avg_cpu, avg_mem, latency_seconds)
+  VALUES 
+  ('RSA', '8nodes_1024txpb_16rounds_RSA.txt', 8, 1024, 16, 
+   399.77, 
+   378.0,
+   22.61,
+   11.93,
+   48.114)
+  RETURNING id INTO experiment_id;
+
+  INSERT INTO node_tps (experiment_id, node_id, tps)
+  VALUES
+    (experiment_id, 'node-1', 401.76),
+    (experiment_id, 'node-2', 398.16),
+    (experiment_id, 'node-3', 397.62),
+    (experiment_id, 'node-4', 400.28),
+    (experiment_id, 'node-5', 399.68),
+    (experiment_id, 'node-6', 400.38),
+    (experiment_id, 'node-7', 400.36),
+    (experiment_id, 'node-8', 399.95);
+
+  INSERT INTO node_overhead (experiment_id, node_id, overhead_messages)
+  VALUES
+    (experiment_id, 'node-1', 353),
+    (experiment_id, 'node-2', 400),
+    (experiment_id, 'node-3', 375),
+    (experiment_id, 'node-4', 345),
+    (experiment_id, 'node-5', 368),
+    (experiment_id, 'node-6', 398),
+    (experiment_id, 'node-7', 407),
+    (experiment_id, 'node-8', 378);
+
+  INSERT INTO node_resource_utilization (experiment_id, node_id, cpu_util, mem_util)
+  VALUES
+    (experiment_id, 'node-1', 21.43, 11.83),
+    (experiment_id, 'node-2', 30.90, 11.96),
+    (experiment_id, 'node-3', 28.52, 11.86),
+    (experiment_id, 'node-4', 22.62, 11.99),
+    (experiment_id, 'node-5', 21.50, 12.00),
+    (experiment_id, 'node-6', 18.19, 11.94),
+    (experiment_id, 'node-7', 18.99, 12.01),
+    (experiment_id, 'node-8', 18.81, 11.93);
+END $$;
+
+
 -- 8nodes_128txpb_16rounds_RSA.txt
 DO $$
 DECLARE
@@ -953,7 +1157,7 @@ BEGIN
   (protocol, filename, nodes, txpb, rounds, avg_tps, avg_overhead, avg_cpu, avg_mem, latency_seconds)
   VALUES 
   ('RSA', '8nodes_128txpb_16rounds_RSA.txt', 8, 128, 16, 
-   401.95, 
+   401.9, 
    379.37,
    17.02,
    10.78,
@@ -962,14 +1166,14 @@ BEGIN
 
   INSERT INTO node_tps (experiment_id, node_id, tps)
   VALUES
-    (experiment_id, 'node-1', 399.92),
-    (experiment_id, 'node-2', 402.07),
-    (experiment_id, 'node-3', 397.36),
-    (experiment_id, 'node-4', 405.90),
-    (experiment_id, 'node-5', 403.85),
-    (experiment_id, 'node-6', 402.79),
-    (experiment_id, 'node-7', 403.23),
-    (experiment_id, 'node-8', 400.49);
+    (experiment_id, 'node-1', 399.88),
+    (experiment_id, 'node-2', 402.03),
+    (experiment_id, 'node-3', 397.32),
+    (experiment_id, 'node-4', 405.86),
+    (experiment_id, 'node-5', 403.77),
+    (experiment_id, 'node-6', 402.71),
+    (experiment_id, 'node-7', 403.19),
+    (experiment_id, 'node-8', 400.44);
 
   INSERT INTO node_overhead (experiment_id, node_id, overhead_messages)
   VALUES
@@ -992,5 +1196,107 @@ BEGIN
     (experiment_id, 'node-6', 13.05, 10.79),
     (experiment_id, 'node-7', 14.00, 10.83),
     (experiment_id, 'node-8', 15.84, 10.72);
+END $$;
+
+
+-- 8nodes_512txpb_16rounds_RSA.txt
+DO $$
+DECLARE
+  experiment_id INTEGER;
+BEGIN
+  INSERT INTO experiment_summary 
+  (protocol, filename, nodes, txpb, rounds, avg_tps, avg_overhead, avg_cpu, avg_mem, latency_seconds)
+  VALUES 
+  ('RSA', '8nodes_512txpb_16rounds_RSA.txt', 8, 512, 16, 
+   284.68, 
+   366.0,
+   21.53,
+   11.32,
+   35.818)
+  RETURNING id INTO experiment_id;
+
+  INSERT INTO node_tps (experiment_id, node_id, tps)
+  VALUES
+    (experiment_id, 'node-1', 283.90),
+    (experiment_id, 'node-2', 279.21),
+    (experiment_id, 'node-3', 293.31),
+    (experiment_id, 'node-4', 282.79),
+    (experiment_id, 'node-5', 284.44),
+    (experiment_id, 'node-6', 281.37),
+    (experiment_id, 'node-7', 288.25),
+    (experiment_id, 'node-8', 284.18);
+
+  INSERT INTO node_overhead (experiment_id, node_id, overhead_messages)
+  VALUES
+    (experiment_id, 'node-1', 395),
+    (experiment_id, 'node-2', 377),
+    (experiment_id, 'node-3', 325),
+    (experiment_id, 'node-4', 354),
+    (experiment_id, 'node-5', 382),
+    (experiment_id, 'node-6', 382),
+    (experiment_id, 'node-7', 343),
+    (experiment_id, 'node-8', 370);
+
+  INSERT INTO node_resource_utilization (experiment_id, node_id, cpu_util, mem_util)
+  VALUES
+    (experiment_id, 'node-1', 16.70, 11.37),
+    (experiment_id, 'node-2', 28.95, 11.31),
+    (experiment_id, 'node-3', 17.72, 11.24),
+    (experiment_id, 'node-4', 16.55, 11.38),
+    (experiment_id, 'node-5', 22.74, 11.30),
+    (experiment_id, 'node-6', 22.47, 11.30),
+    (experiment_id, 'node-7', 31.57, 11.42),
+    (experiment_id, 'node-8', 15.60, 11.29);
+END $$;
+
+
+-- 8nodes_5txpb_16rounds_RSA.txt
+DO $$
+DECLARE
+  experiment_id INTEGER;
+BEGIN
+  INSERT INTO experiment_summary 
+  (protocol, filename, nodes, txpb, rounds, avg_tps, avg_overhead, avg_cpu, avg_mem, latency_seconds)
+  VALUES 
+  ('RSA', '8nodes_5txpb_16rounds_RSA.txt', 8, 5, 16, 
+   80.55, 
+   407.75,
+   15.93,
+   10.5,
+   5.672)
+  RETURNING id INTO experiment_id;
+
+  INSERT INTO node_tps (experiment_id, node_id, tps)
+  VALUES
+    (experiment_id, 'node-1', 80.14),
+    (experiment_id, 'node-2', 80.56),
+    (experiment_id, 'node-3', 80.95),
+    (experiment_id, 'node-4', 80.02),
+    (experiment_id, 'node-5', 80.41),
+    (experiment_id, 'node-6', 81.21),
+    (experiment_id, 'node-7', 80.32),
+    (experiment_id, 'node-8', 80.81);
+
+  INSERT INTO node_overhead (experiment_id, node_id, overhead_messages)
+  VALUES
+    (experiment_id, 'node-1', 407),
+    (experiment_id, 'node-2', 416),
+    (experiment_id, 'node-3', 417),
+    (experiment_id, 'node-4', 387),
+    (experiment_id, 'node-5', 414),
+    (experiment_id, 'node-6', 413),
+    (experiment_id, 'node-7', 400),
+    (experiment_id, 'node-8', 408);
+
+  INSERT INTO node_resource_utilization (experiment_id, node_id, cpu_util, mem_util)
+  VALUES
+    (experiment_id, 'node-1', 11.99, 10.52),
+    (experiment_id, 'node-2', 20.53, 10.48),
+    (experiment_id, 'node-3', 23.21, 10.27),
+    (experiment_id, 'node-4', 13.50, 10.54),
+    (experiment_id, 'node-5', 14.75, 10.49),
+    (experiment_id, 'node-6', 13.78, 10.66),
+    (experiment_id, 'node-7', 12.81, 10.51),
+    (experiment_id, 'node-8', 16.92, 10.57);
 END $$;
 

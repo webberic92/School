@@ -1,0 +1,482 @@
+Starting cpu and memory logs
+PRIVATE_IP = 10.0.180.190
+Node registration success.
+IP Manager not ready, retrying...
+IP Manager not ready, retrying...
+IP Manager is reachable and all nodes are ready.
+Retrieved all nodes for nodes (excluding self): "10.0.130.28:30333", "10.0.134.92:30333", "10.0.143.81:30333", "10.0.172.139:30333"
+[network]
+listen_address = "0.0.0.0:30333"
+ip_manager_address = "10.0.182.230"
+ip_address = "10.0.180.190"
+nodes = ["10.0.130.28:30333", "10.0.134.92:30333", "10.0.143.81:30333", "10.0.172.139:30333"]
+total_nodes = 5
+
+[consensus]
+number_of_transactions = 5
+transaction_size = 256 # bytes
+data_shards = 4 # Number of data shards for erasure coding
+total_rounds = 5 # Number of rounds
+
+[logging]
+level = "info"
+transaction_metrics_log = "/aleph/logs/transaction_metrics"
+
+[node]
+id = 1
+instance_type = "t3.medium"
+Starting aleph_rbc execution
+aleph_rbc binary is found at /aleph/aleph_rbc
+Configuration file found at /aleph/aleph-node-config.toml
+Attempting to execute aleph_rbc with configuration
+Waiting for aleph_rbc to be ready on port 30333
+[2m2025-08-14T03:24:06.011741Z[0m [32m INFO[0m [2maleph_rbc[0m[2m:[0m LATENCY START
+[2m2025-08-14T03:24:06.011797Z[0m [32m INFO[0m [2maleph_research::utils::start_util[0m[2m:[0m 🔍 Checking health of all nodes...
+[2m2025-08-14T03:24:06.011806Z[0m [32m INFO[0m [2maleph_rbc[0m[2m:[0m ✅ Custom socket listener created on 0.0.0.0:30333
+[2m2025-08-14T03:24:06.011814Z[0m [32m INFO[0m [2maleph_rbc[0m[2m:[0m ✅ Starting Axum server on 0.0.0.0:30333
+aleph_rbc APIs are ready.
+Waiting for aleph_rbc API readiness...
+aleph_rbc API is ready.
+[2m2025-08-14T03:24:06.042998Z[0m [33m WARN[0m [2maleph_research::utils::start_util[0m[2m:[0m ⛔ Unhealthy nodes detected: ["10.0.130.28:30333", "10.0.134.92:30333"]: Trying again....
+Done with aleph_rbc loop for node 1 
+[2m2025-08-14T03:24:07.045082Z[0m [32m INFO[0m [2maleph_research::utils::start_util[0m[2m:[0m 🔍 Checking health of all nodes...
+[2m2025-08-14T03:24:07.060568Z[0m [33m WARN[0m [2maleph_research::utils::start_util[0m[2m:[0m ⛔ Unhealthy nodes detected: ["10.0.134.92:30333"]: Trying again....
+[2m2025-08-14T03:24:08.063695Z[0m [32m INFO[0m [2maleph_research::utils::start_util[0m[2m:[0m 🔍 Checking health of all nodes...
+[2m2025-08-14T03:24:08.078316Z[0m [33m WARN[0m [2maleph_research::utils::start_util[0m[2m:[0m ⛔ Unhealthy nodes detected: ["10.0.134.92:30333"]: Trying again....
+[2m2025-08-14T03:24:08.616162Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing proposal for round 1 from node 2
+[2m2025-08-14T03:24:08.616208Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: Ensuring DAG synchronization for round 1...
+[2m2025-08-14T03:24:08.616214Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG latest round: 0, Target round: 1
+[2m2025-08-14T03:24:08.616238Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Added proposal for round 1 from node 2. Count: 1/4
+[2m2025-08-14T03:24:08.621677Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Proposal set verified and locked for round 1
+[2m2025-08-14T03:24:08.621719Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Proposal digest locked as 9a21ad0f894627fcac73f00d6ff2bb658c9c1b794af2a8600d62bf78d601aae7
+[2m2025-08-14T03:24:08.639780Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: ✅ handle_propose round 1 done in 23.578049ms [dag_sync: 19.821µs]
+[2m2025-08-14T03:24:08.642138Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing prevote for round 1 from node 10.0.134.92
+[2m2025-08-14T03:24:08.642188Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: Computed local proposal_digest: 9a21ad0f894627fcac73f00d6ff2bb658c9c1b794af2a8600d62bf78d601aae7
+[2m2025-08-14T03:24:08.642200Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: Waiting for more prevotes (1/3)
+[2m2025-08-14T03:24:08.642226Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing prevote for round 1 from node 10.0.143.81
+[2m2025-08-14T03:24:08.642245Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: Computed local proposal_digest: 9a21ad0f894627fcac73f00d6ff2bb658c9c1b794af2a8600d62bf78d601aae7
+[2m2025-08-14T03:24:08.642250Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: Waiting for more prevotes (2/3)
+[2m2025-08-14T03:24:08.642324Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing prevote for round 1 from node 10.0.180.190
+[2m2025-08-14T03:24:08.642348Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: Computed local proposal_digest: 9a21ad0f894627fcac73f00d6ff2bb658c9c1b794af2a8600d62bf78d601aae7
+[2m2025-08-14T03:24:08.642353Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: ✅ Quorum reached for round 1. Verifying batch accumulator...
+[2m2025-08-14T03:24:08.642748Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: ✅ Batch accumulator verified. Proceeding to DAG commit...
+[2m2025-08-14T03:24:08.661035Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: ✅ handle_prevote round 1 done in 18.700576ms
+[2m2025-08-14T03:24:08.662619Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing commit for round 1 from node 5
+[2m2025-08-14T03:24:08.662648Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Commit count for round 1 is 1/3.
+[2m2025-08-14T03:24:08.662656Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing commit for round 1 from node 1
+[2m2025-08-14T03:24:08.662666Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Commit count for round 1 is 2/3.
+[2m2025-08-14T03:24:08.662671Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing commit for round 1 from node 3
+[2m2025-08-14T03:24:08.662680Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Commit count for round 1 is 3/3.
+[2m2025-08-14T03:24:08.662683Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Finalizing round 1 with quorum.
+[2m2025-08-14T03:24:08.662693Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Inserted unit U1-2 with accumulator_root = BuzTLeSSN8bm018yamHi6cjgctDQgJdeCULSSPDKZdxEjwvG49DQ1/v97t904yVfIoxq3rUxpkl7Yrevs9l6DL86W9aFYp+57oi+UvsKH4OwXP73Q8MDSN1oXdVu4UZk
+[2m2025-08-14T03:24:08.662704Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Skipping duplicate unit U1-2 during DAG insertion
+[2m2025-08-14T03:24:08.662714Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Skipping duplicate unit U1-2 during DAG insertion
+[2m2025-08-14T03:24:08.662719Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Inserting 1 unique units into DAG for round 1
+[2m2025-08-14T03:24:08.662727Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Inserted unit U1-2 (creator: 2, tx count: 5) into DAG round 1
+[2m2025-08-14T03:24:08.663171Z[0m [32m INFO[0m [2maleph_research::utils::config_util[0m[2m:[0m Successfully wrote finalized DAG for round 1 to file: /aleph/finalized_dag/round1.json
+[2m2025-08-14T03:24:08.663201Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Finalized round 1. COMMUNICATION OVERHEAD 23
+[2m2025-08-14T03:24:08.663206Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Finalized round 1 with 3/3 commits. USE THIS FOR TPS METRIC
+[2m2025-08-14T03:24:08.663209Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Local round advanced to 2
+[2m2025-08-14T03:24:08.663220Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Enqueuing RoundFinalized event for round 1
+[2m2025-08-14T03:24:08.663329Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m 🧹 Sanitizing stale messages for round 1. Queue size = 2 → RoundFinalized: 0, Commits: 0, Prevotes: 2, Proposals: 0
+[2m2025-08-14T03:24:08.663336Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m 🧹 Sanitized complete. Remaining — RoundFinalized: 0, Commits: 0, Prevotes: 2, Proposals: 0 (Total: 2)
+[2m2025-08-14T03:24:08.663341Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m 🔄 RBCProcessor: RoundFinalized received for round 1
+[2m2025-08-14T03:24:08.663472Z[0m [32m INFO[0m [2maleph_research::utils::create_transaction_data[0m[2m:[0m Node 1 Round 2: Propose phase - All shard hashes used for batch accumulator:
+[2m2025-08-14T03:24:08.667503Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m 🚀 [DEBUG] Node 1 preparing to send proposals to ["10.0.130.28:30333", "10.0.134.92:30333", "10.0.143.81:30333", "10.0.172.139:30333"] for round 2
+[2m2025-08-14T03:24:08.680382Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m 📤 Attempt 1/3: Sending proposal to 10.0.130.28:30333 (round 2)
+[2m2025-08-14T03:24:08.680561Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing prevote for round 1 from node 10.0.172.139
+[2m2025-08-14T03:24:08.680571Z[0m [33m WARN[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Node 1: Round 1 is finalized. Ignoring Prevote request from node 2.
+[2m2025-08-14T03:24:08.680588Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing prevote for round 1 from node 10.0.130.28
+[2m2025-08-14T03:24:08.680593Z[0m [33m WARN[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Node 1: Round 1 is finalized. Ignoring Prevote request from node 2.
+[2m2025-08-14T03:24:08.682886Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m ✅ Proposal delivered to 10.0.130.28:30333 (round 2)
+[2m2025-08-14T03:24:08.682948Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m 📤 Attempt 1/3: Sending proposal to 10.0.134.92:30333 (round 2)
+[2m2025-08-14T03:24:08.684278Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m ✅ Proposal delivered to 10.0.134.92:30333 (round 2)
+[2m2025-08-14T03:24:08.684313Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m 📤 Attempt 1/3: Sending proposal to 10.0.143.81:30333 (round 2)
+[2m2025-08-14T03:24:08.685776Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m ✅ Proposal delivered to 10.0.143.81:30333 (round 2)
+[2m2025-08-14T03:24:08.685845Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m 📤 Attempt 1/3: Sending proposal to 10.0.172.139:30333 (round 2)
+[2m2025-08-14T03:24:08.686986Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m ✅ Proposal delivered to 10.0.172.139:30333 (round 2)
+[2m2025-08-14T03:24:08.687008Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m ✅ Successfully sent all proposals for round 2.
+[2m2025-08-14T03:24:08.687019Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m 📥 [DEBUG] Node 1 enqueuing proposal for round 2 into RBCProcessor queue
+[2m2025-08-14T03:24:08.688207Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m ✅ Proposal for round 2 sent successfully.
+[2m2025-08-14T03:24:08.691491Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing commit for round 1 from node 2
+[2m2025-08-14T03:24:08.691522Z[0m [33m WARN[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Node 1: Round 1 is finalized. Ignoring Commit request from node 2.
+[2m2025-08-14T03:24:08.691561Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing proposal for round 2 from node 1
+[2m2025-08-14T03:24:08.691568Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: Ensuring DAG synchronization for round 2...
+[2m2025-08-14T03:24:08.691575Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG latest round: 1, Target round: 2
+[2m2025-08-14T03:24:08.691579Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG is synchronized for round 1 or beyond.
+[2m2025-08-14T03:24:08.691594Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Added proposal for round 2 from node 1. Count: 1/4
+[2m2025-08-14T03:24:08.691677Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Proposal set verified and locked for round 2
+[2m2025-08-14T03:24:08.691696Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Proposal digest locked as e3e11bdc587f5c37b8731be51567898cf93dc3d9806c5aac321a6a26eb70646a
+[2m2025-08-14T03:24:08.709527Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: ✅ handle_propose round 2 done in 17.95436ms [dag_sync: 16.114µs]
+[2m2025-08-14T03:24:08.710761Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing commit for round 1 from node 4
+[2m2025-08-14T03:24:08.710776Z[0m [33m WARN[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Node 1: Round 1 is finalized. Ignoring Commit request from node 4.
+[2m2025-08-14T03:24:08.710795Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing prevote for round 2 from node 10.0.180.190
+[2m2025-08-14T03:24:08.710814Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: Computed local proposal_digest: e3e11bdc587f5c37b8731be51567898cf93dc3d9806c5aac321a6a26eb70646a
+[2m2025-08-14T03:24:08.710820Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: Waiting for more prevotes (1/3)
+[2m2025-08-14T03:24:08.710830Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing prevote for round 2 from node 10.0.143.81
+[2m2025-08-14T03:24:08.710842Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: Computed local proposal_digest: 01fd40abbe598dae7b38270c4c613c49b839e7887f53d5324700ea7a75d7ae4a
+[2m2025-08-14T03:24:08.710846Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: Waiting for more prevotes (2/3)
+[2m2025-08-14T03:24:08.710859Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing proposal for round 2 from node 5
+[2m2025-08-14T03:24:08.710863Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: Ensuring DAG synchronization for round 2...
+[2m2025-08-14T03:24:08.710867Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG latest round: 1, Target round: 2
+[2m2025-08-14T03:24:08.710886Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG is synchronized for round 1 or beyond.
+[2m2025-08-14T03:24:08.710897Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Added proposal for round 2 from node 5. Count: 2/4
+[2m2025-08-14T03:24:08.711087Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Proposal set already locked after verification for round 2
+[2m2025-08-14T03:24:08.711131Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing proposal for round 2 from node 2
+[2m2025-08-14T03:24:08.711137Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: Ensuring DAG synchronization for round 2...
+[2m2025-08-14T03:24:08.711141Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG latest round: 1, Target round: 2
+[2m2025-08-14T03:24:08.711154Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG is synchronized for round 1 or beyond.
+[2m2025-08-14T03:24:08.711164Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Added proposal for round 2 from node 2. Count: 3/4
+[2m2025-08-14T03:24:08.711440Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Proposal set already locked after verification for round 2
+[2m2025-08-14T03:24:08.711490Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing proposal for round 2 from node 1
+[2m2025-08-14T03:24:08.711495Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: Ensuring DAG synchronization for round 2...
+[2m2025-08-14T03:24:08.711498Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG latest round: 1, Target round: 2
+[2m2025-08-14T03:24:08.711502Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG is synchronized for round 1 or beyond.
+[2m2025-08-14T03:24:08.711506Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Duplicate proposal 1 for round 2
+[2m2025-08-14T03:24:08.711520Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing proposal for round 2 from node 3
+[2m2025-08-14T03:24:08.711523Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: Ensuring DAG synchronization for round 2...
+[2m2025-08-14T03:24:08.711526Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG latest round: 1, Target round: 2
+[2m2025-08-14T03:24:08.711529Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG is synchronized for round 1 or beyond.
+[2m2025-08-14T03:24:08.711540Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Added proposal for round 2 from node 3. Count: 4/4
+[2m2025-08-14T03:24:08.733303Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing prevote for round 2 from node 10.0.130.28
+[2m2025-08-14T03:24:08.733348Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: Computed local proposal_digest: e3e11bdc587f5c37b8731be51567898cf93dc3d9806c5aac321a6a26eb70646a
+[2m2025-08-14T03:24:08.733355Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: ✅ Quorum reached for round 2. Verifying batch accumulator...
+[2m2025-08-14T03:24:08.733595Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: ✅ Batch accumulator verified. Proceeding to DAG commit...
+[2m2025-08-14T03:24:08.751760Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: ✅ handle_prevote round 2 done in 18.428227ms
+[2m2025-08-14T03:24:08.752833Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing commit for round 2 from node 3
+[2m2025-08-14T03:24:08.752888Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Commit count for round 2 is 1/3.
+[2m2025-08-14T03:24:08.752903Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing commit for round 2 from node 1
+[2m2025-08-14T03:24:08.752912Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Commit count for round 2 is 2/3.
+[2m2025-08-14T03:24:08.752924Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing prevote for round 2 from node 10.0.134.92
+[2m2025-08-14T03:24:08.752942Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: Computed local proposal_digest: 70037231d78470e24f2226bcec3039adad82d5e8137f9131e97b49c00cec0b91
+[2m2025-08-14T03:24:08.752949Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: Quorum already reached for round 2, skipping duplicate processing.
+[2m2025-08-14T03:24:08.752978Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing proposal for round 2 from node 4
+[2m2025-08-14T03:24:08.753004Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: Ensuring DAG synchronization for round 2...
+[2m2025-08-14T03:24:08.753008Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG latest round: 1, Target round: 2
+[2m2025-08-14T03:24:08.753011Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG is synchronized for round 1 or beyond.
+[2m2025-08-14T03:24:08.753023Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Added proposal for round 2 from node 4. Count: 5/4
+[2m2025-08-14T03:24:08.753027Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Quorum already reached for round 2, ignoring extra proposal from node 4.
+[2m2025-08-14T03:24:08.764221Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing commit for round 2 from node 2
+[2m2025-08-14T03:24:08.764264Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Commit count for round 2 is 3/3.
+[2m2025-08-14T03:24:08.764270Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Finalizing round 2 with quorum.
+[2m2025-08-14T03:24:08.764282Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Inserted unit U2-1 with accumulator_root = BfKH785QUVxGYaGyfW8EO0/Iphc6Wj/3vNrHPJxgdXNjnPIu2do3+tuvCLAXGqF14epYmtEMDnJXN/qX101Xz8Cn14Lr1whHXxDSkileonj0PIhuxD9bLaprRt0y5E30
+[2m2025-08-14T03:24:08.764297Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Skipping duplicate unit U2-1 during DAG insertion
+[2m2025-08-14T03:24:08.764308Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Skipping duplicate unit U2-1 during DAG insertion
+[2m2025-08-14T03:24:08.764314Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Inserting 1 unique units into DAG for round 2
+[2m2025-08-14T03:24:08.764323Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Inserted unit U2-1 (creator: 1, tx count: 5) into DAG round 2
+[2m2025-08-14T03:24:08.764692Z[0m [32m INFO[0m [2maleph_research::utils::config_util[0m[2m:[0m Successfully wrote finalized DAG for round 2 to file: /aleph/finalized_dag/round2.json
+[2m2025-08-14T03:24:08.764729Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Finalized round 2. COMMUNICATION OVERHEAD 39
+[2m2025-08-14T03:24:08.764738Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Finalized round 2 with 3/3 commits. USE THIS FOR TPS METRIC
+[2m2025-08-14T03:24:08.764744Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Local round advanced to 3
+[2m2025-08-14T03:24:08.764748Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Enqueuing RoundFinalized event for round 2
+[2m2025-08-14T03:24:08.764792Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m 🧹 Sanitizing stale messages for round 2. Queue size = 0 → RoundFinalized: 0, Commits: 0, Prevotes: 0, Proposals: 0
+[2m2025-08-14T03:24:08.764798Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m 🧹 Sanitized complete. Remaining — RoundFinalized: 0, Commits: 0, Prevotes: 0, Proposals: 0 (Total: 0)
+[2m2025-08-14T03:24:08.764955Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m 🔄 RBCProcessor: RoundFinalized received for round 2
+[2m2025-08-14T03:24:08.765124Z[0m [32m INFO[0m [2maleph_research::utils::create_transaction_data[0m[2m:[0m Node 1 Round 3: Propose phase - All shard hashes used for batch accumulator:
+[2m2025-08-14T03:24:08.770811Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m 🚀 [DEBUG] Node 1 preparing to send proposals to ["10.0.130.28:30333", "10.0.134.92:30333", "10.0.143.81:30333", "10.0.172.139:30333"] for round 3
+[2m2025-08-14T03:24:08.783222Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m 📤 Attempt 1/3: Sending proposal to 10.0.130.28:30333 (round 3)
+[2m2025-08-14T03:24:08.784231Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m ✅ Proposal delivered to 10.0.130.28:30333 (round 3)
+[2m2025-08-14T03:24:08.784275Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m 📤 Attempt 1/3: Sending proposal to 10.0.134.92:30333 (round 3)
+[2m2025-08-14T03:24:08.785499Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m ✅ Proposal delivered to 10.0.134.92:30333 (round 3)
+[2m2025-08-14T03:24:08.785536Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m 📤 Attempt 1/3: Sending proposal to 10.0.143.81:30333 (round 3)
+[2m2025-08-14T03:24:08.786624Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m ✅ Proposal delivered to 10.0.143.81:30333 (round 3)
+[2m2025-08-14T03:24:08.786649Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m 📤 Attempt 1/3: Sending proposal to 10.0.172.139:30333 (round 3)
+[2m2025-08-14T03:24:08.787626Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m ✅ Proposal delivered to 10.0.172.139:30333 (round 3)
+[2m2025-08-14T03:24:08.787652Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m ✅ Successfully sent all proposals for round 3.
+[2m2025-08-14T03:24:08.787663Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m 📥 [DEBUG] Node 1 enqueuing proposal for round 3 into RBCProcessor queue
+[2m2025-08-14T03:24:08.788767Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m ✅ Proposal for round 3 sent successfully.
+[2m2025-08-14T03:24:08.795023Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing commit for round 2 from node 5
+[2m2025-08-14T03:24:08.795049Z[0m [33m WARN[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Node 1: Round 2 is finalized. Ignoring Commit request from node 5.
+[2m2025-08-14T03:24:08.795074Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing prevote for round 2 from node 10.0.172.139
+[2m2025-08-14T03:24:08.795078Z[0m [33m WARN[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Node 1: Round 2 is finalized. Ignoring Prevote request from node 5.
+[2m2025-08-14T03:24:08.795096Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing proposal for round 3 from node 1
+[2m2025-08-14T03:24:08.795101Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: Ensuring DAG synchronization for round 3...
+[2m2025-08-14T03:24:08.795105Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG latest round: 2, Target round: 3
+[2m2025-08-14T03:24:08.795109Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG is synchronized for round 2 or beyond.
+[2m2025-08-14T03:24:08.795123Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Added proposal for round 3 from node 1. Count: 1/4
+[2m2025-08-14T03:24:08.795497Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Proposal set verified and locked for round 3
+[2m2025-08-14T03:24:08.795516Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Proposal digest locked as 638f9a05237e797fd5ebfb4cd14e21809389f00d4a8f860340df38548258548c
+[2m2025-08-14T03:24:08.816102Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: ✅ handle_propose round 3 done in 20.997453ms [dag_sync: 13.033µs]
+[2m2025-08-14T03:24:08.817316Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing prevote for round 3 from node 10.0.180.190
+[2m2025-08-14T03:24:08.817351Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: Computed local proposal_digest: 638f9a05237e797fd5ebfb4cd14e21809389f00d4a8f860340df38548258548c
+[2m2025-08-14T03:24:08.817357Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: Waiting for more prevotes (1/3)
+[2m2025-08-14T03:24:08.817390Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing proposal for round 3 from node 1
+[2m2025-08-14T03:24:08.817399Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: Ensuring DAG synchronization for round 3...
+[2m2025-08-14T03:24:08.817403Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG latest round: 2, Target round: 3
+[2m2025-08-14T03:24:08.817406Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG is synchronized for round 2 or beyond.
+[2m2025-08-14T03:24:08.817429Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Duplicate proposal 1 for round 3
+[2m2025-08-14T03:24:08.817443Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing proposal for round 3 from node 3
+[2m2025-08-14T03:24:08.817711Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: Ensuring DAG synchronization for round 3...
+[2m2025-08-14T03:24:08.817723Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG latest round: 2, Target round: 3
+[2m2025-08-14T03:24:08.817727Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG is synchronized for round 2 or beyond.
+[2m2025-08-14T03:24:08.817740Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Added proposal for round 3 from node 3. Count: 2/4
+[2m2025-08-14T03:24:08.817909Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Proposal set already locked after verification for round 3
+[2m2025-08-14T03:24:08.817942Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing prevote for round 3 from node 10.0.130.28
+[2m2025-08-14T03:24:08.817958Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: Computed local proposal_digest: 383eeb5163b577170ae428d9b67c16666b6c45a0c7a4e8239080cef3b249b399
+[2m2025-08-14T03:24:08.817962Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: Waiting for more prevotes (2/3)
+[2m2025-08-14T03:24:08.817980Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing proposal for round 3 from node 2
+[2m2025-08-14T03:24:08.817985Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: Ensuring DAG synchronization for round 3...
+[2m2025-08-14T03:24:08.817988Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG latest round: 2, Target round: 3
+[2m2025-08-14T03:24:08.817991Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG is synchronized for round 2 or beyond.
+[2m2025-08-14T03:24:08.818002Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Added proposal for round 3 from node 2. Count: 3/4
+[2m2025-08-14T03:24:08.818244Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Proposal set already locked after verification for round 3
+[2m2025-08-14T03:24:08.818293Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing proposal for round 3 from node 5
+[2m2025-08-14T03:24:08.818298Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: Ensuring DAG synchronization for round 3...
+[2m2025-08-14T03:24:08.818302Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG latest round: 2, Target round: 3
+[2m2025-08-14T03:24:08.818311Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG is synchronized for round 2 or beyond.
+[2m2025-08-14T03:24:08.818323Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Added proposal for round 3 from node 5. Count: 4/4
+[2m2025-08-14T03:24:08.818337Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing proposal for round 2 from node 5
+[2m2025-08-14T03:24:08.818341Z[0m [33m WARN[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Node 1: Round 2 is finalized. Ignoring Propose request from node 5.
+[2m2025-08-14T03:24:08.829869Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing prevote for round 3 from node 10.0.143.81
+[2m2025-08-14T03:24:08.829918Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: Computed local proposal_digest: 383eeb5163b577170ae428d9b67c16666b6c45a0c7a4e8239080cef3b249b399
+[2m2025-08-14T03:24:08.829925Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: ✅ Quorum reached for round 3. Verifying batch accumulator...
+[2m2025-08-14T03:24:08.830116Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: ✅ Batch accumulator verified. Proceeding to DAG commit...
+[2m2025-08-14T03:24:08.849656Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: ✅ handle_prevote round 3 done in 19.752215ms
+[2m2025-08-14T03:24:08.850964Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing commit for round 3 from node 3
+[2m2025-08-14T03:24:08.850993Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Commit count for round 3 is 1/3.
+[2m2025-08-14T03:24:08.851008Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing commit for round 3 from node 5
+[2m2025-08-14T03:24:08.851023Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Commit count for round 3 is 2/3.
+[2m2025-08-14T03:24:08.851050Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing commit for round 3 from node 2
+[2m2025-08-14T03:24:08.851085Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Commit count for round 3 is 3/3.
+[2m2025-08-14T03:24:08.851089Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Finalizing round 3 with quorum.
+[2m2025-08-14T03:24:08.851100Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Inserted unit U3-3 with accumulator_root = I0OJdiOrtbgaVy27K7KPWiKeQd+OZeTmtRwRyTOsBmNFnwRRRXo1y1X/ZDl8uFfQKkeU1Sd2AQYD+SQ0MVL4sJNeBrSXIH4NP+erFw8Rti/v/eZCWbGUbWtwZdDqkVg=
+[2m2025-08-14T03:24:08.851110Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Skipping duplicate unit U3-3 during DAG insertion
+[2m2025-08-14T03:24:08.851120Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Skipping duplicate unit U3-3 during DAG insertion
+[2m2025-08-14T03:24:08.851125Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Inserting 1 unique units into DAG for round 3
+[2m2025-08-14T03:24:08.851134Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Inserted unit U3-3 (creator: 3, tx count: 5) into DAG round 3
+[2m2025-08-14T03:24:08.851572Z[0m [32m INFO[0m [2maleph_research::utils::config_util[0m[2m:[0m Successfully wrote finalized DAG for round 3 to file: /aleph/finalized_dag/round3.json
+[2m2025-08-14T03:24:08.851595Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Finalized round 3. COMMUNICATION OVERHEAD 54
+[2m2025-08-14T03:24:08.851601Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Finalized round 3 with 3/3 commits. USE THIS FOR TPS METRIC
+[2m2025-08-14T03:24:08.851612Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Local round advanced to 4
+[2m2025-08-14T03:24:08.851616Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Enqueuing RoundFinalized event for round 3
+[2m2025-08-14T03:24:08.851651Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m 🧹 Sanitizing stale messages for round 3. Queue size = 4 → RoundFinalized: 0, Commits: 1, Prevotes: 1, Proposals: 2
+[2m2025-08-14T03:24:08.851656Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m 🧹 Sanitized complete. Remaining — RoundFinalized: 0, Commits: 1, Prevotes: 1, Proposals: 2 (Total: 4)
+[2m2025-08-14T03:24:08.851660Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m 🔄 RBCProcessor: RoundFinalized received for round 3
+[2m2025-08-14T03:24:08.851759Z[0m [32m INFO[0m [2maleph_research::utils::create_transaction_data[0m[2m:[0m Node 1 Round 4: Propose phase - All shard hashes used for batch accumulator:
+[2m2025-08-14T03:24:08.856683Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m 🚀 [DEBUG] Node 1 preparing to send proposals to ["10.0.130.28:30333", "10.0.134.92:30333", "10.0.143.81:30333", "10.0.172.139:30333"] for round 4
+[2m2025-08-14T03:24:08.867768Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m 📤 Attempt 1/3: Sending proposal to 10.0.130.28:30333 (round 4)
+[2m2025-08-14T03:24:08.867948Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing commit for round 3 from node 1
+[2m2025-08-14T03:24:08.867958Z[0m [33m WARN[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Node 1: Round 3 is finalized. Ignoring Commit request from node 1.
+[2m2025-08-14T03:24:08.868016Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing prevote for round 3 from node 10.0.134.92
+[2m2025-08-14T03:24:08.868022Z[0m [33m WARN[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Node 1: Round 3 is finalized. Ignoring Prevote request from node 3.
+[2m2025-08-14T03:24:08.868042Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing proposal for round 3 from node 4
+[2m2025-08-14T03:24:08.868048Z[0m [33m WARN[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Node 1: Round 3 is finalized. Ignoring Propose request from node 4.
+[2m2025-08-14T03:24:08.868067Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing proposal for round 3 from node 4
+[2m2025-08-14T03:24:08.868072Z[0m [33m WARN[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Node 1: Round 3 is finalized. Ignoring Propose request from node 4.
+[2m2025-08-14T03:24:08.869269Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m ✅ Proposal delivered to 10.0.130.28:30333 (round 4)
+[2m2025-08-14T03:24:08.869318Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m 📤 Attempt 1/3: Sending proposal to 10.0.134.92:30333 (round 4)
+[2m2025-08-14T03:24:08.870305Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m ✅ Proposal delivered to 10.0.134.92:30333 (round 4)
+[2m2025-08-14T03:24:08.870341Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m 📤 Attempt 1/3: Sending proposal to 10.0.143.81:30333 (round 4)
+[2m2025-08-14T03:24:08.871476Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m ✅ Proposal delivered to 10.0.143.81:30333 (round 4)
+[2m2025-08-14T03:24:08.871505Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m 📤 Attempt 1/3: Sending proposal to 10.0.172.139:30333 (round 4)
+[2m2025-08-14T03:24:08.872515Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m ✅ Proposal delivered to 10.0.172.139:30333 (round 4)
+[2m2025-08-14T03:24:08.872541Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m ✅ Successfully sent all proposals for round 4.
+[2m2025-08-14T03:24:08.872554Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m 📥 [DEBUG] Node 1 enqueuing proposal for round 4 into RBCProcessor queue
+[2m2025-08-14T03:24:08.873741Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m ✅ Proposal for round 4 sent successfully.
+[2m2025-08-14T03:24:08.879153Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing proposal for round 4 from node 1
+[2m2025-08-14T03:24:08.879183Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: Ensuring DAG synchronization for round 4...
+[2m2025-08-14T03:24:08.879188Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG latest round: 3, Target round: 4
+[2m2025-08-14T03:24:08.879192Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG is synchronized for round 3 or beyond.
+[2m2025-08-14T03:24:08.879216Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Added proposal for round 4 from node 1. Count: 1/4
+[2m2025-08-14T03:24:08.879443Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Proposal set verified and locked for round 4
+[2m2025-08-14T03:24:08.879463Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Proposal digest locked as f6ad5e5f5998e300a5f2389832df711cadcb6659d8d0fb675e7659e879149a6f
+[2m2025-08-14T03:24:08.898040Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: ✅ handle_propose round 4 done in 18.853682ms [dag_sync: 13.401µs]
+[2m2025-08-14T03:24:08.899433Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing prevote for round 4 from node 10.0.143.81
+[2m2025-08-14T03:24:08.899478Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: Computed local proposal_digest: f502fab3c2e66ffa6bc230aab045cd8ef261e9267f1e6bd401d9bf2d948894d6
+[2m2025-08-14T03:24:08.899485Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: Waiting for more prevotes (1/3)
+[2m2025-08-14T03:24:08.899502Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing prevote for round 4 from node 10.0.180.190
+[2m2025-08-14T03:24:08.899518Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: Computed local proposal_digest: f6ad5e5f5998e300a5f2389832df711cadcb6659d8d0fb675e7659e879149a6f
+[2m2025-08-14T03:24:08.899523Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: Waiting for more prevotes (2/3)
+[2m2025-08-14T03:24:08.899535Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing proposal for round 4 from node 2
+[2m2025-08-14T03:24:08.899540Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: Ensuring DAG synchronization for round 4...
+[2m2025-08-14T03:24:08.899544Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG latest round: 3, Target round: 4
+[2m2025-08-14T03:24:08.899547Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG is synchronized for round 3 or beyond.
+[2m2025-08-14T03:24:08.899559Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Added proposal for round 4 from node 2. Count: 2/4
+[2m2025-08-14T03:24:08.899930Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Proposal set already locked after verification for round 4
+[2m2025-08-14T03:24:08.899967Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing proposal for round 4 from node 5
+[2m2025-08-14T03:24:08.899981Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: Ensuring DAG synchronization for round 4...
+[2m2025-08-14T03:24:08.899993Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG latest round: 3, Target round: 4
+[2m2025-08-14T03:24:08.899997Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG is synchronized for round 3 or beyond.
+[2m2025-08-14T03:24:08.900009Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Added proposal for round 4 from node 5. Count: 3/4
+[2m2025-08-14T03:24:08.900177Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Proposal set already locked after verification for round 4
+[2m2025-08-14T03:24:08.900203Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing proposal for round 4 from node 4
+[2m2025-08-14T03:24:08.900208Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: Ensuring DAG synchronization for round 4...
+[2m2025-08-14T03:24:08.900213Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG latest round: 3, Target round: 4
+[2m2025-08-14T03:24:08.900217Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG is synchronized for round 3 or beyond.
+[2m2025-08-14T03:24:08.900226Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Added proposal for round 4 from node 4. Count: 4/4
+[2m2025-08-14T03:24:08.900241Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing proposal for round 4 from node 1
+[2m2025-08-14T03:24:08.900247Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: Ensuring DAG synchronization for round 4...
+[2m2025-08-14T03:24:08.900251Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG latest round: 3, Target round: 4
+[2m2025-08-14T03:24:08.900255Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG is synchronized for round 3 or beyond.
+[2m2025-08-14T03:24:08.900259Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Duplicate proposal 1 for round 4
+[2m2025-08-14T03:24:08.900276Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing proposal for round 4 from node 3
+[2m2025-08-14T03:24:08.900281Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: Ensuring DAG synchronization for round 4...
+[2m2025-08-14T03:24:08.900286Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG latest round: 3, Target round: 4
+[2m2025-08-14T03:24:08.900289Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG is synchronized for round 3 or beyond.
+[2m2025-08-14T03:24:08.900299Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Added proposal for round 4 from node 3. Count: 5/4
+[2m2025-08-14T03:24:08.900302Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Quorum already reached for round 4, ignoring extra proposal from node 3.
+[2m2025-08-14T03:24:08.911863Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing prevote for round 4 from node 10.0.134.92
+[2m2025-08-14T03:24:08.911924Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: Computed local proposal_digest: f502fab3c2e66ffa6bc230aab045cd8ef261e9267f1e6bd401d9bf2d948894d6
+[2m2025-08-14T03:24:08.911930Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: ✅ Quorum reached for round 4. Verifying batch accumulator...
+[2m2025-08-14T03:24:08.912162Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: ✅ Batch accumulator verified. Proceeding to DAG commit...
+[2m2025-08-14T03:24:08.930169Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: ✅ handle_prevote round 4 done in 18.269334ms
+[2m2025-08-14T03:24:08.931897Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing commit for round 4 from node 5
+[2m2025-08-14T03:24:08.931947Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Commit count for round 4 is 1/3.
+[2m2025-08-14T03:24:08.931967Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing commit for round 4 from node 1
+[2m2025-08-14T03:24:08.931979Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Commit count for round 4 is 2/3.
+[2m2025-08-14T03:24:08.931987Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing commit for round 4 from node 3
+[2m2025-08-14T03:24:08.932001Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Commit count for round 4 is 3/3.
+[2m2025-08-14T03:24:08.932004Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Finalizing round 4 with quorum.
+[2m2025-08-14T03:24:08.932015Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Inserted unit U4-1 with accumulator_root = C1iu29WK8yEGcpPqSa5pbRv2tdigf/nLrfg093svHZEGvQXB4H6kfLU9bNGtdDLD/HWKusQ1kyKh8OLhCEEPaCK/kgi9+b9XiUBvW3U8SAhDfUFd5to7pV8XV9P16wAs
+[2m2025-08-14T03:24:08.932025Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Inserted unit U4-3 with accumulator_root = C1iu29WK8yEGcpPqSa5pbRv2tdigf/nLrfg093svHZEGvQXB4H6kfLU9bNGtdDLD/HWKusQ1kyKh8OLhCEEPaCK/kgi9+b9XiUBvW3U8SAhDfUFd5to7pV8XV9P16wAs
+[2m2025-08-14T03:24:08.932034Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Skipping duplicate unit U4-3 during DAG insertion
+[2m2025-08-14T03:24:08.932041Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Inserting 2 unique units into DAG for round 4
+[2m2025-08-14T03:24:08.932049Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Inserted unit U4-1 (creator: 1, tx count: 5) into DAG round 4
+[2m2025-08-14T03:24:08.932058Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Inserted unit U4-3 (creator: 3, tx count: 5) into DAG round 4
+[2m2025-08-14T03:24:08.932565Z[0m [32m INFO[0m [2maleph_research::utils::config_util[0m[2m:[0m Successfully wrote finalized DAG for round 4 to file: /aleph/finalized_dag/round4.json
+[2m2025-08-14T03:24:08.932604Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Finalized round 4. COMMUNICATION OVERHEAD 69
+[2m2025-08-14T03:24:08.932610Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Finalized round 4 with 3/3 commits. USE THIS FOR TPS METRIC
+[2m2025-08-14T03:24:08.932614Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Local round advanced to 5
+[2m2025-08-14T03:24:08.932617Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Enqueuing RoundFinalized event for round 4
+[2m2025-08-14T03:24:08.932663Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m 🧹 Sanitizing stale messages for round 4. Queue size = 4 → RoundFinalized: 0, Commits: 1, Prevotes: 2, Proposals: 1
+[2m2025-08-14T03:24:08.932668Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m 🧹 Sanitized complete. Remaining — RoundFinalized: 0, Commits: 1, Prevotes: 2, Proposals: 1 (Total: 4)
+[2m2025-08-14T03:24:08.932672Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m 🔄 RBCProcessor: RoundFinalized received for round 4
+[2m2025-08-14T03:24:08.932793Z[0m [32m INFO[0m [2maleph_research::utils::create_transaction_data[0m[2m:[0m Node 1 Round 5: Propose phase - All shard hashes used for batch accumulator:
+[2m2025-08-14T03:24:08.937665Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m 🚀 [DEBUG] Node 1 preparing to send proposals to ["10.0.130.28:30333", "10.0.134.92:30333", "10.0.143.81:30333", "10.0.172.139:30333"] for round 5
+[2m2025-08-14T03:24:08.951805Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m 📤 Attempt 1/3: Sending proposal to 10.0.130.28:30333 (round 5)
+[2m2025-08-14T03:24:08.952108Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing commit for round 4 from node 2
+[2m2025-08-14T03:24:08.952119Z[0m [33m WARN[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Node 1: Round 4 is finalized. Ignoring Commit request from node 2.
+[2m2025-08-14T03:24:08.952132Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing prevote for round 4 from node 10.0.130.28
+[2m2025-08-14T03:24:08.952136Z[0m [33m WARN[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Node 1: Round 4 is finalized. Ignoring Prevote request from node 1.
+[2m2025-08-14T03:24:08.952148Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing prevote for round 4 from node 10.0.172.139
+[2m2025-08-14T03:24:08.952151Z[0m [33m WARN[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Node 1: Round 4 is finalized. Ignoring Prevote request from node 5.
+[2m2025-08-14T03:24:08.952161Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing proposal for round 4 from node 3
+[2m2025-08-14T03:24:08.952165Z[0m [33m WARN[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Node 1: Round 4 is finalized. Ignoring Propose request from node 3.
+[2m2025-08-14T03:24:08.953098Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m ✅ Proposal delivered to 10.0.130.28:30333 (round 5)
+[2m2025-08-14T03:24:08.953147Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m 📤 Attempt 1/3: Sending proposal to 10.0.134.92:30333 (round 5)
+[2m2025-08-14T03:24:08.954507Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m ✅ Proposal delivered to 10.0.134.92:30333 (round 5)
+[2m2025-08-14T03:24:08.954545Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m 📤 Attempt 1/3: Sending proposal to 10.0.143.81:30333 (round 5)
+[2m2025-08-14T03:24:08.955758Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m ✅ Proposal delivered to 10.0.143.81:30333 (round 5)
+[2m2025-08-14T03:24:08.955844Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m 📤 Attempt 1/3: Sending proposal to 10.0.172.139:30333 (round 5)
+[2m2025-08-14T03:24:08.957200Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m ✅ Proposal delivered to 10.0.172.139:30333 (round 5)
+[2m2025-08-14T03:24:08.957223Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m ✅ Successfully sent all proposals for round 5.
+[2m2025-08-14T03:24:08.957240Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m 📥 [DEBUG] Node 1 enqueuing proposal for round 5 into RBCProcessor queue
+[2m2025-08-14T03:24:08.958331Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m ✅ Proposal for round 5 sent successfully.
+[2m2025-08-14T03:24:08.963192Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing proposal for round 5 from node 1
+[2m2025-08-14T03:24:08.963223Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: Ensuring DAG synchronization for round 5...
+[2m2025-08-14T03:24:08.963228Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG latest round: 4, Target round: 5
+[2m2025-08-14T03:24:08.963232Z[0m [32m INFO[0m [2maleph_research::utils::dag_utils[0m[2m:[0m Node 1: DAG is synchronized for round 4 or beyond.
+[2m2025-08-14T03:24:08.963408Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Added proposal for round 5 from node 1. Count: 1/4
+[2m2025-08-14T03:24:08.963787Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Proposal set verified and locked for round 5
+[2m2025-08-14T03:24:08.963810Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: Proposal digest locked as 41b965daf83f32dca4b9dc073fede2b734faf78da0539ad2ecb79b61450815f1
+[2m2025-08-14T03:24:08.982736Z[0m [32m INFO[0m [2maleph_research::handlers::handle_propose[0m[2m:[0m Node 1: ✅ handle_propose round 5 done in 19.508204ms [dag_sync: 171.679µs]
+[2m2025-08-14T03:24:08.994535Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing prevote for round 5 from node 10.0.180.190
+[2m2025-08-14T03:24:08.994611Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: Computed local proposal_digest: 41b965daf83f32dca4b9dc073fede2b734faf78da0539ad2ecb79b61450815f1
+[2m2025-08-14T03:24:08.994938Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: Waiting for more prevotes (1/3)
+[2m2025-08-14T03:24:08.995456Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing prevote for round 5 from node 10.0.130.28
+[2m2025-08-14T03:24:08.995491Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: Computed local proposal_digest: 41b965daf83f32dca4b9dc073fede2b734faf78da0539ad2ecb79b61450815f1
+[2m2025-08-14T03:24:08.995497Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: Waiting for more prevotes (2/3)
+[2m2025-08-14T03:24:08.995517Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing prevote for round 5 from node 10.0.134.92
+[2m2025-08-14T03:24:08.995539Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: Computed local proposal_digest: d374532a0f2e5db045f74bf0bc4c689437b39196101a5711e4bbe7c905e69822
+[2m2025-08-14T03:24:08.995545Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: ✅ Quorum reached for round 5. Verifying batch accumulator...
+[2m2025-08-14T03:24:08.995797Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: ✅ Batch accumulator verified. Proceeding to DAG commit...
+[2m2025-08-14T03:24:09.017165Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: ✅ handle_prevote round 5 done in 21.638455ms
+[2m2025-08-14T03:24:09.019065Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing commit for round 5 from node 3
+[2m2025-08-14T03:24:09.019118Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Commit count for round 5 is 1/3.
+[2m2025-08-14T03:24:09.019135Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing commit for round 5 from node 2
+[2m2025-08-14T03:24:09.019167Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Commit count for round 5 is 2/3.
+[2m2025-08-14T03:24:09.019195Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing commit for round 5 from node 5
+[2m2025-08-14T03:24:09.019223Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Commit count for round 5 is 3/3.
+[2m2025-08-14T03:24:09.019228Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Finalizing round 5 with quorum.
+[2m2025-08-14T03:24:09.019384Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Inserted unit U5-3 with accumulator_root = DgTCIWeDQBmsIFiS2AHZgngcWYbNc5pUx3VrxLRHHFDj1lHNCLRXIr7Qcuwi5pD1IM8nG/prThhIea2jxJjpvph4cnX5Zh0C8iwgjHxof7gx6naF8eczm5vMelSwf7W4
+[2m2025-08-14T03:24:09.019399Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Inserted unit U5-1 with accumulator_root = DgTCIWeDQBmsIFiS2AHZgngcWYbNc5pUx3VrxLRHHFDj1lHNCLRXIr7Qcuwi5pD1IM8nG/prThhIea2jxJjpvph4cnX5Zh0C8iwgjHxof7gx6naF8eczm5vMelSwf7W4
+[2m2025-08-14T03:24:09.019417Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Skipping duplicate unit U5-3 during DAG insertion
+[2m2025-08-14T03:24:09.019424Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Inserting 2 unique units into DAG for round 5
+[2m2025-08-14T03:24:09.019432Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Inserted unit U5-3 (creator: 3, tx count: 5) into DAG round 5
+[2m2025-08-14T03:24:09.019442Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Inserted unit U5-1 (creator: 1, tx count: 5) into DAG round 5
+[2m2025-08-14T03:24:09.019983Z[0m [32m INFO[0m [2maleph_research::utils::config_util[0m[2m:[0m Successfully wrote finalized DAG for round 5 to file: /aleph/finalized_dag/round5.json
+[2m2025-08-14T03:24:09.020019Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Finalized round 5. COMMUNICATION OVERHEAD 83
+[2m2025-08-14T03:24:09.020028Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Finalized round 5 with 3/3 commits. USE THIS FOR TPS METRIC
+[2m2025-08-14T03:24:09.020033Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Local round advanced to 6
+[2m2025-08-14T03:24:09.020037Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Enqueuing RoundFinalized event for round 5
+[2m2025-08-14T03:24:09.020045Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Round 5 was final. Shutting down.
+[2m2025-08-14T03:24:09.020072Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m LATENCY END: 2025-08-14 03:24:09
+[2m2025-08-14T03:24:09.020089Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m 🛑 RBCProcessor terminated.
+[2m2025-08-14T03:24:09.020120Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m 🧹 Sanitizing stale messages for round 5. Queue size = 8 → RoundFinalized: 0, Commits: 1, Prevotes: 2, Proposals: 5
+[2m2025-08-14T03:24:09.020129Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m 🧹 Sanitized complete. Remaining — RoundFinalized: 0, Commits: 1, Prevotes: 2, Proposals: 5 (Total: 8)
+[2m2025-08-14T03:24:09.020135Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m 🔄 RBCProcessor: RoundFinalized received for round 5
+[2m2025-08-14T03:24:09.020140Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m ✅ All 5 rounds completed. Stopping RBCProcessor.
+[2m2025-08-14T03:24:09.020163Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m 📊 Ending Latency Logger: 2025-08-14 03:24:09
+[2m2025-08-14T03:24:09.020385Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m ✅ S3 upload triggered.
+[2m2025-08-14T03:24:09.020406Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing commit for round 5 from node 1
+[2m2025-08-14T03:24:09.020413Z[0m [33m WARN[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Node 1: Round 5 is finalized. Ignoring Commit request from node 1.
+[2m2025-08-14T03:24:09.020429Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing prevote for round 5 from node 10.0.172.139
+[2m2025-08-14T03:24:09.020434Z[0m [33m WARN[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Node 1: Round 5 is finalized. Ignoring Prevote request from node 3.
+[2m2025-08-14T03:24:09.020457Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing prevote for round 5 from node 10.0.143.81
+[2m2025-08-14T03:24:09.020462Z[0m [33m WARN[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Node 1: Round 5 is finalized. Ignoring Prevote request from node 3.
+[2m2025-08-14T03:24:09.020482Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing proposal for round 5 from node 3
+[2m2025-08-14T03:24:09.020494Z[0m [33m WARN[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Node 1: Round 5 is finalized. Ignoring Propose request from node 3.
+[2m2025-08-14T03:24:09.020510Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing proposal for round 5 from node 5
+[2m2025-08-14T03:24:09.020515Z[0m [33m WARN[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Node 1: Round 5 is finalized. Ignoring Propose request from node 5.
+[2m2025-08-14T03:24:09.020527Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing proposal for round 5 from node 4
+[2m2025-08-14T03:24:09.020531Z[0m [33m WARN[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Node 1: Round 5 is finalized. Ignoring Propose request from node 4.
+[2m2025-08-14T03:24:09.020544Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing proposal for round 5 from node 1
+[2m2025-08-14T03:24:09.020549Z[0m [33m WARN[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Node 1: Round 5 is finalized. Ignoring Propose request from node 1.
+[2m2025-08-14T03:24:09.020567Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing proposal for round 5 from node 2
+[2m2025-08-14T03:24:09.020572Z[0m [33m WARN[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Node 1: Round 5 is finalized. Ignoring Propose request from node 2.
+[2m2025-08-14T03:24:09.042720Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing commit for round 5 from node 4
+[2m2025-08-14T03:24:09.042753Z[0m [33m WARN[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Node 1: Round 5 is finalized. Ignoring Commit request from node 4.
+[2m2025-08-14T03:24:09.082081Z[0m [32m INFO[0m [2maleph_research::utils::start_util[0m[2m:[0m 🔍 Checking health of all nodes...
+[2m2025-08-14T03:24:09.102911Z[0m [32m INFO[0m [2maleph_research::utils::start_util[0m[2m:[0m ✅ All nodes are healthy.
+[2m2025-08-14T03:24:09.104449Z[0m [32m INFO[0m [2maleph_rbc[0m[2m:[0m All Nodes are healthy starting transaction execution.
+[2m2025-08-14T03:24:09.104672Z[0m [32m INFO[0m [2maleph_research::utils::create_transaction_data[0m[2m:[0m Node 1 Round 6: Propose phase - All shard hashes used for batch accumulator:
+[2m2025-08-14T03:24:09.114835Z[0m [32m INFO[0m [2maleph_rbc[0m[2m:[0m Node 1: Created proposal with 5 transactions for round 6.
+[2m2025-08-14T03:24:09.114865Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m 🚀 [DEBUG] Node 1 preparing to send proposals to ["10.0.130.28:30333", "10.0.134.92:30333", "10.0.143.81:30333", "10.0.172.139:30333"] for round 6
+[2m2025-08-14T03:24:09.134198Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m 📤 Attempt 1/3: Sending proposal to 10.0.130.28:30333 (round 6)
+[2m2025-08-14T03:24:09.135497Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m ✅ Proposal delivered to 10.0.130.28:30333 (round 6)
+[2m2025-08-14T03:24:09.135552Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m 📤 Attempt 1/3: Sending proposal to 10.0.134.92:30333 (round 6)
+[2m2025-08-14T03:24:09.136591Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m ✅ Proposal delivered to 10.0.134.92:30333 (round 6)
+[2m2025-08-14T03:24:09.136633Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m 📤 Attempt 1/3: Sending proposal to 10.0.143.81:30333 (round 6)
+[2m2025-08-14T03:24:09.137781Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m ✅ Proposal delivered to 10.0.143.81:30333 (round 6)
+[2m2025-08-14T03:24:09.137833Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m 📤 Attempt 1/3: Sending proposal to 10.0.172.139:30333 (round 6)
+[2m2025-08-14T03:24:09.138838Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m ✅ Proposal delivered to 10.0.172.139:30333 (round 6)
+[2m2025-08-14T03:24:09.138864Z[0m [32m INFO[0m [2maleph_research::requests::send_proposals[0m[2m:[0m ✅ Successfully sent all proposals for round 6.
+[2m2025-08-14T03:24:09.138872Z[0m [31mERROR[0m [2maleph_research::requests::send_proposals[0m[2m:[0m ❌ [ERROR] Node 1: RBCProcessor is not initialized when enqueuing proposal!
+[2m2025-08-14T03:24:09.140919Z[0m [31mERROR[0m [2maleph_rbc[0m[2m:[0m Node 1: Failed to send proposal for round 6. Error: RBCProcessor not initialized when enqueuing proposal!
+[2m2025-08-14T03:24:09.176347Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing prevote for round 6 from node 10.0.134.92
+[2m2025-08-14T03:24:09.176416Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: Computed local proposal_digest: 3e6a18861cdc6c047f8218cc5259b4b2a974c852c2495389a2d2545254e75392
+[2m2025-08-14T03:24:09.176426Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: Waiting for more prevotes (1/3)
+[2m2025-08-14T03:24:09.187797Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing prevote for round 6 from node 10.0.130.28
+[2m2025-08-14T03:24:09.187856Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: Computed local proposal_digest: 3e6a18861cdc6c047f8218cc5259b4b2a974c852c2495389a2d2545254e75392
+[2m2025-08-14T03:24:09.187864Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: Waiting for more prevotes (2/3)
+[2m2025-08-14T03:24:09.187883Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing prevote for round 6 from node 10.0.143.81
+[2m2025-08-14T03:24:09.187907Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: Computed local proposal_digest: 3e6a18861cdc6c047f8218cc5259b4b2a974c852c2495389a2d2545254e75392
+[2m2025-08-14T03:24:09.187912Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: ✅ Quorum reached for round 6. Verifying batch accumulator...
+[2m2025-08-14T03:24:09.188214Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: ✅ Batch accumulator verified. Proceeding to DAG commit...
+[2m2025-08-14T03:24:09.210811Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: ✅ handle_prevote round 6 done in 22.917322ms
+[2m2025-08-14T03:24:09.223718Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing prevote for round 6 from node 10.0.172.139
+[2m2025-08-14T03:24:09.223788Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: Computed local proposal_digest: 3e6a18861cdc6c047f8218cc5259b4b2a974c852c2495389a2d2545254e75392
+[2m2025-08-14T03:24:09.223799Z[0m [32m INFO[0m [2maleph_research::handlers::handle_prevote[0m[2m:[0m Node 1: Quorum already reached for round 6, skipping duplicate processing.
+[2m2025-08-14T03:24:09.245635Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing commit for round 6 from node 2
+[2m2025-08-14T03:24:09.245679Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Commit count for round 6 is 1/3.
+[2m2025-08-14T03:24:09.245696Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing commit for round 6 from node 5
+[2m2025-08-14T03:24:09.245716Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Commit count for round 6 is 2/3.
+[2m2025-08-14T03:24:09.245727Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing commit for round 6 from node 4
+[2m2025-08-14T03:24:09.245745Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Commit count for round 6 is 3/3.
+[2m2025-08-14T03:24:09.245755Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Finalizing round 6 with quorum.
+[2m2025-08-14T03:24:09.245773Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Inserted unit U6-1 with accumulator_root = lFAoTgggJFRktyd/OBq90QiT8IckvG3rXV/2rTgE9n1VO/kPdfMmGV73t6+9KhUJdg0qg2wyE9YD68TutAJ2BZGEnxEfTiN8sj7lEtBp70+vfrx+JMu5KNGNNAZqd7A=
+[2m2025-08-14T03:24:09.245807Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Skipping duplicate unit U6-1 during DAG insertion
+[2m2025-08-14T03:24:09.245828Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Skipping duplicate unit U6-1 during DAG insertion
+[2m2025-08-14T03:24:09.245838Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Inserting 1 unique units into DAG for round 6
+[2m2025-08-14T03:24:09.245854Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Inserted unit U6-1 (creator: 1, tx count: 5) into DAG round 6
+[2m2025-08-14T03:24:09.246316Z[0m [32m INFO[0m [2maleph_research::utils::config_util[0m[2m:[0m Successfully wrote finalized DAG for round 6 to file: /aleph/finalized_dag/round6.json
+[2m2025-08-14T03:24:09.246346Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Finalized round 6. COMMUNICATION OVERHEAD 94
+[2m2025-08-14T03:24:09.246353Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Finalized round 6 with 3/3 commits. USE THIS FOR TPS METRIC
+[2m2025-08-14T03:24:09.246358Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Local round advanced to 7
+[2m2025-08-14T03:24:09.246362Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Enqueuing RoundFinalized event for round 6
+[2m2025-08-14T03:24:09.246369Z[0m [31mERROR[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m ❌ Node 1: No RBCProcessor to enqueue RoundFinalized!
+[2m2025-08-14T03:24:09.246374Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m Node 1: Round 6 was final. Shutting down.
+[2m2025-08-14T03:24:09.246382Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m LATENCY END: 2025-08-14 03:24:09
+[2m2025-08-14T03:24:09.246671Z[0m [32m INFO[0m [2maleph_research::handlers::handle_commit[0m[2m:[0m ✅ S3 upload triggered.
+[2m2025-08-14T03:24:09.257444Z[0m [32m INFO[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Processing commit for round 6 from node 3
+[2m2025-08-14T03:24:09.257477Z[0m [33m WARN[0m [2maleph_research::processors::rbc_processor[0m[2m:[0m Node 1: Round 6 is finalized. Ignoring Commit request from node 3.

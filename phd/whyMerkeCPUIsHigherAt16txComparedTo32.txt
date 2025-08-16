@@ -1,0 +1,42 @@
+The reason why MERKLE with 5 nodes and 16 txpb has higher CPU utilization than 32 txpb may seem counterintuitive at first, but it can be explained by efficiency dynamics at small batch sizes and overhead amortization in the protocol’s execution:
+
+🧠 Explanation: Why 16 txpb uses more CPU than 32 txpb in MERKLE
+1. Merkle Tree Setup Overhead Doesn't Scale Linearly
+
+Merkle trees have some fixed overhead regardless of size:
+
+Hashing a tree with 16 tx vs. 32 tx still involves:
+
+Setting up buffers
+
+Tree node memory allocation
+
+Recursive hashing logic
+
+So, at 16 txpb, this overhead is not amortized well, making each transaction more expensive in CPU time.
+
+2. Higher Rounds Per Transaction
+
+With the same number of rounds:
+
+A smaller batch size (16 txpb) means more frequent tree constructions per second.
+
+That leads to repeated Merkle operations (and thus CPU work) for each small batch, rather than batching the cost over a larger set of tx (as in 32 txpb).
+
+3. Synchronization and Consensus Overhead Per Round
+
+Even if message count (overhead) is similar, the coordination logic per batch is still active:
+
+Consensus per batch = same number of steps
+
+But with smaller batches, this cost is incurred more often
+
+More “round trips” for smaller batches → CPU stays busy more of the time.
+
+4. Empirical Confirmation
+
+From your data:
+
+Scenario	Avg CPU (%)
+5n - 16 txpb	42.53
+5n - 32 txpb	34.95

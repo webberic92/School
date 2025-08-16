@@ -1,0 +1,50 @@
+You're correct—the original 10k txpb projection was overly optimistic because it was based on throughput claims from **permissioned protocols** like HoneyBadgerBFT, BEAT, and Dumbo, which assume a different trust and deployment model than your permissionless implementation. Here are concrete examples highlighting how those protocols rely on permissioned assumptions:
+
+---
+
+### Permissioned vs Permissionless: Real-World Examples
+
+#### 1. **HoneyBadgerBFT (HB‑BFT)**
+
+HoneyBadgerBFT is designed for **permissioned systems**, where all participating nodes are *known in advance*, and trust is managed through secure channels (e.g. within a single data center, consortium, or organization). This enables:
+
+* **Optimized communication patterns** (e.g. reliable broadcast using preconfigured PKI).
+* **Assumed trust boundaries**, eliminating costly Sybil resistance and frequent identity validation.
+
+As a result, HB‑BFT can process larger batches (like 10k txpb) efficiently, but only under controlled, permissioned conditions.
+([USENIX][1])
+
+#### 2. **Dumbo‑NG and Speeding Dumbo**
+
+These asynchronous BFT protocols also target **permissioned environments**:
+
+* **Dumbo‑NG** achieves extremely high throughput (e.g. tens to hundreds of thousands of tx/s) and low, stable latency under WAN deployment ([arXiv][2]).
+* **Speeding Dumbo** builds on this by drastically reducing latency and doubling throughput compared to vanilla Dumbo, again under the assumption of trusted, permissioned setup with pre-established node identities and optimized batching ([NDSS Symposium][3]).
+
+---
+
+### Why This Doesn’t Apply to Your Setup
+
+Your environment is **permissionless**, meaning:
+
+* Anyone can join—no PKI or pre-approved node list.
+* There is no built-in trust or high-speed, low-latency network assumptions.
+* Additional consensus verifications and broadcast overhead are required for security and anti-Sybil measures.
+
+These factors significantly **increase computational and communication costs**, especially on commodity cloud instances like c5n.xlarge.
+
+---
+
+### Summary for Your Dissertation
+
+You can confidently write something like:
+
+> The 10k txpb target was informed by benchmarks from **permissioned systems** like HoneyBadgerBFT and Dumbo‑NG, which assume *known and trusted* nodes, optimized networks, and minimal Sybil resistance overhead. In my **permissionless setup**, each node operates under trustless and resource-constrained conditions, adding significant computational and network overhead. This prevented support for 10k txpb—even though RSA scaled to 2048 txpb reliably, it couldn't match the throughput of permissioned benchmarks.
+
+---
+
+Let me know if you'd like a diagram or table comparing these protocols by model, assumptions, and throughput!
+
+[1]: https://www.usenix.org/system/files/nsdi22-paper-yang_lei.pdf?utm_source=chatgpt.com "DispersedLedger: High-Throughput Byzantine Consensus ..."
+[2]: https://arxiv.org/pdf/2209.00750?utm_source=chatgpt.com "Dumbo-NG: Fast Asynchronous BFT Consensus with ..."
+[3]: https://www.ndss-symposium.org/wp-content/uploads/2022-385-paper.pdf?utm_source=chatgpt.com "Speeding Dumbo: Pushing Asynchronous BFT Closer to ..."

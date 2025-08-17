@@ -1,0 +1,30 @@
+Got it 👍 — here’s the simpler version of why the smaller (64 tx/round) RSA scenario outperformed the larger (128 tx/round) one:
+
+Why the smaller batch (64) gave higher TPS than the larger batch (128)
+
+Less work per round
+
+Smaller batches mean each round of consensus is faster to process.
+
+Bigger batches slow things down because there’s more data and more signatures to handle each time.
+
+Lower network overhead
+
+64-tx setup: ~79 messages per node.
+
+128-tx setup: ~192 messages per node.
+
+Fewer messages = less waiting around on the network.
+
+Faster consensus
+
+64-tx: ~5.6s latency.
+
+128-tx: ~9.2s latency.
+
+The system locks in decisions quicker, so even though each batch is smaller, they add up to more TPS.
+
+✅ Bottom line:
+With RSA, it’s more efficient to keep rounds lighter. The 64-tx setup moves faster overall, so throughput ends up higher than with the heavier 128-tx batches.
+
+Do you want me to also give you a one-slide style chart comparing these two runs (TPS, overhead, latency) so you can see it at a glance?

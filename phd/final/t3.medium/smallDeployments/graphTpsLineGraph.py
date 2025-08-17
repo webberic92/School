@@ -13,7 +13,7 @@ os.makedirs("./charts", exist_ok=True)
 out_path = "./charts/tps_line.png"
 
 # --- DB: SQLite ---
-DB_PATH = "t3m_scaling_5nodes_txpb_deployments.db"   # <- change if your DB lives elsewhere
+DB_PATH = "t3medium_small_deployments.db"   # <- change if your DB lives elsewhere
 conn = sqlite3.connect(DB_PATH)
 
 # --- Load data ---
@@ -90,7 +90,7 @@ for xi, ym, yr in zip(x, y_merkle, y_rsa):
 # Axes and labels
 ax.set_xlabel("Scenario (Nodes - Tx per Batch)", fontsize=12)
 ax.set_ylabel("Average TPS", fontsize=12)
-ax.set_title("Throughput (TPS) by Protocol and Scenario — Line Graph (txpb-based Shading)", fontsize=14)
+ax.set_title("Throughput (TPS) by Protocol and Scenario", fontsize=14)
 ax.set_xticks(x)
 ax.set_xticklabels(df_pivot.index, rotation=45, ha="right")
 ax.legend()

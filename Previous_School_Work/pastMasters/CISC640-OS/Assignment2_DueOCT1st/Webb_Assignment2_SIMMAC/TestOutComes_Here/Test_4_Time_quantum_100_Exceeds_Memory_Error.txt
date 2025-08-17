@@ -1,0 +1,8 @@
+Weclome to the SIMMAC program! 
+To get started, 
+Please enter time quantum value... 
+100
+Please enter file name to load...test4
+Do you want to load another file? (Y/N)...
+n
+Something went wrong cannot load program, program size exceeds memory size.

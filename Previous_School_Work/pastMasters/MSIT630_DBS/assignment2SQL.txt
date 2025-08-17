@@ -1,0 +1,133 @@
+QUESTION 1
+	CREATE TABLE r
+	building		varchar(15), 
+	 room_number	numeric(4,0), 
+	 time_slot_id	varchar(2),
+	 course_id		varchar(10),
+ 	 sec_id     	numeric(2,0)
+
+	
+	)
+
+INSERT INTO r (
+building,
+room_number,
+time_slot_id,
+course_id,
+sec_id )
+  
+VALUES
+("Garfield",359,"A","BIO-101",1),
+("Garfield",359,"B","BIO-101",2),
+("Saucon",651,"A","CS-101",2),
+("Saucon",550,"C","CS-319",1),
+("Painter",705,"A","BIO-305",1),
+("Painter",705,"D","MU-199",1),
+("Painter",705,"B","CS-101",1),
+("Painter",403,"D","FIN-201",1);
+
+select * from r;
+
+classpractice1
+webbrico 2
+
+QUESTION 2
+
+SELECT dept_name,AVG(salary) as avgSalary FROM instructor group by dept_name;
+SELECT dept_name,AVG(salary) as avgSalary FROM instructor group by dept_name having avgSalary > 72000;
+SELECT dept_name,AVG(salary) as avgSalary FROM instructor group by dept_name having avgSalary < (select  AVG(salary)from instructor where dept_name = "Biology");
+
+
+
+
+
+Use user defined SQL functions (create function command)
+ as appropriate to answer the above query, the function 
+takes the department name as the input and returns the average salary of the given department. (6 points) 
+
+----------------------------------------------------------------------------------
+USE schooldb
+GO
+ 
+CREATE FUNCTION getFormattedDate
+ (
+ @DateValue AS DATETIME
+ )
+RETURNS VARCHAR(MAX)
+AS
+BEGIN
+	RETURN
+	  DATENAME(DW, @DateValue)+ ', '+
+	  DATENAME(DAY, @DateValue)+ ' '+
+	  DATENAME(MONTH, @DateValue) +', '+
+	  DATENAME(YEAR, @DateValue)
+ 
+END
+
+---------------------------------------------------------------------
+USE instructor
+GO
+ 
+CREATE FUNCTION deptAVG
+ (
+ @deptName AS VARCHAR(10)
+ )
+RETURNS numeric(4,0),
+AS
+BEGIN
+	RETURN
+
+	 AVG(salary)from instructor where dept_name = "@deptName")
+	  
+ 
+END
+
+
+
+---------------------NOTES FOR QUESTION 3-------------------------------------------
+#a----------
+select * from student where ID = 76653;
+select * from takes where course_id like 'EE%';
+select name from student where ID = (select ID from takes where course_id like 'EE%');
+
+select * from takes;
+
+
+
+#b----------
+
+create view  doWant as select *,count(*) as doWant from takes where year >= 2010 and not year = 2009 group by ID order by ID;
+create view  dontWant as select *, count(*)as dontWant from takes where year < 2010 group by ID order by ID;
+select * from doWant;
+select * from dontWant;
+
+
+SELECT id,year
+FROM takes
+WHERE year > 2009 and not year =2009
+GROUP BY id
+HAVING year > 2009 and not year =2009
+ORDER BY id;
+
+
+
+
+---------------------Notes for 4--------------------
+
+
+
+create table Doctor
+	(doc_id		numeric(4,0), 
+	 f_name			varchar(20), 
+	 l_name		varchar(20),
+	 primary key (doc_id),
+	 
+	);
+
+insert into table Doctor values (1000, "eric", "webb");
+insert into  Doctor values (666, "Bad ", "Doc");
+insert into  Doctor values (777, "Good ", "Doc");
+
+select * from Doctor;
+
+ 

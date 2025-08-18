@@ -1,0 +1,72 @@
+📦 AlephResearch Final Metrics Report (RSA)
+==============================================
+
+🚀 Transaction Throughput (TPS)
+----------------------------------------------
+📊 Transaction Throughput per Node
+----------------------------------
+node-1/                                  TPS: 31.68
+node-10/                                 TPS: 31.93
+node-11/                                 TPS: 31.45
+node-12/                                 TPS: 31.59
+node-2/                                  TPS: 31.66
+node-3/                                  TPS: 31.79
+node-4/                                  TPS: 31.58
+node-5/                                  TPS: 31.66
+node-6/                                  TPS: 31.69
+node-7/                                  TPS: 31.60
+node-8/                                  TPS: 31.58
+node-9/                                  TPS: 31.71
+----------------------------------
+📈 Average TPS across 12 nodes (Tx/Round: 5, Rounds: 16): 31.66
+
+📡 Communication Overhead
+----------------------------------------------
+📡 Communication Overhead per Node (Final Round Only)
+------------------------------------------------------
+node-1/                                  Overhead: 446 messages
+node-10/                                 Overhead: 434 messages
+node-11/                                 Overhead: 456 messages
+node-12/                                 Overhead: 461 messages
+node-2/                                  Overhead: 440 messages
+node-3/                                  Overhead: 450 messages
+node-4/                                  Overhead: 431 messages
+node-5/                                  Overhead: 462 messages
+node-6/                                  Overhead: 441 messages
+node-7/                                  Overhead: 448 messages
+node-8/                                  Overhead: 448 messages
+node-9/                                  Overhead: 453 messages
+------------------------------------------------------
+📈 Average Communication Overhead across 12 nodes: 447.50 messages
+
+🖥️  Resource Utilization (CPU & Memory)
+----------------------------------------------
+🖥️  Resource Utilization per Node (Average)
+---------------------------------------------------------
+Node                                     CPU Util (%)    Mem Util (%)   
+---------------------------------------------------------
+node-1/                                  24.07           10.91          
+node-10/                                 16.05           11.11          
+node-11/                                 27.90           10.75          
+node-12/                                 21.07           10.79          
+node-2/                                  24.52           10.90          
+node-3/                                  16.77           11.00          
+node-4/                                  25.93           10.90          
+node-5/                                  12.61           10.95          
+node-6/                                  19.29           10.92          
+node-7/                                  16.89           10.77          
+node-8/                                  23.69           10.72          
+node-9/                                  16.94           10.96          
+---------------------------------------------------------
+📊 Average CPU Utilization across 12 nodes: 20.47%
+📊 Average Memory Utilization across 12 nodes: 10.89%
+
+⏱️  Consensus Latency
+----------------------------------------------
+⏱️  Measuring Latency Across Nodes
+--------------------------------------------
+📍 Earliest Start: 2025-08-17T23:04:07.468395
+📍 Latest End:     2025-08-17T23:04:15.736926
+--------------------------------------------
+📈 Total Latency: 8.269 seconds
+

@@ -546,19 +546,45 @@ SELECT id, node_id, overhead_messages FROM (
 );
 
 
--- 5nodes_1024txpb_16rounds_NEED_RSA.txt
+-- 5nodes_1024txpb_16rounds_RSA.txt
 INSERT INTO experiment_summary
   (protocol, filename, nodes, txpb, rounds, avg_tps, avg_overhead, avg_cpu, avg_mem, latency_seconds)
 VALUES
-  ('RSA', '5nodes_1024txpb_16rounds_NEED_RSA.txt', 5, 1024, 16,
-   NULL,
-   NULL,
-   NULL,
-   NULL,
-   NULL);
+  ('RSA', '5nodes_1024txpb_16rounds_RSA.txt', 5, 1024, 16,
+   416.27,
+   205.6,
+   25.71,
+   11.67,
+   47.656);
 
 DELETE FROM __exp;
 INSERT INTO __exp(id) VALUES (last_insert_rowid());
+
+INSERT INTO node_tps (experiment_id, node_id, tps)
+SELECT id, node_id, tps FROM (
+  SELECT id, 'node-1' AS node_id, 418.09 AS tps FROM __exp
+  UNION ALL
+  SELECT id, 'node-2' AS node_id, 417.68 AS tps FROM __exp
+  UNION ALL
+  SELECT id, 'node-3' AS node_id, 413.54 AS tps FROM __exp
+  UNION ALL
+  SELECT id, 'node-4' AS node_id, 414.63 AS tps FROM __exp
+  UNION ALL
+  SELECT id, 'node-5' AS node_id, 417.42 AS tps FROM __exp
+);
+
+INSERT INTO node_overhead (experiment_id, node_id, overhead_messages)
+SELECT id, node_id, overhead_messages FROM (
+  SELECT id, 'node-1' AS node_id, 237 AS overhead_messages FROM __exp
+  UNION ALL
+  SELECT id, 'node-2' AS node_id, 230 AS overhead_messages FROM __exp
+  UNION ALL
+  SELECT id, 'node-3' AS node_id, 138 AS overhead_messages FROM __exp
+  UNION ALL
+  SELECT id, 'node-4' AS node_id, 213 AS overhead_messages FROM __exp
+  UNION ALL
+  SELECT id, 'node-5' AS node_id, 210 AS overhead_messages FROM __exp
+);
 
 
 -- 8nodes_1024txpb_16rounds_MERKLE.txt
@@ -614,17 +640,55 @@ SELECT id, node_id, overhead_messages FROM (
 );
 
 
--- 8nodes_1024txpb_16rounds_NEED_RSA.txt
+-- 8nodes_1024txpb_16rounds_RSA.txt
 INSERT INTO experiment_summary
   (protocol, filename, nodes, txpb, rounds, avg_tps, avg_overhead, avg_cpu, avg_mem, latency_seconds)
 VALUES
-  ('RSA', '8nodes_1024txpb_16rounds_NEED_RSA.txt', 8, 1024, 16,
-   NULL,
-   NULL,
-   NULL,
-   NULL,
-   NULL);
+  ('RSA', '8nodes_1024txpb_16rounds_RSA.txt', 8, 1024, 16,
+   227.6,
+   381.62,
+   17.28,
+   12.1,
+   83.237);
 
 DELETE FROM __exp;
 INSERT INTO __exp(id) VALUES (last_insert_rowid());
+
+INSERT INTO node_tps (experiment_id, node_id, tps)
+SELECT id, node_id, tps FROM (
+  SELECT id, 'node-1' AS node_id, 219.77 AS tps FROM __exp
+  UNION ALL
+  SELECT id, 'node-2' AS node_id, 219.93 AS tps FROM __exp
+  UNION ALL
+  SELECT id, 'node-3' AS node_id, 219.55 AS tps FROM __exp
+  UNION ALL
+  SELECT id, 'node-4' AS node_id, 233.18 AS tps FROM __exp
+  UNION ALL
+  SELECT id, 'node-5' AS node_id, 223.56 AS tps FROM __exp
+  UNION ALL
+  SELECT id, 'node-6' AS node_id, 238.36 AS tps FROM __exp
+  UNION ALL
+  SELECT id, 'node-7' AS node_id, 233.10 AS tps FROM __exp
+  UNION ALL
+  SELECT id, 'node-8' AS node_id, 233.34 AS tps FROM __exp
+);
+
+INSERT INTO node_overhead (experiment_id, node_id, overhead_messages)
+SELECT id, node_id, overhead_messages FROM (
+  SELECT id, 'node-1' AS node_id, 394 AS overhead_messages FROM __exp
+  UNION ALL
+  SELECT id, 'node-2' AS node_id, 404 AS overhead_messages FROM __exp
+  UNION ALL
+  SELECT id, 'node-3' AS node_id, 388 AS overhead_messages FROM __exp
+  UNION ALL
+  SELECT id, 'node-4' AS node_id, 385 AS overhead_messages FROM __exp
+  UNION ALL
+  SELECT id, 'node-5' AS node_id, 396 AS overhead_messages FROM __exp
+  UNION ALL
+  SELECT id, 'node-6' AS node_id, 328 AS overhead_messages FROM __exp
+  UNION ALL
+  SELECT id, 'node-7' AS node_id, 395 AS overhead_messages FROM __exp
+  UNION ALL
+  SELECT id, 'node-8' AS node_id, 363 AS overhead_messages FROM __exp
+);
 

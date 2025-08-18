@@ -1,0 +1,228 @@
+📦 AlephResearch Final Metrics Report (RSA)
+==============================================
+
+🚀 Transaction Throughput (TPS)
+----------------------------------------------
+📊 Transaction Throughput per Node
+----------------------------------
+node-1/                                  TPS: 14.60
+node-10/                                 TPS: 13.71
+node-11/                                 TPS: 14.04
+node-12/                                 TPS: 14.56
+node-13/                                 TPS: 13.10
+node-14/                                 TPS: 13.79
+node-15/                                 TPS: 14.01
+node-16/                                 TPS: 15.09
+node-17/                                 TPS: 14.22
+node-18/                                 TPS: 13.59
+node-19/                                 TPS: 13.28
+node-2/                                  TPS: 13.71
+node-20/                                 TPS: 13.53
+node-21/                                 TPS: 14.54
+node-22/                                 TPS: 14.06
+node-23/                                 TPS: 14.78
+node-24/                                 TPS: 13.48
+node-25/                                 TPS: 13.64
+node-26/                                 TPS: 13.38
+node-27/                                 TPS: 13.42
+node-28/                                 TPS: 14.77
+node-29/                                 TPS: 13.18
+node-3/                                  TPS: 13.94
+node-30/                                 TPS: 13.40
+node-31/                                 TPS: 13.18
+node-32/                                 TPS: 13.32
+node-33/                                 TPS: 13.48
+node-34/                                 TPS: 14.13
+node-35/                                 TPS: 14.80
+node-36/                                 TPS: 14.69
+node-37/                                 TPS: 14.17
+node-38/                                 TPS: 14.17
+node-39/                                 TPS: 13.18
+node-4/                                  TPS: 14.05
+node-40/                                 TPS: 13.32
+node-41/                                 TPS: 13.90
+node-42/                                 TPS: 13.70
+node-43/                                 TPS: 14.13
+node-44/                                 TPS: 13.56
+node-45/                                 TPS: 14.15
+node-46/                                 TPS: 13.24
+node-47/                                 TPS: 13.74
+node-48/                                 TPS: 14.43
+node-49/                                 TPS: 13.68
+node-5/                                  TPS: 13.66
+node-50/                                 TPS: 13.45
+node-51/                                 TPS: 13.28
+node-52/                                 TPS: 12.84
+node-53/                                 TPS: 14.20
+node-54/                                 TPS: 15.18
+node-55/                                 TPS: 13.59
+node-56/                                 TPS: 13.67
+node-57/                                 TPS: 13.54
+node-58/                                 TPS: 15.17
+node-59/                                 TPS: 13.51
+node-6/                                  TPS: 13.11
+node-60/                                 TPS: 15.10
+node-61/                                 TPS: 14.26
+node-62/                                 TPS: 14.57
+node-63/                                 TPS: 13.30
+node-64/                                 TPS: 14.70
+node-7/                                  TPS: 14.81
+node-8/                                  TPS: 14.02
+node-9/                                  TPS: 15.25
+----------------------------------
+📈 Average TPS across 64 nodes (Tx/Round: 5, Rounds: 3): 13.94
+
+📡 Communication Overhead
+----------------------------------------------
+📡 Communication Overhead per Node (Final Round Only)
+------------------------------------------------------
+node-1/                                  Overhead: 890 messages
+node-10/                                 Overhead: 817 messages
+node-11/                                 Overhead: 734 messages
+node-12/                                 Overhead: 658 messages
+node-13/                                 Overhead: 843 messages
+node-14/                                 Overhead: 847 messages
+node-15/                                 Overhead: 882 messages
+node-16/                                 Overhead: 877 messages
+node-17/                                 Overhead: 705 messages
+node-18/                                 Overhead: 807 messages
+node-19/                                 Overhead: 860 messages
+node-2/                                  Overhead: 769 messages
+node-20/                                 Overhead: 756 messages
+node-21/                                 Overhead: 887 messages
+node-22/                                 Overhead: 755 messages
+node-23/                                 Overhead: 726 messages
+node-24/                                 Overhead: 707 messages
+node-25/                                 Overhead: 701 messages
+node-26/                                 Overhead: 810 messages
+node-27/                                 Overhead: 869 messages
+node-28/                                 Overhead: 830 messages
+node-29/                                 Overhead: 887 messages
+node-3/                                  Overhead: 823 messages
+node-30/                                 Overhead: 883 messages
+node-31/                                 Overhead: 866 messages
+node-32/                                 Overhead: 767 messages
+node-33/                                 Overhead: 891 messages
+node-34/                                 Overhead: 882 messages
+node-35/                                 Overhead: 881 messages
+node-36/                                 Overhead: 730 messages
+node-37/                                 Overhead: 879 messages
+node-38/                                 Overhead: 799 messages
+node-39/                                 Overhead: 794 messages
+node-4/                                  Overhead: 714 messages
+node-40/                                 Overhead: 892 messages
+node-41/                                 Overhead: 821 messages
+node-42/                                 Overhead: 857 messages
+node-43/                                 Overhead: 885 messages
+node-44/                                 Overhead: 878 messages
+node-45/                                 Overhead: 876 messages
+node-46/                                 Overhead: 720 messages
+node-47/                                 Overhead: 752 messages
+node-48/                                 Overhead: 890 messages
+node-49/                                 Overhead: 631 messages
+node-5/                                  Overhead: 751 messages
+node-50/                                 Overhead: 766 messages
+node-51/                                 Overhead: 889 messages
+node-52/                                 Overhead: 836 messages
+node-53/                                 Overhead: 894 messages
+node-54/                                 Overhead: 766 messages
+node-55/                                 Overhead: 884 messages
+node-56/                                 Overhead: 888 messages
+node-57/                                 Overhead: 809 messages
+node-58/                                 Overhead: 894 messages
+node-59/                                 Overhead: 723 messages
+node-6/                                  Overhead: 892 messages
+node-60/                                 Overhead: 877 messages
+node-61/                                 Overhead: 796 messages
+node-62/                                 Overhead: 857 messages
+node-63/                                 Overhead: 884 messages
+node-64/                                 Overhead: 775 messages
+node-7/                                  Overhead: 701 messages
+node-8/                                  Overhead: 890 messages
+node-9/                                  Overhead: 734 messages
+------------------------------------------------------
+📈 Average Communication Overhead across 64 nodes: 816.15 messages
+
+🖥️  Resource Utilization (CPU & Memory)
+----------------------------------------------
+🖥️  Resource Utilization per Node (Average)
+---------------------------------------------------------
+Node                                     CPU Util (%)    Mem Util (%)   
+---------------------------------------------------------
+node-1/                                  11.81           10.90          
+node-10/                                 9.38            11.09          
+node-11/                                 11.33           10.97          
+node-12/                                 13.09           10.96          
+node-13/                                 11.51           10.97          
+node-14/                                 13.04           10.90          
+node-15/                                 18.63           10.97          
+node-16/                                 15.46           10.77          
+node-17/                                 17.88           11.02          
+node-18/                                 17.29           11.03          
+node-19/                                 17.69           10.97          
+node-2/                                  11.98           11.00          
+node-20/                                 9.88            10.96          
+node-21/                                 15.64           10.78          
+node-22/                                 13.80           10.88          
+node-23/                                 17.22           10.91          
+node-24/                                 8.67            11.02          
+node-25/                                 8.20            11.01          
+node-26/                                 13.15           10.93          
+node-27/                                 12.50           11.03          
+node-28/                                 16.56           10.91          
+node-29/                                 14.56           10.99          
+node-3/                                  10.39           11.06          
+node-30/                                 9.89            11.05          
+node-31/                                 13.61           10.90          
+node-32/                                 13.34           10.87          
+node-33/                                 16.78           10.79          
+node-34/                                 9.82            10.96          
+node-35/                                 17.25           10.82          
+node-36/                                 10.48           10.99          
+node-37/                                 13.53           10.86          
+node-38/                                 10.16           10.97          
+node-39/                                 7.66            11.09          
+node-4/                                  11.38           10.97          
+node-40/                                 11.38           10.90          
+node-41/                                 23.86           10.97          
+node-42/                                 9.58            11.11          
+node-43/                                 11.61           10.90          
+node-44/                                 11.83           11.03          
+node-45/                                 13.70           10.90          
+node-46/                                 17.97           10.90          
+node-47/                                 15.84           11.03          
+node-48/                                 20.23           10.78          
+node-49/                                 16.41           10.90          
+node-5/                                  8.04            11.07          
+node-50/                                 11.84           11.08          
+node-51/                                 21.81           10.96          
+node-52/                                 9.26            10.95          
+node-53/                                 17.96           10.94          
+node-54/                                 24.64           10.91          
+node-55/                                 15.78           10.80          
+node-56/                                 11.61           10.97          
+node-57/                                 14.12           10.86          
+node-58/                                 14.28           10.79          
+node-59/                                 8.73            11.04          
+node-6/                                  17.34           10.94          
+node-60/                                 19.84           10.76          
+node-61/                                 26.92           10.76          
+node-62/                                 14.41           11.03          
+node-63/                                 18.82           10.82          
+node-64/                                 16.00           11.03          
+node-7/                                  17.49           10.89          
+node-8/                                  17.00           10.78          
+node-9/                                  17.00           10.89          
+---------------------------------------------------------
+📊 Average CPU Utilization across 64 nodes: 14.35%
+📊 Average Memory Utilization across 64 nodes: 10.93%
+
+⏱️  Consensus Latency
+----------------------------------------------
+⏱️  Measuring Latency Across Nodes
+--------------------------------------------
+📍 Earliest Start: 2025-08-18T06:47:03.824078
+📍 Latest End:     2025-08-18T06:47:10.618053
+--------------------------------------------
+📈 Total Latency: 6.794 seconds
+

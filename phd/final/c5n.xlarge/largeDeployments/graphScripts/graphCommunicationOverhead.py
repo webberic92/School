@@ -7,7 +7,7 @@ import sqlite3
 
 
 # --- DB: SQLite ---
-DB_PATH = "./c5nxl_medium_deployments.db"   # <- change if your DB lives elsewhere
+DB_PATH = "./c5nxl_large_deployments.db"   # <- change if your DB lives elsewhere
 conn = sqlite3.connect(DB_PATH)
 # --- Load data ---
 df = pd.read_sql("SELECT * FROM experiment_summary", conn)

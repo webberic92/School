@@ -11,7 +11,7 @@ os.makedirs("./charts", exist_ok=True)
 out_path = "./charts/throughput_vs_batch_by_nodes_merkle_vs_rsa.png"
 
 # ---------- DB ----------
-DB_PATH = "c5nxl_medium_deployments.db"  # change if needed
+DB_PATH = "c5nxl_large_deployments.db"  # change if needed
 conn = sqlite3.connect(DB_PATH)
 
 # ---------- Load ----------
